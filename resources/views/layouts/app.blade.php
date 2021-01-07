@@ -29,6 +29,22 @@
             <a class="navbar-brand" href="{{ route('threads.index') }}">
                 All Threads
             </a>
+
+            <div class="dropdown show">
+                <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    Channels
+                </a>
+
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    @foreach(\App\Models\Channel::all() as $channel)
+                        <a class="dropdown-item" href="{{ route('threads.channel', ['channel' => $channel->slug]) }}">
+                            {{ $channel->name }}
+                        </a>
+                    @endforeach
+                </div>
+            </div>
+
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="{{ __('Toggle navigation') }}">

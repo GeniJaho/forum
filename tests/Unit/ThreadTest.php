@@ -19,7 +19,7 @@ class ThreadTest extends TestCase
     }
 
 
-    public function testAThreadCanMakeAStringPath()
+    public function test_a_thread_can_make_a_string_path()
     {
         $this->assertEquals("/threads/{$this->thread->channel->slug}/{$this->thread->id}", $this->thread->path());
     }
@@ -29,7 +29,7 @@ class ThreadTest extends TestCase
      *
      * @return void
      */
-    public function testAThreadHasReplies()
+    public function test_a_thread_has_replies()
     {
         $this->assertInstanceOf(Collection::class, $this->thread->replies);
     }
@@ -39,12 +39,12 @@ class ThreadTest extends TestCase
      *
      * @return void
      */
-    public function testAThreadHasACreator()
+    public function test_a_thread_has_a_creator()
     {
         $this->assertInstanceOf(User::class, $this->thread->creator);
     }
 
-    public function testAThreadCanAddAReply()
+    public function test_a_thread_can_add_a_reply()
     {
         $this->thread->addReply([
             'body' => 'Foobar',
@@ -54,7 +54,7 @@ class ThreadTest extends TestCase
         $this->assertCount(1, $this->thread->replies);
     }
 
-    public function testAThreadBelongsToAChannel()
+    public function test_a_thread_belongs_to_a_channel()
     {
         $this->assertInstanceOf('App\Models\Channel', $this->thread->channel);
     }

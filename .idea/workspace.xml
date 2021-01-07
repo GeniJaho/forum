@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d5dbe8e9-c3d0-4c3c-b034-76a18891d5e2" name="Default Changelist" comment="" />
+    <list default="true" id="d5dbe8e9-c3d0-4c3c-b034-76a18891d5e2" name="Default Changelist" comment="Initial Commit - Episode 9">
+      <change afterPath="$PROJECT_DIR$/tests/Unit/ChannelTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/RepliesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/RepliesController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ThreadsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ThreadsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Channel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Channel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/CreateThreadsTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/CreateThreadsTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/ParticipateInForumTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/ParticipateInForumTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/ReadThreadsTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/ReadThreadsTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Unit/ReplyTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/ReplyTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Unit/ThreadTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/ThreadTest.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,6 +30,9 @@
         <option value="composer.json" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
@@ -140,26 +156,36 @@
     </include_path>
   </component>
   <component name="ProjectId" id="1mfGV4uWEPqyaojoxcQEy8JF1d0" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/artisan" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected="PHP Script.Serve">
-    <configuration name="ParticipateInForumTest.testUnauthenticatedUsersMayNotPostReplies" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Feature\ParticipateInForumTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/ParticipateInForumTest.php" method="testUnauthenticatedUsersMayNotPostReplies" scope="Method" />
+    <configuration name="ChannelTest.test_a_channel_consists_of_threads" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="ChannelTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Unit/ChannelTest.php" method="test_a_channel_consists_of_threads" scope="Method" />
       <method v="2" />
     </configuration>
-    <configuration name="ThreadTest.testAThreadCanMakeAStringPath" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Unit\ThreadTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Unit/ThreadTest.php" method="testAThreadCanMakeAStringPath" scope="Method" />
+    <configuration name="ParticipateInForumTest.test_a_reply_requires_a_body" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\ParticipateInForumTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/ParticipateInForumTest.php" method="test_a_reply_requires_a_body" scope="Method" />
+      <method v="2" />
+    </configuration>
+    <configuration name="ReadThreadsTest.test_a_user_can_filter_threads_according_to_a_channel" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\ReadThreadsTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/ReadThreadsTest.php" method="test_a_user_can_filter_threads_according_to_a_channel" scope="Method" />
+      <method v="2" />
+    </configuration>
+    <configuration name="ReadThreadsTest.test_a_user_can_filter_threads_according_to_a_tag" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\ReadThreadsTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/ReadThreadsTest.php" method="test_a_user_can_filter_threads_according_to_a_tag" scope="Method" />
       <method v="2" />
     </configuration>
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -176,15 +202,19 @@
     <list>
       <item itemvalue="PHP Script.Serve" />
       <item itemvalue="PHPUnit.phpunit.xml" />
-      <item itemvalue="PHPUnit.ParticipateInForumTest.testUnauthenticatedUsersMayNotPostReplies" />
+      <item itemvalue="PHPUnit.ParticipateInForumTest.test_a_reply_requires_a_body" />
+      <item itemvalue="PHPUnit.ReadThreadsTest.test_a_user_can_filter_threads_according_to_a_tag" />
+      <item itemvalue="PHPUnit.ChannelTest.test_a_channel_consists_of_threads" />
+      <item itemvalue="PHPUnit.ReadThreadsTest.test_a_user_can_filter_threads_according_to_a_channel" />
       <item itemvalue="PHPUnit.tests" />
-      <item itemvalue="PHPUnit.ThreadTest.testAThreadCanMakeAStringPath" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="PHPUnit.tests" />
-        <item itemvalue="PHPUnit.ParticipateInForumTest.testUnauthenticatedUsersMayNotPostReplies" />
-        <item itemvalue="PHPUnit.ThreadTest.testAThreadCanMakeAStringPath" />
+        <item itemvalue="PHPUnit.ReadThreadsTest.test_a_user_can_filter_threads_according_to_a_channel" />
+        <item itemvalue="PHPUnit.ChannelTest.test_a_channel_consists_of_threads" />
+        <item itemvalue="PHPUnit.ReadThreadsTest.test_a_user_can_filter_threads_according_to_a_tag" />
+        <item itemvalue="PHPUnit.ParticipateInForumTest.test_a_reply_requires_a_body" />
       </list>
     </recent_temporary>
   </component>
@@ -203,11 +233,42 @@
       <workItem from="1609970390663" duration="168000" />
       <workItem from="1609970570156" duration="19000" />
       <workItem from="1610053637976" duration="17000" />
-      <workItem from="1610053663080" duration="1203000" />
+      <workItem from="1610053663080" duration="3236000" />
+      <workItem from="1610056933851" duration="2328000" />
     </task>
+    <task id="LOCAL-00001" summary="Initial Commit - Episode 9">
+      <created>1610055283914</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1610055283914</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
+    <MESSAGE value="Initial Commit - Episode 9" />
+    <option name="LAST_COMMIT_MESSAGE" value="Initial Commit - Episode 9" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

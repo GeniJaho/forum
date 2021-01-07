@@ -10,10 +10,10 @@ use Tests\TestCase;
 
 class ParticipateInForumTest extends TestCase
 {
-    public function testUnauthenticatedUsersMayNotPostReplies()
+    public function test_unauthenticated_users_may_not_post_replies()
     {
         $this->post('/threads/nice/1/replies', [])
-        ->assertRedirect('/login');
+            ->assertRedirect('/login');
     }
 
     /**
@@ -21,7 +21,7 @@ class ParticipateInForumTest extends TestCase
      *
      * @return void
      */
-    public function testAnAuthenticatedUserMayParticipateInForumThreads()
+    public function test_an_authenticated_user_may_participate_in_forum_threads()
     {
         $this->be($user = User::factory()->create());
 
@@ -31,5 +31,16 @@ class ParticipateInForumTest extends TestCase
         $this->post($thread->path() . '/replies', $reply->toArray());
         $this->get($thread->path())
             ->assertSee($reply->body);
+    }
+
+    public function test_a_reply_requires_a_body()
+    {
+        $this->withExceptionHandling()->signIn();
+
+        $thread = Thread::factory()->create();
+        $reply = Reply::factory()->makeOne(['body' => null]);
+
+        $this->post($thread->path() . '/replies', $reply->toArray())
+            ->assertSessionHasErrors('body');
     }
 }
