@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="d5dbe8e9-c3d0-4c3c-b034-76a18891d5e2" name="Default Changelist" comment="Initial Commit - Episode 9">
-      <change afterPath="$PROJECT_DIR$/tests/Unit/ChannelTest.php" afterDir="false" />
+    <list default="true" id="d5dbe8e9-c3d0-4c3c-b034-76a18891d5e2" name="Default Changelist" comment="Episode 11">
+      <change afterPath="$PROJECT_DIR$/app/Filters/Filters.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Filters/ThreadFilters.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/RepliesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/RepliesController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ThreadsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ThreadsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Channel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Channel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Thread.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Thread.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/CreateThreadsTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/CreateThreadsTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/ParticipateInForumTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/ParticipateInForumTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/threads/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/threads/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/threads/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/threads/show.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/Feature/ReadThreadsTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/ReadThreadsTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Unit/ReplyTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/ReplyTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Unit/ThreadTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Unit/ThreadTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -171,13 +172,9 @@
     <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager" selected="PHP Script.Serve">
+  <component name="RunManager" selected="PHPUnit.tests">
     <configuration name="ChannelTest.test_a_channel_consists_of_threads" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner class="ChannelTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Unit/ChannelTest.php" method="test_a_channel_consists_of_threads" scope="Method" />
-      <method v="2" />
-    </configuration>
-    <configuration name="ParticipateInForumTest.test_a_reply_requires_a_body" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Feature\ParticipateInForumTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/ParticipateInForumTest.php" method="test_a_reply_requires_a_body" scope="Method" />
       <method v="2" />
     </configuration>
     <configuration name="ReadThreadsTest.test_a_user_can_filter_threads_according_to_a_channel" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
@@ -186,6 +183,10 @@
     </configuration>
     <configuration name="ReadThreadsTest.test_a_user_can_filter_threads_according_to_a_tag" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner class="Tests\Feature\ReadThreadsTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/ReadThreadsTest.php" method="test_a_user_can_filter_threads_according_to_a_tag" scope="Method" />
+      <method v="2" />
+    </configuration>
+    <configuration name="ReadThreadsTest.test_a_user_can_filter_threads_by_any_username" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\ReadThreadsTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/ReadThreadsTest.php" method="test_a_user_can_filter_threads_by_any_username" scope="Method" />
       <method v="2" />
     </configuration>
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -202,19 +203,19 @@
     <list>
       <item itemvalue="PHP Script.Serve" />
       <item itemvalue="PHPUnit.phpunit.xml" />
-      <item itemvalue="PHPUnit.ParticipateInForumTest.test_a_reply_requires_a_body" />
       <item itemvalue="PHPUnit.ReadThreadsTest.test_a_user_can_filter_threads_according_to_a_tag" />
       <item itemvalue="PHPUnit.ChannelTest.test_a_channel_consists_of_threads" />
       <item itemvalue="PHPUnit.ReadThreadsTest.test_a_user_can_filter_threads_according_to_a_channel" />
       <item itemvalue="PHPUnit.tests" />
+      <item itemvalue="PHPUnit.ReadThreadsTest.test_a_user_can_filter_threads_by_any_username" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="PHPUnit.tests" />
+        <item itemvalue="PHPUnit.ReadThreadsTest.test_a_user_can_filter_threads_by_any_username" />
         <item itemvalue="PHPUnit.ReadThreadsTest.test_a_user_can_filter_threads_according_to_a_channel" />
         <item itemvalue="PHPUnit.ChannelTest.test_a_channel_consists_of_threads" />
         <item itemvalue="PHPUnit.ReadThreadsTest.test_a_user_can_filter_threads_according_to_a_tag" />
-        <item itemvalue="PHPUnit.ParticipateInForumTest.test_a_reply_requires_a_body" />
       </list>
     </recent_temporary>
   </component>
@@ -234,7 +235,8 @@
       <workItem from="1609970570156" duration="19000" />
       <workItem from="1610053637976" duration="17000" />
       <workItem from="1610053663080" duration="3236000" />
-      <workItem from="1610056933851" duration="2328000" />
+      <workItem from="1610056933851" duration="3096000" />
+      <workItem from="1610290146917" duration="7363000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit - Episode 9">
       <created>1610055283914</created>
@@ -243,7 +245,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610055283914</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Episode 11">
+      <created>1610059557630</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1610059557630</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -265,7 +274,8 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="Initial Commit - Episode 9" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial Commit - Episode 9" />
+    <MESSAGE value="Episode 11" />
+    <option name="LAST_COMMIT_MESSAGE" value="Episode 11" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

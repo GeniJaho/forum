@@ -9,6 +9,15 @@ class Thread extends Model
 {
     use HasFactory;
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope('replyCount', function ($builder) {
+            $builder->withCount('replies');
+        });
+    }
+
     protected $guarded = [];
 
     public function path()
@@ -35,4 +44,9 @@ class Thread extends Model
     {
         return $this->belongsTo(Channel::class);
     }
+    public function scopeFilter($query, $filters)
+    {
+        return $filters->apply($query);
+    }
+
 }
