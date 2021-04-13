@@ -6,11 +6,10 @@ namespace App\Filters;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Http\Request;
 
 class ThreadFilters extends Filters
 {
-    protected $filters = ['by'];
+    protected $filters = ['by', 'popular'];
 
     /**
      * @param $username
@@ -21,5 +20,13 @@ class ThreadFilters extends Filters
         $user = User::where('name', $username)->firstOrFail();
 
         return $this->builder->where('user_id', $user->id);
+    }
+
+    /**
+     * @return Builder
+     */
+    protected function popular(): Builder
+    {
+        return $this->builder->reorder('replies_count', 'desc');
     }
 }

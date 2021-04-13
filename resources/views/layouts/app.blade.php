@@ -47,6 +47,10 @@
                             My Threads
                         </a>
                     @endif
+
+                    <a class="dropdown-item" href="{{ route('threads.index', ['popular' => 1]) }}">
+                        Popular Threads
+                    </a>
                 </div>
             </div>
 

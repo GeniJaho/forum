@@ -6,7 +6,16 @@
   <component name="ChangeListManager">
     <list default="true" id="d5dbe8e9-c3d0-4c3c-b034-76a18891d5e2" name="Default Changelist" comment="Episode 16">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/threads/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/threads/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Filters/ThreadFilters.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Filters/ThreadFilters.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ThreadsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ThreadsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/app.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/threads/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/threads/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/ReadThreadsTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/ReadThreadsTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +35,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
@@ -165,7 +175,7 @@
     <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager" selected="PHP Script.Serve">
+  <component name="RunManager" selected="PHPUnit.tests">
     <configuration name="ChannelTest.test_a_channel_consists_of_threads" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner class="ChannelTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Unit/ChannelTest.php" method="test_a_channel_consists_of_threads" scope="Method" />
       <method v="2" />
@@ -174,12 +184,12 @@
       <TestRunner class="Tests\Feature\ReadThreadsTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/ReadThreadsTest.php" method="test_a_user_can_filter_threads_according_to_a_channel" scope="Method" />
       <method v="2" />
     </configuration>
-    <configuration name="ReadThreadsTest.test_a_user_can_filter_threads_according_to_a_tag" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
-      <TestRunner class="Tests\Feature\ReadThreadsTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/ReadThreadsTest.php" method="test_a_user_can_filter_threads_according_to_a_tag" scope="Method" />
-      <method v="2" />
-    </configuration>
     <configuration name="ReadThreadsTest.test_a_user_can_filter_threads_by_any_username" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner class="Tests\Feature\ReadThreadsTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/ReadThreadsTest.php" method="test_a_user_can_filter_threads_by_any_username" scope="Method" />
+      <method v="2" />
+    </configuration>
+    <configuration name="ReadThreadsTest.test_a_user_can_filter_threads_by_popularity" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner class="Tests\Feature\ReadThreadsTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Feature/ReadThreadsTest.php" method="test_a_user_can_filter_threads_by_popularity" scope="Method" />
       <method v="2" />
     </configuration>
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -196,19 +206,19 @@
     <list>
       <item itemvalue="PHP Script.Serve" />
       <item itemvalue="PHPUnit.phpunit.xml" />
-      <item itemvalue="PHPUnit.ReadThreadsTest.test_a_user_can_filter_threads_according_to_a_tag" />
       <item itemvalue="PHPUnit.ChannelTest.test_a_channel_consists_of_threads" />
       <item itemvalue="PHPUnit.ReadThreadsTest.test_a_user_can_filter_threads_according_to_a_channel" />
       <item itemvalue="PHPUnit.tests" />
       <item itemvalue="PHPUnit.ReadThreadsTest.test_a_user_can_filter_threads_by_any_username" />
+      <item itemvalue="PHPUnit.ReadThreadsTest.test_a_user_can_filter_threads_by_popularity" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="PHPUnit.tests" />
+        <item itemvalue="PHPUnit.ReadThreadsTest.test_a_user_can_filter_threads_by_popularity" />
         <item itemvalue="PHPUnit.ReadThreadsTest.test_a_user_can_filter_threads_by_any_username" />
         <item itemvalue="PHPUnit.ReadThreadsTest.test_a_user_can_filter_threads_according_to_a_channel" />
         <item itemvalue="PHPUnit.ChannelTest.test_a_channel_consists_of_threads" />
-        <item itemvalue="PHPUnit.ReadThreadsTest.test_a_user_can_filter_threads_according_to_a_tag" />
       </list>
     </recent_temporary>
   </component>
