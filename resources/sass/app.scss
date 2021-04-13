@@ -13,7 +13,16 @@
         .header {
             display: flex;
             justify-content: space-between;
+            align-items: center;
         }
     }
-
 }
+
+.reply-item {
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+

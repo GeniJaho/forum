@@ -18,18 +18,28 @@ class Reply extends Model
 
     public function favorites()
     {
-        return $this->morphMany(Favorite::class, 'favored');
+        return $this->morphMany(Favorite::class, 'favorited');
     }
 
     /**
-     * @return Model
+     * @return Model|null
      */
-    public function favorite(): Model
+    public function favorite(): ?Model
     {
         $attributes = ['user_id' => auth()->id()];
 
         if (!$this->favorites()->where($attributes)->exists()) {
             return $this->favorites()->create($attributes);
         }
+
+        return null;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFavorited(): bool
+    {
+        return $this->favorites()->where(['user_id' => auth()->id()])->exists();
     }
 }
