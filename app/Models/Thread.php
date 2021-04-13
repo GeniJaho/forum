@@ -9,6 +9,8 @@ class Thread extends Model
 {
     use HasFactory;
 
+    protected $with = ['creator', 'channel'];
+
     protected static function boot()
     {
         parent::boot();
