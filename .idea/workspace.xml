@@ -4,17 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d5dbe8e9-c3d0-4c3c-b034-76a18891d5e2" name="Default Changelist" comment="Episode 11">
-      <change afterPath="$PROJECT_DIR$/app/Filters/Filters.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Filters/ThreadFilters.php" afterDir="false" />
+    <list default="true" id="d5dbe8e9-c3d0-4c3c-b034-76a18891d5e2" name="Default Changelist" comment="Episode 16">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ThreadsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ThreadsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Thread.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Thread.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/threads/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/threads/create.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/threads/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/threads/show.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Feature/ReadThreadsTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/ReadThreadsTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,6 +155,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
@@ -172,7 +165,7 @@
     <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager" selected="PHPUnit.tests">
+  <component name="RunManager" selected="PHP Script.Serve">
     <configuration name="ChannelTest.test_a_channel_consists_of_threads" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
       <TestRunner class="ChannelTest" configuration_file="$PROJECT_DIR$/phpunit.xml" file="$PROJECT_DIR$/tests/Unit/ChannelTest.php" method="test_a_channel_consists_of_threads" scope="Method" />
       <method v="2" />
@@ -236,7 +229,14 @@
       <workItem from="1610053637976" duration="17000" />
       <workItem from="1610053663080" duration="3236000" />
       <workItem from="1610056933851" duration="3096000" />
-      <workItem from="1610290146917" duration="7363000" />
+      <workItem from="1610290146917" duration="8096000" />
+      <workItem from="1610385487119" duration="506000" />
+      <workItem from="1610386885911" duration="615000" />
+      <workItem from="1610387524562" duration="8667000" />
+      <workItem from="1610472742650" duration="1984000" />
+      <workItem from="1618089273446" duration="246000" />
+      <workItem from="1618212999497" duration="28000" />
+      <workItem from="1618333421102" duration="1350000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit - Episode 9">
       <created>1610055283914</created>
@@ -252,7 +252,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610059557630</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Episode 16">
+      <created>1610301036962</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1610301036962</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -275,7 +282,8 @@
     <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="Initial Commit - Episode 9" />
     <MESSAGE value="Episode 11" />
-    <option name="LAST_COMMIT_MESSAGE" value="Episode 11" />
+    <MESSAGE value="Episode 16" />
+    <option name="LAST_COMMIT_MESSAGE" value="Episode 16" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

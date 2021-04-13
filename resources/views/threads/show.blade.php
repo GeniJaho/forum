@@ -4,50 +4,48 @@
     <div class="container">
         <div class="row">
 
-            <div class="col-md-8">
-                <div class="row justify-content-center">
-                    <div class="col-md-8">
-                        <div class="card">
-                            <div class="card-header">
-                                <a href="#">{{ $thread->creator->name }}</a>
-                                posted
-                                {{ $thread->title }}
-                            </div>
+            <div class="col-md-8 justify-content-center">
+                <div class="card">
+                    <div class="card-header">
+                        <a href="#">{{ $thread->creator->name }}</a>
+                        posted
+                        {{ $thread->title }}
+                    </div>
 
-                            <div class="card-body">
-                                {{ $thread->body }}
-                            </div>
-                        </div>
+                    <div class="card-body">
+                        {{ $thread->body }}
                     </div>
                 </div>
 
-                <div class="row justify-content-center mt-5">
-                    <div class="col-md-8">
-                        @foreach($replies as $reply)
+                <div class="mt-5">
+                    @foreach($replies as $reply)
+                        <div class="mt-2">
                             @include('partials.threads.reply')
-                        @endforeach
+                        </div>
+                    @endforeach
 
-                        {{ $replies->links('vendor.pagination.bootstrap-4') }}
-                    </div>
+                    {{ $replies->links('vendor.pagination.bootstrap-4') }}
                 </div>
 
                 @if(auth()->check())
-                    <div class="row justify-content-center mt-5">
-                        <div class="col-md-8">
-                            <form method="post" action="{{ $thread->path() . '/replies' }}">
-                                @csrf
+                    <div class="my-5">
+                        <form method="post" action="{{ $thread->path() . '/replies' }}">
+                            @csrf
 
-                                <div class="form-group">
-                            <textarea name="body" id="body" class="form-control"
-                                      rows="5" placeholder="Have something to say?"></textarea>
-                                </div>
-                                <button type="submit" class="btn btn-primary">Post</button>
-                            </form>
-                        </div>
+                            <div class="form-group">
+                                    <textarea name="body" id="body" class="form-control"
+                                              required
+                                              rows="5" placeholder="Have something to say?"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Post</button>
+                        </form>
                     </div>
                 @else
-                    <p class="text-center mt-2">Please <a href="{{ route('login') }}">sign in</a> to participate in this discussion.</p>
+                    <p class="text-center mt-2">Please <a href="{{ route('login') }}">sign in</a> to participate in
+                        this
+                        discussion.</p>
                 @endif
+
             </div>
 
             <div class="col-md-4">
