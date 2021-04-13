@@ -9,7 +9,7 @@ class FavoritesTest extends TestCase
 {
     public function test_guests_can_not_favorite_anything()
     {
-        $this->post("/replies/1/favorites")
+        $this->post(route('replies.favorite', 1))
             ->assertRedirect('login');
     }
 
@@ -19,7 +19,7 @@ class FavoritesTest extends TestCase
 
         $reply = Reply::factory()->create();
 
-        $this->post("/replies/{$reply->id}/favorites");
+        $this->post(route('replies.favorite', $reply));
 
         $this->assertCount(1, $reply->favorites);
     }
@@ -30,8 +30,8 @@ class FavoritesTest extends TestCase
 
         $reply = Reply::factory()->create();
 
-        $this->post("/replies/{$reply->id}/favorites");
-        $this->post("/replies/{$reply->id}/favorites");
+        $this->post(route('replies.favorite', $reply));
+        $this->post(route('replies.favorite', $reply));
 
         $this->assertCount(1, $reply->favorites);
     }
