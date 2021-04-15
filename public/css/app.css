@@ -10942,7 +10942,7 @@ a.text-dark:focus {
   }
 }
 
-.thread-list .thread-item .header {
+.thread-item .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
