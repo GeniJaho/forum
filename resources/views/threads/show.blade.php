@@ -6,7 +6,29 @@
 
             <div class="col-md-8 justify-content-center">
 
-                @include('partials.threads.item')
+                <div class="card thread-item">
+                    <div class="card-header header">
+                        <div>
+                            <a href="{{ route('profile', $thread->creator->name) }}">{{ $thread->creator->name }}</a>
+                            posted
+                            <a href="{{ $thread->path() }}">{{ $thread->title }}</a>
+                        </div>
+                        <div>
+                            <form action="{{ $thread->path() }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">
+                                    Delete
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        {{ $thread->body }}
+                    </div>
+                </div>
+
 
                 <div class="mt-5">
                     @foreach($replies as $reply)

@@ -2,22 +2,28 @@
 
 @section('content')
     <div class="container">
-        <div class="page-header">
-            <h1>
-                {{ $profileUser->name }}
-            </h1>
-            <small>Since {{ $profileUser->created_at->diffForHumans() }}</small>
-        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="page-header">
+                    <h1>
+                        {{ $profileUser->name }}
+                    </h1>
+                    <small>Since {{ $profileUser->created_at->diffForHumans() }}</small>
+                </div>
 
-        <br>
+                <br>
 
-        @foreach($threads as $thread)
-            <div class="my-2">
-                @include('partials.threads.item')
+                @if($threads->isNotEmpty())
+                    @foreach($threads as $thread)
+                        <div class="my-2">
+                            @include('partials.threads.item')
+                        </div>
+                    @endforeach
+
+                    {{ $threads->links() }}
+                @endif
+
             </div>
-        @endforeach
-
-        {{ $threads->links() }}
-
+        </div>
     </div>
 @endsection
