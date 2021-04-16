@@ -17,14 +17,6 @@ trait Favorable {
     }
 
     /**
-     * @return bool
-     */
-    public function isFavorited(): bool
-    {
-        return $this->favorites->where(['user_id' => auth()->id()])->isNotEmpty();
-    }
-
-    /**
      * @return Model|null
      */
     public function favorite(): ?Model
