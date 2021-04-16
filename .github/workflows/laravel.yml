@@ -33,3 +33,10 @@ jobs:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
       run: vendor/bin/phpunit
+    - name: Codecov
+      # You may pin to the exact commit or the version.
+      # uses: codecov/codecov-action@9b0b9bbe2c64e9ed41413180dd7398450dfeee14
+      uses: codecov/codecov-action@v1.3.2
+      with:
+        # Repository upload token - get it from codecov.io. Required only for private repositories
+        token: cc460892-fccf-4e0b-8732-f88008194162
