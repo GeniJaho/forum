@@ -32,7 +32,7 @@ jobs:
       env:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
-      run: vendor/bin/phpunit
+      run: vendor/bin/phpunit --coverage-clover coverage.xml
     - name: Codecov
       # You may pin to the exact commit or the version.
       # uses: codecov/codecov-action@9b0b9bbe2c64e9ed41413180dd7398450dfeee14
