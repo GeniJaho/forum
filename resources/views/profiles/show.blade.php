@@ -8,19 +8,19 @@
                     <h1>
                         {{ $profileUser->name }}
                     </h1>
-                    <small>Since {{ $profileUser->created_at->diffForHumans() }}</small>
                 </div>
 
                 <br>
 
-                @if($threads->isNotEmpty())
-                    @foreach($threads as $thread)
-                        <div class="my-2">
-                            @include('partials.threads.item')
-                        </div>
+                @if($activities->isNotEmpty())
+                    @foreach($activities as $date => $activity)
+                        <h3 class="my-2">{{ $date }}</h3>
+                        @foreach($activity as $record)
+                            <div class="my-2">
+                                @include("profiles.activities.{$record->type}", ['activity' => $record])
+                            </div>
+                        @endforeach
                     @endforeach
-
-                    {{ $threads->links() }}
                 @endif
 
             </div>

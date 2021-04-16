@@ -8,19 +8,10 @@
 @import '~bootstrap/scss/bootstrap';
 
 
-    .thread-item {
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-    }
-
-.reply-item {
+.activity-item {
     .header {
         display: flex;
         justify-content: space-between;
         align-items: center;
     }
 }
-

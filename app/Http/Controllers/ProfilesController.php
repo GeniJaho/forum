@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Activity;
 use App\Models\User;
-use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Collection;
 
 class ProfilesController extends Controller
 {
@@ -11,7 +12,18 @@ class ProfilesController extends Controller
     {
         return view('profiles.show', [
             'profileUser' => $user,
-            'threads' => $user->threads()->paginate(10)
+            'activities' => $this->getActivity($user)
         ]);
+    }
+
+    /**
+     * @param User $user
+     * @return Collection
+     */
+    protected function getActivity(User $user): Collection
+    {
+        return Activity::feed($user)->groupBy(function ($activity) {
+            return $activity->created_at->format('Y-m-d');
+        });
     }
 }

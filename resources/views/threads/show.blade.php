@@ -39,7 +39,7 @@
                         </div>
                     @endforeach
 
-                    {{ $replies->links('vendor.pagination.bootstrap-4') }}
+                    {{ $replies->links() }}
                 </div>
 
                 @if(auth()->check())

@@ -10942,13 +10942,7 @@ a.text-dark:focus {
   }
 }
 
-.thread-item .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.reply-item .header {
+.activity-item .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
