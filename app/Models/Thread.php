@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use App\Traits\RecordsActivity;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Thread extends Model
 {
     use HasFactory;
+    use RecordsActivity;
 
     protected $with = ['creator', 'channel'];
 
@@ -50,6 +52,7 @@ class Thread extends Model
     {
         return $this->belongsTo(Channel::class);
     }
+
     public function scopeFilter($query, $filters)
     {
         return $filters->apply($query);

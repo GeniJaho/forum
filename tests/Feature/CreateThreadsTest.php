@@ -59,37 +59,40 @@ class CreateThreadsTest extends TestCase
          ->assertSessionHasErrors('channel_id');
     }
 
-    public function test_guests_can_not_delete_threads()
+    public function test_unauthorized_users_can_not_delete_threads()
     {
         $thread = Thread::factory()->create();
 
         $reply = Reply::factory()->create(['thread_id' => $thread->id]);
 
-        $response = $this->delete($thread->path())
+        $this->delete($thread->path())
             ->assertRedirect('/login');
+
+        $this->assertDatabaseHas('threads', ['id' => $thread->id]);
+        $this->assertDatabaseHas('replies', ['id' => $reply->id]);
+
+        $this->signIn();
+
+        $this->delete($thread->path())
+            ->assertStatus(403);
 
         $this->assertDatabaseHas('threads', ['id' => $thread->id]);
         $this->assertDatabaseHas('replies', ['id' => $reply->id]);
     }
 
-    public function test_a_thread_can_be_deleted()
+    public function test_an_authorized_user_can_delete_threads()
     {
         $this->signIn();
 
-        $thread = Thread::factory()->create();
+        $thread = Thread::factory()->create(['user_id' => auth()->id()]);
 
         $reply = Reply::factory()->create(['thread_id' => $thread->id]);
 
-        $response = $this->deleteJson($thread->path())
+        $this->deleteJson($thread->path())
             ->assertStatus(204);
 
         $this->assertDatabaseMissing('threads', ['id' => $thread->id]);
         $this->assertDatabaseMissing('replies', ['id' => $reply->id]);
-    }
-
-    public function test_threads_can_be_deleted_only_by_those_who_have_permission()
-    {
-        $this->markTestIncomplete();
     }
 
     private function publishThread($overrides = [])
