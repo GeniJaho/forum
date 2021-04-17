@@ -5,9 +5,8 @@
         <div class="row">
 
             <div class="col-md-8 justify-content-center">
-
-                <div class="card thread-item">
-                    <div class="card-header header">
+                @component('profiles.activities.activity')
+                    @slot('heading')
                         <div>
                             <a href="{{ route('profile', $thread->creator->name) }}">{{ $thread->creator->name }}</a>
                             posted
@@ -24,18 +23,38 @@
                                 </form>
                             </div>
                         @endcan
-                    </div>
-
-                    <div class="card-body">
+                    @endslot
+                    @slot('body')
                         {{ $thread->body }}
-                    </div>
-                </div>
-
+                    @endslot
+                @endcomponent
 
                 <div class="mt-5">
                     @foreach($replies as $reply)
                         <div class="mt-2">
-                            @include('partials.threads.reply')
+                            @component('profiles.activities.activity')
+                                @slot('heading')
+                                    <div>
+                                        <a href="#">{{ $reply->owner->name }}</a>
+                                        said
+                                        {{ $reply->created_at->diffForHumans() }}
+                                    </div>
+                                    <div>
+                                        <form action="{{ route('replies.favorite', $reply) }}" method="POST">
+                                            @csrf
+                                            <button type="submit"
+                                                    class="btn btn-primary" {{ $reply->favorites_count ? 'disabled' : '' }}>
+                                                {{ $reply->favorites_count }}
+                                                {{ Str::plural('Favorite', $reply->favorites_count) }}
+                                            </button>
+                                        </form>
+                                    </div>
+                                @endslot
+
+                                @slot('body')
+                                    {{ $reply->body }}
+                                @endslot
+                            @endcomponent
                         </div>
                     @endforeach
 

@@ -12,18 +12,7 @@ class ProfilesController extends Controller
     {
         return view('profiles.show', [
             'profileUser' => $user,
-            'activities' => $this->getActivity($user)
+            'activities' => Activity::feed($user, 50)
         ]);
-    }
-
-    /**
-     * @param User $user
-     * @return Collection
-     */
-    protected function getActivity(User $user): Collection
-    {
-        return Activity::feed($user)->groupBy(function ($activity) {
-            return $activity->created_at->format('Y-m-d');
-        });
     }
 }

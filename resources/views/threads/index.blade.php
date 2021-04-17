@@ -7,8 +7,8 @@
 
                 @forelse($threads as $thread)
                     <div class="my-2">
-                        <div class="card thread-item">
-                            <div class="card-header header">
+                        @component("profiles.activities.activity")
+                            @slot('heading')
                                 <h4>
                                     <a href="{{ $thread->path() }}">{{ $thread->title }}</a>
                                 </h4>
@@ -18,12 +18,11 @@
                                         {{ \Illuminate\Support\Str::plural('reply', $thread->replies_count) }}
                                     </strong>
                                 </a>
-                            </div>
-
-                            <div class="card-body">
+                            @endslot
+                            @slot('body')
                                 {{ $thread->body }}
-                            </div>
-                        </div>
+                            @endslot
+                        @endcomponent
                     </div>
                 @empty
                     <p class="my-2">There are no relevant results at this time.</p>

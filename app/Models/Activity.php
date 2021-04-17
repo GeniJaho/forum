@@ -18,15 +18,19 @@ class Activity extends Model
     }
 
     /**
-     * @param $model
-     * @return Collection
+     * @param User $user
+     * @param $take
+     * @return \Illuminate\Support\Collection
      */
-    public static function feed($model): Collection
+    public static function feed(User $user, $take = 50): \Illuminate\Support\Collection
     {
-        return $model->activity()
+        return static::where('user_id', $user->id)
             ->with('subject')
             ->latest()
-            ->take(50)
-            ->get();
+            ->take($take)
+            ->get()
+            ->groupBy(function ($activity) {
+                return $activity->created_at->format('Y-m-d');
+            });
     }
 }
