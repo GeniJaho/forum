@@ -2,7 +2,7 @@
     @slot('heading')
         <div>
             <div>
-                <a href="#">{{ $profileUser->name }}</a>
+                <a href="{{ route('profile', $profileUser->name) }}">{{ $profileUser->name }}</a>
                 replied to
                 <a href="{{ $activity->subject->thread->path() }}">
                     "{{ $activity->subject->thread->title }}"
