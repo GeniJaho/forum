@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Channel;
 use App\Models\Reply;
 use App\Models\Thread;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -96,10 +97,15 @@ class RepliesController extends Controller
      * Remove the specified resource from storage.
      *
      * @param Reply $reply
-     * @return Response
+     * @return RedirectResponse|Response
+     * @throws AuthorizationException
      */
     public function destroy(Reply $reply)
     {
-        //
+        $this->authorize('delete', $reply);
+
+        $reply->delete();
+
+        return back()->with('flash', 'Your reply was deleted!');
     }
 }

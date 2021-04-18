@@ -10948,3 +10948,8 @@ a.text-dark:focus {
   align-items: center;
 }
 
+.activity-item .header .inline {
+  display: flex;
+  flex-direction: row;
+}
+
