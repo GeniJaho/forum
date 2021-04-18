@@ -53,7 +53,7 @@ class ThreadsController extends Controller
      * Store a newly created resource in storage.
      *
      * @param Request $request
-     * @return Application|RedirectResponse|Response|Redirector
+     * @return Application|Redirector|RedirectResponse
      */
     public function store(Request $request)
     {
@@ -70,7 +70,8 @@ class ThreadsController extends Controller
             'body' => $request->body
         ]);
 
-        return redirect($thread->path());
+        return redirect($thread->path())
+            ->with('flash', 'Your thread has been published!');
     }
 
     /**
@@ -128,7 +129,9 @@ class ThreadsController extends Controller
             return response([], 204);
         }
 
-        return redirect()->route('threads.index');
+        return redirect()
+            ->route('threads.index')
+            ->with('flash', 'Thread deleted successfully!');
     }
 
     /**

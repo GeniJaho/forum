@@ -35,7 +35,7 @@
                             @component('profiles.activities.activity')
                                 @slot('heading')
                                     <div>
-                                        <a href="#">{{ $reply->owner->name }}</a>
+                                        <a href="{{ route('profile', $reply->owner->name) }}">{{ $reply->owner->name }}</a>
                                         said
                                         {{ $reply->created_at->diffForHumans() }}
                                     </div>
