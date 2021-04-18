@@ -12,8 +12,7 @@
 
                 <br>
 
-                @if($activities->isNotEmpty())
-                    @foreach($activities as $date => $activity)
+                    @forelse($activities as $date => $activity)
                         <h3 class="my-2">{{ $date }}</h3>
                         @foreach($activity as $record)
                             <div class="my-2">
@@ -22,8 +21,9 @@
                                 @endif
                             </div>
                         @endforeach
-                    @endforeach
-                @endif
+                    @empty
+                        <p>There is no activity for this user yet.</p>
+                    @endforelse
 
             </div>
         </div>

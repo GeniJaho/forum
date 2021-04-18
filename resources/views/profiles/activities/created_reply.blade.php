@@ -10,16 +10,6 @@
             </div>
             <small>{{ $activity->subject->created_at->diffForHumans() }}</small>
         </div>
-        <div>
-            <form action="{{ route('replies.favorite', $activity->subject) }}" method="POST">
-                @csrf
-                <button type="submit"
-                        class="btn btn-primary" {{ $activity->subject->favorites_count ? 'disabled' : '' }}>
-                    {{ $activity->subject->favorites_count }}
-                    <i class="{{ $activity->subject->favorites_count ? 'fa' : 'far' }} fa-heart ml-1"></i>
-                </button>
-            </form>
-        </div>
     @endslot
 
     @slot('body')

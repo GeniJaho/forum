@@ -8,9 +8,11 @@
                     {{ $reply->created_at->diffForHumans() }}
                 </div>
                 <div class="inline">
-                    <div>
-                        <favorite :reply="{{ $reply }}"></favorite>
-                    </div>
+                    @if(auth()->check())
+                        <div>
+                            <favorite :reply="{{ $reply }}"></favorite>
+                        </div>
+                    @endif
                     @can('update', $reply)
                         <div class="d-flex align-items-center justify-content-center" @click="showEdit">
                             <button class="btn btn-primary">
