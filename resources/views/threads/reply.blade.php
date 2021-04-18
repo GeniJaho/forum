@@ -20,20 +20,16 @@
                     </div>
                     @can('update', $reply)
                         <div class="d-flex align-items-center justify-content-center" @click="showEdit">
-                            <button type="submit" class="btn btn-primary">
+                            <button class="btn btn-primary">
                                 <i class="far fa-edit"></i>
                             </button>
                         </div>
                     @endcan
                     @can('delete', $reply)
-                        <div class="d-flex align-items-center justify-content-center">
-                            <form action="{{ route('replies.destroy', $reply->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger">
-                                    <i class="fa fa-times"></i>
-                                </button>
-                            </form>
+                        <div class="d-flex align-items-center justify-content-center" @click="destroy">
+                            <button class="btn btn-danger">
+                                <i class="fa fa-times"></i>
+                            </button>
                         </div>
                     @endcan
                 </div>

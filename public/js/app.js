@@ -2042,6 +2042,14 @@ __webpack_require__.r(__webpack_exports__);
 
         _eventHub__WEBPACK_IMPORTED_MODULE_0__["default"].$emit('flash', 'Updated!');
       });
+    },
+    destroy: function destroy() {
+      var _this2 = this;
+
+      axios["delete"]('/replies/' + this.attributes.id).then(function () {
+        _this2.$el.style.display = 'none';
+        _eventHub__WEBPACK_IMPORTED_MODULE_0__["default"].$emit('flash', 'Your reply has been deleted!');
+      });
     }
   }
 });
