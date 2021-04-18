@@ -1,6 +1,7 @@
 <template>
     <div>
         <div v-for="(reply, index) in items"
+             v-bind:key="reply.id"
              class="mt-2"
         >
             <reply :reply="reply" @deleted="remove(index)"></reply>
