@@ -1,5 +1,59 @@
 <template>
+    <div :id="'reply-' + id">
+        <div class="card activity-item">
+            <div class="card-header header">
+                <div>
+                    <a :href="'/profiles/' + reply.owner.name">
+                        {{ reply.owner.name }}
+                    </a>
+                    said {{ reply.created_at }}
+                </div>
+                <div class="inline">
+                    <div v-if="signedIn">
+                        <favorite :reply="reply"></favorite>
+                    </div>
 
+                    <div v-if="canUpdate"
+                         class="d-flex align-items-center justify-content-center" @click="showEdit"
+                    >
+                        <button class="btn btn-primary">
+                            <i class="far fa-edit"></i>
+                        </button>
+                    </div>
+
+                    <div v-if="canUpdate"
+                         class="d-flex align-items-center justify-content-center" @click="destroy"
+                    >
+                        <button class="btn btn-danger">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="card-body">
+                <div v-if="editing">
+                    <div class="form-group">
+                        <textarea v-model="body"
+                                  type="text" class="form-control"
+                                  required
+                                  rows="5"></textarea>
+                    </div>
+                    <button class="btn btn-primary btn-xs" @click="update">
+                        Update
+                    </button>
+                    <button class="btn btn-link btn-xs" @click="hideEdit">
+                        Cancel
+                    </button>
+                </div>
+                <div v-else>
+                    {{ body }}
+                </div>
+
+            </div>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -9,14 +63,25 @@ import Favorite from "./Favorite";
 
 export default {
     name: "Reply",
-    props: ['attributes'],
+    props: ['reply'],
     components: {
         Favorite
     },
     data() {
         return {
-            body: this.attributes.body,
+            id: this.reply.id,
+            body: this.reply.body,
             editing: false
+        }
+    },
+    computed: {
+        signedIn() {
+            return this.$userId;
+        },
+        canUpdate() {
+            return this.authorize(
+                userId => this.reply.user_id.toString() === userId
+            );
         }
     },
     methods: {
@@ -27,7 +92,7 @@ export default {
             this.editing = false;
         },
         update() {
-            axios.patch('/replies/' + this.attributes.id, {
+            axios.patch('/replies/' + this.id, {
                 body: this.body
             }).then(() => {
                 this.hideEdit();
@@ -35,11 +100,8 @@ export default {
             });
         },
         destroy() {
-            axios.delete('/replies/' + this.attributes.id)
-                .then(() => {
-                    this.$el.style.display = 'none';
-                    eventHub.$emit('flash', 'Your reply has been deleted!')
-                });
+            axios.delete('/replies/' + this.id)
+                .then(() => this.$emit('deleted', this.id));
         }
     }
 }
