@@ -33,5 +33,6 @@ Route::get('/threads/{channel}', [ThreadsController::class, 'index'])->name('thr
 Route::post('/threads/{channel}/{thread}/replies', [RepliesController::class, 'store'])->name('replies.store');
 Route::post('/replies/{reply}/favorites', [FavoritesController::class, 'store'])->name('replies.favorite');
 Route::delete('/replies/{reply}', [RepliesController::class, 'destroy'])->name('replies.destroy');
+Route::patch('/replies/{reply}', [RepliesController::class, 'update'])->name('replies.update');
 
 Route::get('profiles/{user}', [ProfilesController::class, 'show'])->name('profile');
