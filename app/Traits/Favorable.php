@@ -3,10 +3,10 @@
 namespace App\Traits;
 
 use App\Models\Favorite;
-use App\Models\Reply;
 use Illuminate\Database\Eloquent\Model;
 
-trait Favorable {
+trait Favorable
+{
 
     protected static function bootFavorable()
     {
@@ -28,6 +28,19 @@ trait Favorable {
     }
 
     /**
+     * @return bool
+     */
+    public function isFavorited(): bool
+    {
+        return $this->favorites->where('user_id', auth()->id())->isNotEmpty();
+    }
+
+    public function getIsFavoritedAttribute()
+    {
+        return $this->isFavorited();
+    }
+
+    /**
      * @return Model|null
      */
     public function favorite(): ?Model
@@ -39,6 +52,13 @@ trait Favorable {
         }
 
         return null;
+    }
+
+    public function unfavorite()
+    {
+        $attributes = ['user_id' => auth()->id()];
+
+        $this->favorites()->where($attributes)->delete();
     }
 
     public function favorites()

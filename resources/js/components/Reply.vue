@@ -5,9 +5,14 @@
 <script>
 
 import eventHub from "../eventHub";
+import Favorite from "./Favorite";
 
 export default {
+    name: "Reply",
     props: ['attributes'],
+    components: {
+        Favorite
+    },
     data() {
         return {
             body: this.attributes.body,

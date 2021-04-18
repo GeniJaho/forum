@@ -1,4 +1,4 @@
-<reply :attributes="{{ $reply }}" inline-template v-cloak>
+<reply :attributes="{{ $reply }}" inline-template>
     <div id="reply-{{ $reply->id }}">
         @component('profiles.activities.activity')
             @slot('heading')
@@ -9,14 +9,7 @@
                 </div>
                 <div class="inline">
                     <div>
-                        <form action="{{ route('replies.favorite', $reply) }}" method="POST">
-                            @csrf
-                            <button type="submit"
-                                    class="btn btn-primary" {{ $reply->favorites_count ? 'disabled' : '' }}>
-                                {{ $reply->favorites_count }}
-                                <i class="{{ $reply->favorites_count ? 'fa' : 'far' }} fa-heart ml-1"></i>
-                            </button>
-                        </form>
+                        <favorite :reply="{{ $reply }}"></favorite>
                     </div>
                     @can('update', $reply)
                         <div class="d-flex align-items-center justify-content-center" @click="showEdit">
