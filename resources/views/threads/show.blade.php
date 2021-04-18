@@ -13,12 +13,12 @@
                             <a href="{{ $thread->path() }}">{{ $thread->title }}</a>
                         </div>
                         @can('delete', $thread)
-                            <div>
+                            <div class="d-flex align-items-center justify-content-center">
                                 <form action="{{ $thread->path() }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger">
-                                        Delete
+                                        <i class="fa fa-times"></i>
                                     </button>
                                 </form>
                             </div>

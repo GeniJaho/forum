@@ -16,7 +16,7 @@
                 <button type="submit"
                         class="btn btn-primary" {{ $activity->subject->favorites_count ? 'disabled' : '' }}>
                     {{ $activity->subject->favorites_count }}
-                    {{ Str::plural('Favorite', $activity->subject->favorites_count) }}
+                    <i class="{{ $activity->subject->favorites_count ? 'fa' : 'far' }} fa-heart ml-1"></i>
                 </button>
             </form>
         </div>

@@ -7,6 +7,11 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+// Fontawesome
+@import '~@fortawesome/fontawesome-free/css/fontawesome';
+@import '~@fortawesome/fontawesome-free/css/regular';
+@import '~@fortawesome/fontawesome-free/css/solid';
+
 
 .activity-item {
     .header {
@@ -17,6 +22,11 @@
         .inline {
             display: flex;
             flex-direction: row;
+
+            div {
+                margin-left: 4px;
+                margin-right: 4px;
+            }
         }
     }
 }

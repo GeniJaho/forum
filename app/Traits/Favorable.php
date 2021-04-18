@@ -8,6 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 
 trait Favorable {
 
+    protected static function bootFavorable()
+    {
+        if (auth()->guest()) {
+            return;
+        }
+
+        static::deleting(function ($model) {
+            $model->favorites->each->delete();
+        });
+    }
+
     /**
      * @return mixed
      */
