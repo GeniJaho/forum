@@ -34,7 +34,6 @@
 
                     <div class="mt-5">
                         <replies
-                            :data="{{ $thread->replies }}"
                             @added="replyAdded"
                             @removed="replyRemoved"
                         ></replies>

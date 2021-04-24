@@ -6,7 +6,7 @@
                     <a :href="'/profiles/' + reply.owner.name">
                         {{ reply.owner.name }}
                     </a>
-                    said {{ reply.created_at }}
+                    said <span v-text="ago"></span>
                 </div>
                 <div class="inline">
                     <div v-if="signedIn">
@@ -60,6 +60,7 @@
 
 import eventHub from "../eventHub";
 import Favorite from "./Favorite";
+import moment from "moment";
 
 export default {
     name: "Reply",
@@ -75,6 +76,9 @@ export default {
         }
     },
     computed: {
+        ago() {
+            return moment(this.reply.created_at).fromNow() + "...";
+        },
         signedIn() {
             return this.$userId;
         },

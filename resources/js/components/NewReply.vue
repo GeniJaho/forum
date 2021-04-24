@@ -30,9 +30,6 @@ import eventHub from "../eventHub";
 
 export default {
     name: "NewReply",
-    props: {
-        endpoint: String
-    },
     data() {
         return {
             body: "",
@@ -45,7 +42,7 @@ export default {
     },
     methods: {
         addReply() {
-            axios.post(this.endpoint, {body: this.body})
+            axios.post(location.pathname + "/replies", {body: this.body})
                 .then(({data}) => {
                     this.body = "";
                     eventHub.$emit('flash', "Your reply has been posted!");

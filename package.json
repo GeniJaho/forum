@@ -25,6 +25,7 @@
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.15.3",
+        "moment": "^2.29.1",
         "tiny-emitter": "^2.1.0"
     }
 }
