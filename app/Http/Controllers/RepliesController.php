@@ -43,7 +43,7 @@ class RepliesController extends Controller
      * @param Channel $channel
      * @param Thread $thread
      * @param Request $request
-     * @return RedirectResponse
+     * @return Reply|RedirectResponse
      */
     public function store(Channel $channel, Thread $thread, Request $request)
     {
@@ -51,10 +51,14 @@ class RepliesController extends Controller
             'body' => 'required'
         ]);
 
-        $thread->addReply([
+        $reply = $thread->addReply([
             'body' => $request->body,
             'user_id' => auth()->id()
         ]);
+
+        if ($request->expectsJson()) {
+            return $reply->load('owner');
+        }
 
         return back()->with('flash', 'Your reply was left!');
     }

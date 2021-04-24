@@ -19,6 +19,9 @@ export default {
         }
     },
     methods: {
+        replyAdded() {
+            this.repliesCount++;
+        },
         replyRemoved() {
             this.repliesCount--;
         }

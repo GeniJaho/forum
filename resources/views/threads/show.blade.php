@@ -35,28 +35,10 @@
                     <div class="mt-5">
                         <replies
                             :data="{{ $thread->replies }}"
+                            @added="replyAdded"
                             @removed="replyRemoved"
                         ></replies>
                     </div>
-
-                    @if(auth()->check())
-                        <div class="my-5">
-                            <form method="post" action="{{ $thread->path() . '/replies' }}">
-                                @csrf
-
-                                <div class="form-group">
-                                    <textarea name="body" id="body" class="form-control"
-                                              required
-                                              rows="5" placeholder="Have something to say?"></textarea>
-                                </div>
-                                <button type="submit" class="btn btn-primary">Post</button>
-                            </form>
-                        </div>
-                    @else
-                        <p class="text-center mt-2">Please <a href="{{ route('login') }}">sign in</a> to participate in
-                            this
-                            discussion.</p>
-                    @endif
 
                 </div>
 
