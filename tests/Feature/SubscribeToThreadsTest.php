@@ -18,12 +18,7 @@ class SubscribeToThreadsTest extends TestCase
 
         $this->post($thread->path() . "/subscriptions");
 
-        $thread->addReply([
-            'user_id' => auth()->id(),
-            'body' => 'Some body'
-        ]);
-
-        // notification assertion here
+        $this->assertCount(1, $thread->subscriptions);
     }
 
     public function test_a_user_can_unsubscribe_from_threads()
@@ -40,6 +35,5 @@ class SubscribeToThreadsTest extends TestCase
         $this->delete($thread->path() . "/subscriptions");
 
         $this->assertCount(0, $thread->subscriptions);
-        // notification assertion here
     }
 }

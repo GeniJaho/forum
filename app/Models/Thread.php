@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
+use App\Notifications\ThreadWasUpdated;
 use App\Traits\RecordsActivity;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Thread extends Model
 {
@@ -47,7 +49,15 @@ class Thread extends Model
      */
     public function addReply($reply)
     {
-        return $this->replies()->create($reply);
+        $reply = $this->replies()->create($reply);
+
+        $this->subscriptions
+            ->filter(function ($sub) use ($reply) {
+                return $sub->user_id != $reply->user_id;
+            })
+            ->each->notify($reply);
+
+        return $reply;
     }
 
     public function channel()
@@ -60,28 +70,32 @@ class Thread extends Model
         return $filters->apply($query);
     }
 
-    public function subscribe($userId = null)
+    public function subscribe($userId = null): Thread
     {
         $this->subscriptions()->create([
             'user_id' => $userId ?? auth()->id()
         ]);
+
+        return $this;
     }
 
-    public function unsubscribe($userId = null)
+    public function unsubscribe($userId = null): Thread
     {
         $this->subscriptions()
             ->where([
                 'user_id' => $userId ?? auth()->id()
             ])
             ->delete();
+
+        return $this;
     }
 
-    public function subscriptions()
+    public function subscriptions(): HasMany
     {
         return $this->hasMany(ThreadSubscription::class);
     }
 
-    public function getIsSubscribedToAttribute()
+    public function getIsSubscribedToAttribute(): bool
     {
         return $this->subscriptions()
             ->where('user_id', auth()->id())
