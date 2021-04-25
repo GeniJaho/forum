@@ -3,7 +3,8 @@
         <button
             :class="classes"
             @click="subscribe"
-        >Subscribe
+        >
+            {{ this.isActive ? 'Unsubscribe' : 'Subscribe' }}
         </button>
     </div>
 </template>

@@ -9,6 +9,7 @@ require('./bootstrap');
 window.Vue = require('vue');
 
 window.Vue.prototype.$userId = document.querySelector("meta[name='user-id']").getAttribute('content');
+window.Vue.prototype.$userName = document.querySelector("meta[name='user-name']").getAttribute('content');
 
 window.Vue.prototype.authorize = function (handler) {
     return this.$userId ? handler(this.$userId) : false;
