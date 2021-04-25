@@ -7,11 +7,7 @@ use Tests\TestCase;
 
 class SubscribeToThreadsTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
+
     public function test_a_user_can_subscribe_to_threads()
     {
         $this->withoutExceptionHandling();
@@ -27,6 +23,23 @@ class SubscribeToThreadsTest extends TestCase
             'body' => 'Some body'
         ]);
 
+        // notification assertion here
+    }
+
+    public function test_a_user_can_unsubscribe_from_threads()
+    {
+        $this->withoutExceptionHandling();
+
+        $this->signIn();
+
+        /** @var Thread $thread */
+        $thread = Thread::factory()->create();
+
+        $thread->subscribe();
+
+        $this->delete($thread->path() . "/subscriptions");
+
+        $this->assertCount(0, $thread->subscriptions);
         // notification assertion here
     }
 }

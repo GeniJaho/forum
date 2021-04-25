@@ -40,6 +40,9 @@ Route::patch('/replies/{reply}', [RepliesController::class, 'update'])->name('re
 
 Route::post('/threads/{channel}/{thread}/subscriptions', [ThreadSubscriptionsController::class, 'store'])
     ->middleware('auth')
-    ->name('thread_subscriptions.index');
+    ->name('thread_subscriptions.store');
+Route::delete('/threads/{channel}/{thread}/subscriptions', [ThreadSubscriptionsController::class, 'destroy'])
+    ->middleware('auth')
+    ->name('thread_subscriptions.destroy');
 
 Route::get('profiles/{user}', [ProfilesController::class, 'show'])->name('profile');
