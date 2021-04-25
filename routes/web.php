@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfilesController;
 use App\Http\Controllers\RepliesController;
 use App\Http\Controllers\ThreadsController;
+use App\Http\Controllers\ThreadSubscriptionsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -36,5 +37,9 @@ Route::post('/replies/{reply}/favorites', [FavoritesController::class, 'store'])
 Route::delete('/replies/{reply}/favorites', [FavoritesController::class, 'destroy'])->name('replies.unfavorite');
 Route::delete('/replies/{reply}', [RepliesController::class, 'destroy'])->name('replies.destroy');
 Route::patch('/replies/{reply}', [RepliesController::class, 'update'])->name('replies.update');
+
+Route::post('/threads/{channel}/{thread}/subscriptions', [ThreadSubscriptionsController::class, 'store'])
+    ->middleware('auth')
+    ->name('thread_subscriptions.index');
 
 Route::get('profiles/{user}', [ProfilesController::class, 'show'])->name('profile');
