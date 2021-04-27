@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
-use App\Notifications\ThreadWasUpdated;
 use App\Traits\RecordsActivity;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+/**
+ * @property mixed subscriptions
+ */
 class Thread extends Model
 {
     use HasFactory;
@@ -43,19 +45,11 @@ class Thread extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    /**
-     * @param $reply
-     * @return Reply
-     */
-    public function addReply($reply)
+    public function addReply($reply): Reply
     {
         $reply = $this->replies()->create($reply);
 
-        $this->subscriptions
-            ->filter(function ($sub) use ($reply) {
-                return $sub->user_id != $reply->user_id;
-            })
-            ->each->notify($reply);
+        $this->notifySubscribers($reply);
 
         return $reply;
     }
@@ -100,5 +94,13 @@ class Thread extends Model
         return $this->subscriptions()
             ->where('user_id', auth()->id())
             ->exists();
+    }
+
+    protected function notifySubscribers(Reply $reply): void
+    {
+        $this->subscriptions
+            ->where('user_id', '!=', $reply->user_id)
+            ->each
+            ->notify($reply);
     }
 }
