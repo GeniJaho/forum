@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Filters\ThreadFilters;
 use App\Models\Channel;
 use App\Models\Thread;
-use App\Models\User;
+use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -13,6 +13,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Redirector;
+use Illuminate\Validation\ValidationException;
 
 class ThreadsController extends Controller
 {
@@ -54,6 +55,7 @@ class ThreadsController extends Controller
      *
      * @param Request $request
      * @return Application|Redirector|RedirectResponse
+     * @throws ValidationException
      */
     public function store(Request $request)
     {
@@ -77,11 +79,17 @@ class ThreadsController extends Controller
     /**
      * Display the specified resource.
      *
+     * @param Channel $channel
      * @param Thread $thread
-     * @return Thread|Application|Factory|View
+     * @return Application|Factory|View
+     * @throws Exception
      */
     public function show(Channel $channel, Thread $thread)
     {
+        if (auth()->check()) {
+            auth()->user()->read($thread);
+        }
+
         return view('threads.show', [
             'thread' => $thread,
         ]);
@@ -116,7 +124,7 @@ class ThreadsController extends Controller
      * @param Channel $channel
      * @param Thread $thread
      * @return RedirectResponse|Response
-     * @throws \Exception
+     * @throws Exception
      */
     public function destroy(Channel $channel, Thread $thread)
     {

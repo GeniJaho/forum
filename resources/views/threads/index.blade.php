@@ -10,7 +10,13 @@
                         @component("profiles.activities.activity")
                             @slot('heading')
                                 <h4>
-                                    <a href="{{ $thread->path() }}">{{ $thread->title }}</a>
+                                    @if($thread->hasUpdatesFor(auth()->user()))
+                                        <strong>
+                                            <a href="{{ $thread->path() }}">{{ $thread->title }}</a>
+                                        </strong>
+                                    @else
+                                        <a href="{{ $thread->path() }}">{{ $thread->title }}</a>
+                                    @endif
                                 </h4>
                                 <a href="{{ $thread->path() }}">
                                     <strong>

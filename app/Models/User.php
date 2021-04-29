@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
@@ -56,5 +57,21 @@ class User extends Authenticatable
     public function activity(): HasMany
     {
         return $this->hasMany(Activity::class);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function read(Thread $thread)
+    {
+        cache()->forever(
+            $this->visitedThreadCacheKey($thread),
+            now()
+        );
+    }
+
+    public function visitedThreadCacheKey(Thread $thread): string
+    {
+        return sprintf("user.%s.visits.%s", $this->id, $thread->id);
     }
 }

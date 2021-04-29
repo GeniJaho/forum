@@ -6,6 +6,7 @@ use App\Traits\RecordsActivity;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\Cache;
 
 /**
  * @property mixed subscriptions
@@ -94,6 +95,13 @@ class Thread extends Model
         return $this->subscriptions()
             ->where('user_id', auth()->id())
             ->exists();
+    }
+
+    public function hasUpdatesFor(User $user): bool
+    {
+        $key = $user->visitedThreadCacheKey($this);
+
+        return $this->updated_at > Cache::get($key);
     }
 
     protected function notifySubscribers(Reply $reply): void

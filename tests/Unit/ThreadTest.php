@@ -5,6 +5,7 @@ namespace Tests\Unit;
 use App\Models\Thread;
 use App\Models\User;
 use App\Notifications\ThreadWasUpdated;
+use Exception;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Notification;
@@ -110,5 +111,25 @@ class ThreadTest extends TestCase
         $thread->subscribe();
 
         $this->assertTrue($thread->isSubscribedTo);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function test_a_thread_can_check_if_the_authenticated_user_has_read_all_replies()
+    {
+        $this->signIn();
+
+        /** @var Thread $thread */
+        $thread = Thread::factory()->create();
+
+        /** @var User $user */
+        $user = auth()->user();
+
+        $this->assertTrue($thread->hasUpdatesFor($user));
+
+        $user->read($thread);
+
+        $this->assertFalse($thread->hasUpdatesFor($user));
     }
 }
