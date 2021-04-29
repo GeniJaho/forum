@@ -4,8 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\Reply;
 use App\Models\Thread;
-use App\Models\User;
-use Illuminate\Auth\AuthenticationException;
+use Exception;
 use Tests\TestCase;
 
 class ParticipateInForumTest extends TestCase
@@ -23,7 +22,7 @@ class ParticipateInForumTest extends TestCase
      */
     public function test_an_authenticated_user_may_participate_in_forum_threads()
     {
-        $this->be($user = User::factory()->create());
+        $this->signIn();
 
         $thread = Thread::factory()->create();
         $reply = Reply::factory()->makeOne();
@@ -118,5 +117,21 @@ class ParticipateInForumTest extends TestCase
         $this->assertDatabaseHas('replies', [
             'id' => $reply->id, 'body' => $reply->body
         ]);
+    }
+
+    public function test_replies_that_contain_spam_may_not_be_created()
+    {
+        $this->withoutExceptionHandling();
+
+        $this->signIn();
+
+        $thread = Thread::factory()->create();
+        $reply = Reply::factory()->makeOne([
+            'body' => 'Yahoo Customer Support'
+        ]);
+
+        $this->expectException(Exception::class);
+
+        $this->post($thread->path() . '/replies', $reply->toArray());
     }
 }

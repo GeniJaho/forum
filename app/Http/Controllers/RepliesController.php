@@ -5,11 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Channel;
 use App\Models\Reply;
 use App\Models\Thread;
+use App\Spam;
+use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Str;
 
 class RepliesController extends Controller
 {
@@ -45,12 +48,15 @@ class RepliesController extends Controller
      * @param Thread $thread
      * @param Request $request
      * @return Reply|RedirectResponse
+     * @throws Exception
      */
-    public function store(Channel $channel, Thread $thread, Request $request)
+    public function store(Channel $channel, Thread $thread, Request $request, Spam $spam)
     {
         $this->validate($request, [
             'body' => 'required'
         ]);
+
+        $spam->detect($request->body);
 
         $reply = $thread->addReply([
             'body' => $request->body,
