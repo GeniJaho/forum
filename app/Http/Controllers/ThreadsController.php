@@ -6,6 +6,7 @@ use App\Filters\ThreadFilters;
 use App\Inspections\Spam;
 use App\Models\Channel;
 use App\Models\Thread;
+use App\Rules\SpamFree;
 use Exception;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -61,8 +62,8 @@ class ThreadsController extends Controller
     public function store(Request $request, Spam $spam)
     {
         $this->validate($request, [
-            'title' => 'required',
-            'body' => 'required',
+            'title' => ['required', new SpamFree],
+            'body' => ['required', new SpamFree],
             'channel_id' => 'required|exists:channels,id'
         ]);
 

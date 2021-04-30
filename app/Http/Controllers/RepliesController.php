@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Inspections\Spam;
 use App\Models\Channel;
 use App\Models\Reply;
 use App\Models\Thread;
+use App\Rules\SpamFree;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Foundation\Application;
@@ -54,7 +54,9 @@ class RepliesController extends Controller
     public function store(Channel $channel, Thread $thread, Request $request)
     {
         try {
-            $this->validateReply();
+            $this->validate(request(), [
+                'body' => ['required', new SpamFree]
+            ]);
 
             $reply = $thread->addReply([
                 'body' => $request->body,
@@ -101,7 +103,9 @@ class RepliesController extends Controller
         $this->authorize('update', $reply);
 
         try {
-            $this->validateReply();
+            $this->validate(request(), [
+                'body' => ['required', new SpamFree]
+            ]);
 
             $reply->body = $request->body;
             $reply->save();
@@ -129,14 +133,5 @@ class RepliesController extends Controller
         }
 
         return back()->with('flash', 'Your reply was deleted!');
-    }
-
-    protected function validateReply(): void
-    {
-        $this->validate(request(), [
-            'body' => 'required'
-        ]);
-
-        app(Spam::class)->detect(request('body'));
     }
 }
