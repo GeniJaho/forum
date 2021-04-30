@@ -98,10 +98,18 @@ export default {
         update() {
             axios.patch('/replies/' + this.id, {
                 body: this.body
-            }).then(() => {
-                this.hideEdit();
-                eventHub.$emit('flash', 'Updated!')
-            });
+            })
+                .then(response => {
+                    if (!response) {
+                        return;
+                    }
+
+                    this.hideEdit();
+                    eventHub.$emit('flash', 'Updated!')
+                })
+                .catch(error => {
+                    eventHub.$emit('flash', error.response.data, 'danger');
+                });
         },
         destroy() {
             axios.delete('/replies/' + this.id)

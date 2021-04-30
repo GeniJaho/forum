@@ -43,10 +43,17 @@ export default {
     methods: {
         addReply() {
             axios.post(location.pathname + "/replies", {body: this.body})
-                .then(({data}) => {
+                .catch(error => {
+                    eventHub.$emit('flash', error.response.data, 'danger');
+                })
+                .then(response => {
+                    if (!response) {
+                        return;
+                    }
+
                     this.body = "";
                     eventHub.$emit('flash', "Your reply has been posted!");
-                    this.$emit('created', data);
+                    this.$emit('created', response.data);
                 });
         }
     }

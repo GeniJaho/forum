@@ -1,7 +1,10 @@
 <template>
-    <div class="alert alert-success alert-flash fade show" role="alert" v-show="show">
-        <strong>Success!</strong> {{ this.body }}
-    </div>
+    <div
+        class="alert alert-flash fade show"
+        :class="'alert-' + level"
+        role="alert" v-show="show"
+        v-text="body"
+    ></div>
 </template>
 
 <script>
@@ -14,6 +17,7 @@ export default {
     data() {
         return {
             body: '',
+            level: 'success',
             show: false
         }
     },
@@ -22,11 +26,12 @@ export default {
             this.flash(this.message);
         }
 
-        eventHub.$on('flash', message => this.flash(message));
+        eventHub.$on('flash', (message, level) => this.flash(message, level));
     },
     methods: {
-        flash(message) {
+        flash(message, level = 'success') {
             this.body = message;
+            this.level = level;
             this.show = true;
 
             this.hide();

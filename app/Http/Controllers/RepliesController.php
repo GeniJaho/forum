@@ -8,7 +8,9 @@ use App\Models\Reply;
 use App\Models\Thread;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -46,27 +48,23 @@ class RepliesController extends Controller
      * @param Channel $channel
      * @param Thread $thread
      * @param Request $request
-     * @return Reply|RedirectResponse
+     * @return Application|ResponseFactory|Reply|Response
      * @throws Exception
      */
-    public function store(Channel $channel, Thread $thread, Request $request, Spam $spam)
+    public function store(Channel $channel, Thread $thread, Request $request)
     {
-        $this->validate($request, [
-            'body' => 'required'
-        ]);
+        try {
+            $this->validateReply();
 
-        $spam->detect($request->body);
-
-        $reply = $thread->addReply([
-            'body' => $request->body,
-            'user_id' => auth()->id()
-        ]);
-
-        if ($request->expectsJson()) {
-            return $reply->load('owner');
+            $reply = $thread->addReply([
+                'body' => $request->body,
+                'user_id' => auth()->id()
+            ]);
+        } catch (Exception $exception) {
+            return response('Your reply could not be saved at the time.', 422);
         }
 
-        return back()->with('flash', 'Your reply was left!');
+        return $reply->load('owner');
     }
 
     /**
@@ -102,8 +100,15 @@ class RepliesController extends Controller
     {
         $this->authorize('update', $reply);
 
-        $reply->body = $request->body;
-        $reply->save();
+        try {
+            $this->validateReply();
+
+            $reply->body = $request->body;
+            $reply->save();
+        } catch (Exception $exception) {
+            return response('Your reply could not be saved at the time.', 422);
+        }
+
     }
 
     /**
@@ -124,5 +129,14 @@ class RepliesController extends Controller
         }
 
         return back()->with('flash', 'Your reply was deleted!');
+    }
+
+    protected function validateReply(): void
+    {
+        $this->validate(request(), [
+            'body' => 'required'
+        ]);
+
+        app(Spam::class)->detect(request('body'));
     }
 }
