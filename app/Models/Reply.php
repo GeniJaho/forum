@@ -51,4 +51,11 @@ class Reply extends Model
     {
         return $this->created_at->gt(now()->subMinute());
     }
+
+    public function mentionedUsers(): array
+    {
+        preg_match_all('/@([^\s\.]+)/', $this->body, $matches);
+
+        return $matches[1];
+    }
 }
