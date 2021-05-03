@@ -2,19 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreatePostRequest;
 use App\Models\Channel;
 use App\Models\Reply;
 use App\Models\Thread;
 use App\Rules\SpamFree;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
-use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Gate;
 
 class RepliesController extends Controller
 {
@@ -48,31 +46,15 @@ class RepliesController extends Controller
      *
      * @param Channel $channel
      * @param Thread $thread
-     * @param Request $request
-     * @return Application|ResponseFactory|Reply|Response
-     * @throws Exception
+     * @param CreatePostRequest $request
+     * @return Reply
      */
-    public function store(Channel $channel, Thread $thread, Request $request)
+    public function store(Channel $channel, Thread $thread, CreatePostRequest $request)
     {
-        if (Gate::denies('create', Reply::class)) {
-            return response('Your are posting too frequently.' .
-                ' Please take a break. :)', 422);
-        }
-
-        try {
-            $request->validate([
-                'body' => ['required', new SpamFree]
-            ]);
-
-            $reply = $thread->addReply([
-                'body' => $request->body,
-                'user_id' => auth()->id()
-            ]);
-        } catch (Exception $exception) {
-            return response('Your reply could not be saved at the time.', 422);
-        }
-
-        return $reply->load('owner');
+        return $thread->addReply([
+            'body' => $request->body,
+            'user_id' => auth()->id()
+        ])->load('owner');
     }
 
     /**

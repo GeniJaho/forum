@@ -27,7 +27,7 @@ class ParticipateInForumTest extends TestCase
         $thread = Thread::factory()->create();
         $reply = Reply::factory()->makeOne();
 
-        $this->post($thread->path() . '/replies', $reply->toArray());
+        $this->postJson($thread->path() . '/replies', $reply->toArray());
 
         $this->assertDatabaseHas('replies', ['body' => $reply->body]);
         $this->assertEquals(1, $thread->fresh()->replies_count);
@@ -40,7 +40,7 @@ class ParticipateInForumTest extends TestCase
         $thread = Thread::factory()->create();
         $reply = Reply::factory()->makeOne(['body' => null]);
 
-        $this->post($thread->path() . '/replies', $reply->toArray())
+        $this->postJson($thread->path() . '/replies', $reply->toArray())
             ->assertStatus(422);
     }
 
@@ -121,8 +121,6 @@ class ParticipateInForumTest extends TestCase
 
     public function test_replies_that_contain_spam_may_not_be_created()
     {
-        $this->withoutExceptionHandling();
-
         $this->signIn();
 
         $thread = Thread::factory()->create();
@@ -130,14 +128,12 @@ class ParticipateInForumTest extends TestCase
             'body' => 'Yahoo Customer Support'
         ]);
 
-        $this->post($thread->path() . '/replies', $reply->toArray())
+        $this->postJson($thread->path() . '/replies', $reply->toArray())
             ->assertStatus(422);
     }
 
     public function test_users_may_only_reply_a_maximum_of_once_per_minute()
     {
-        $this->withoutExceptionHandling();
-
         $this->signIn();
 
         $thread = Thread::factory()->create();
@@ -148,7 +144,7 @@ class ParticipateInForumTest extends TestCase
         $this->post($thread->path() . '/replies', $reply->toArray())
             ->assertStatus(201);
 
-        $this->post($thread->path() . '/replies', $reply->toArray())
-            ->assertStatus(422);
+        $this->postJson($thread->path() . '/replies', $reply->toArray())
+            ->assertStatus(429);
     }
 }
