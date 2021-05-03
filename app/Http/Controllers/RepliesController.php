@@ -14,6 +14,7 @@ use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Gate;
 
 class RepliesController extends Controller
 {
@@ -53,8 +54,13 @@ class RepliesController extends Controller
      */
     public function store(Channel $channel, Thread $thread, Request $request)
     {
+        if (Gate::denies('create', Reply::class)) {
+            return response('Your are posting too frequently.' .
+                ' Please take a break. :)', 422);
+        }
+
         try {
-            $this->validate(request(), [
+            $request->validate([
                 'body' => ['required', new SpamFree]
             ]);
 
@@ -102,11 +108,11 @@ class RepliesController extends Controller
     {
         $this->authorize('update', $reply);
 
-        try {
-            $this->validate(request(), [
-                'body' => ['required', new SpamFree]
-            ]);
+        $request->validate([
+            'body' => ['required', new SpamFree]
+        ]);
 
+        try {
             $reply->body = $request->body;
             $reply->save();
         } catch (Exception $exception) {

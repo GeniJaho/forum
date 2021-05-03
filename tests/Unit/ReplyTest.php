@@ -9,14 +9,21 @@ use Tests\TestCase;
 
 class ReplyTest extends TestCase
 {
-    /**
-     * A basic unit test example.
-     *
-     * @return void
-     */
+
     public function test_it_has_an_owner()
     {
         $reply = Reply::factory()->create();
         $this->assertInstanceOf(User::class, $reply->owner);
+    }
+
+    public function test_it_knows_if_it_was_just_published()
+    {
+        $reply = Reply::factory()->create();
+
+        $this->assertTrue($reply->wasJustPublished());
+
+        $reply->created_at = now()->subMonth();
+
+        $this->assertFalse($reply->wasJustPublished());
     }
 }

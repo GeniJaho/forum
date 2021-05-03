@@ -46,4 +46,9 @@ class Reply extends Model
     {
         return $this->thread->path() . "#reply-{$this->id}";
     }
+
+    public function wasJustPublished(): bool
+    {
+        return $this->created_at->gt(now()->subMinute());
+    }
 }

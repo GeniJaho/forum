@@ -41,7 +41,7 @@ class ParticipateInForumTest extends TestCase
         $reply = Reply::factory()->makeOne(['body' => null]);
 
         $this->post($thread->path() . '/replies', $reply->toArray())
-            ->assertSessionHasErrors('body');
+            ->assertStatus(422);
     }
 
     public function test_unauthorized_users_cannot_delete_replies()
@@ -130,8 +130,25 @@ class ParticipateInForumTest extends TestCase
             'body' => 'Yahoo Customer Support'
         ]);
 
-        $this->expectException(Exception::class);
+        $this->post($thread->path() . '/replies', $reply->toArray())
+            ->assertStatus(422);
+    }
 
-        $this->post($thread->path() . '/replies', $reply->toArray());
+    public function test_users_may_only_reply_a_maximum_of_once_per_minute()
+    {
+        $this->withoutExceptionHandling();
+
+        $this->signIn();
+
+        $thread = Thread::factory()->create();
+        $reply = Reply::factory()->makeOne([
+            'body' => 'test'
+        ]);
+
+        $this->post($thread->path() . '/replies', $reply->toArray())
+            ->assertStatus(201);
+
+        $this->post($thread->path() . '/replies', $reply->toArray())
+            ->assertStatus(422);
     }
 }

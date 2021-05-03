@@ -5,6 +5,7 @@ namespace App\Models;
 use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -73,5 +74,10 @@ class User extends Authenticatable
     public function visitedThreadCacheKey(Thread $thread): string
     {
         return sprintf("user.%s.visits.%s", $this->id, $thread->id);
+    }
+
+    public function lastReply(): HasOne
+    {
+        return $this->hasOne(Reply::class)->latest();
     }
 }
