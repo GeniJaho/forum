@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\UsersController;
 use App\Http\Controllers\FavoritesController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfilesController;
@@ -49,3 +50,5 @@ Route::delete('/threads/{channel}/{thread}/subscriptions', [ThreadSubscriptionsC
 Route::get('profiles/{user}', [ProfilesController::class, 'show'])->name('profile');
 Route::get('profiles/{user}/notifications', [UserNotificationsController::class, 'index'])->name('notifications.index');
 Route::delete('profiles/{user}/notifications/{notification}', [UserNotificationsController::class, 'destroy'])->name('notifications.destroy');
+
+Route::get('api/users', [UsersController::class, 'index']);

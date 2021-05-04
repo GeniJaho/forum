@@ -43,7 +43,7 @@ export default {
                 .then(() => {
                     this.active = true;
                     this.count++;
-                    eventHub.$emit('flash', 'Unfavorited!')
+                    eventHub.$emit('flash', 'Liked!')
                 });
         },
         destroy() {
@@ -51,7 +51,7 @@ export default {
                 .then(() => {
                     this.active = false;
                     this.count--;
-                    eventHub.$emit('flash', 'Favorited!')
+                    eventHub.$emit('flash', 'Unliked!')
                 });
         }
     }

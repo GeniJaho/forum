@@ -20,6 +20,9 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    @yield('head')
+
 </head>
 <body class="pb-5">
 <div id="app">
@@ -31,5 +34,8 @@
 
     <flash message="{{ session('flash') }}"></flash>
 </div>
+
+@yield('scripts')
+
 </body>
 </html>

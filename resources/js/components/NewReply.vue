@@ -2,13 +2,16 @@
     <div>
         <div v-if="signedIn" class="my-5">
             <div class="form-group">
-                <textarea
-                    class="form-control"
-                    required
-                    rows="5"
-                    v-model="body"
-                    placeholder="Have something to say?"
-                ></textarea>
+                <vue-tribute :options="tributeOptions">
+                    <textarea
+                        class="form-control"
+                        required
+                        rows="5"
+                        v-model="body"
+                        placeholder="Have something to say?"
+                    ></textarea>
+                </vue-tribute>
+
             </div>
             <button
                 type="button"
@@ -27,12 +30,24 @@
 
 <script>
 import eventHub from "../eventHub";
+import VueTribute from 'vue-tribute';
 
 export default {
     name: "NewReply",
+    components: {
+        VueTribute
+    },
     data() {
         return {
             body: "",
+            tributeOptions: {
+                values: _.debounce(this.getUsers.bind(this), 750),
+                lookup: 'name',
+                fillAttr: 'name',
+                noMatchTemplate: function () {
+                    return '<span style:"visibility: hidden;"></span>';
+                }
+            }
         }
     },
     computed: {
@@ -54,6 +69,18 @@ export default {
                     this.body = "";
                     eventHub.$emit('flash', "Your reply has been posted!");
                     this.$emit('created', response.data);
+                });
+        },
+        getUsers(name, callback) {
+            axios
+                .get(`/api/users?name=${name}`)
+                .then(response => {
+                    if (response) {
+                        callback(response.data);
+                    }
+                })
+                .catch(() => {
+                    callback([]);
                 });
         }
     }
