@@ -29,10 +29,22 @@ class ReplyTest extends TestCase
 
     public function test_it_can_detect_all_mentioned_users_in_the_body()
     {
-        $reply = Reply::factory()->create([
+        $reply = Reply::factory()->makeOne([
             'body' => '@JaneDoe mentions @JohnDoe'
         ]);
 
         $this->assertEquals(['JaneDoe', 'JohnDoe'], $reply->mentionedUsers());
+    }
+
+    public function test_it_wraps_mentioned_usernames_within_anchor_tags()
+    {
+        $reply = Reply::factory()->makeOne([
+            'body' => 'Hello @Jane-Doe.'
+        ]);
+
+        $this->assertEquals(
+            "Hello <a href='/profiles/Jane-Doe'>@Jane-Doe</a>.",
+            $reply->body
+        );
     }
 }

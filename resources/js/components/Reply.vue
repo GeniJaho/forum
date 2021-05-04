@@ -52,10 +52,7 @@
                         </button>
                     </form>
                 </div>
-                <div v-else>
-                    {{ body }}
-                </div>
-
+                <div v-else v-html="body"></div>
             </div>
         </div>
     </div>
