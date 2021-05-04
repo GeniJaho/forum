@@ -84,7 +84,8 @@ class RepliesController extends Controller
      *
      * @param Request $request
      * @param Reply $reply
-     * @return Response
+     * @return Reply
+     * @throws AuthorizationException
      */
     public function update(Request $request, Reply $reply)
     {
@@ -94,13 +95,11 @@ class RepliesController extends Controller
             'body' => ['required', new SpamFree]
         ]);
 
-        try {
-            $reply->body = $request->body;
-            $reply->save();
-        } catch (Exception $exception) {
-            return response('Your reply could not be saved at the time.', 422);
-        }
+        $reply->update([
+            'body' => $request->body
+        ]);
 
+        return $reply;
     }
 
     /**

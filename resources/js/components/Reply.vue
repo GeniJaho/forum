@@ -34,18 +34,23 @@
 
             <div class="card-body">
                 <div v-if="editing">
-                    <div class="form-group">
-                        <textarea v-model="body"
-                                  type="text" class="form-control"
-                                  required
-                                  rows="5"></textarea>
-                    </div>
-                    <button class="btn btn-primary btn-xs" @click="update">
-                        Update
-                    </button>
-                    <button class="btn btn-link btn-xs" @click="hideEdit">
-                        Cancel
-                    </button>
+                    <form @submit.prevent="update">
+                        <div class="form-group">
+                        <textarea
+                            v-model="body"
+                            type="text"
+                            class="form-control"
+                            required
+                            rows="5"
+                        ></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-xs">
+                            Update
+                        </button>
+                        <button type="button" class="btn btn-link btn-xs" @click="hideEdit">
+                            Cancel
+                        </button>
+                    </form>
                 </div>
                 <div v-else>
                     {{ body }}
