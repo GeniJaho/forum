@@ -15,7 +15,7 @@
                     @component('profiles.activities.activity')
                         @slot('heading')
                             <div>
-                                <img src="{{ $thread->creator->avatar() }}"
+                                <img src="{{ $thread->creator->avatar_path }}"
                                      alt="Avatar" width="25" height="25" class="mr-2"
                                 >
                                 <span>

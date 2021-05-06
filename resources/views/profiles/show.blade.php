@@ -5,25 +5,9 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="page-header">
-                    <h1>
-                        {{ $profileUser->name }}
-                    </h1>
-
-                    @can('update', $profileUser)
-                        <form action="{{ route('avatar', $profileUser) }}"
-                              enctype="multipart/form-data"
-                              method="post"
-                        >
-                            @csrf
-
-                            <input type="file" name="avatar">
-                            <button class="btn btn-primary">Add Avatar</button>
-                        </form>
-                    @endcan
-
-                    <img src="{{ $profileUser->avatar() }}"
-                         alt="Avatar" width="50" height="50"
-                    >
+                    <avatar-form
+                        :user="{{ $profileUser }}"
+                    ></avatar-form>
                 </div>
 
                 <br>

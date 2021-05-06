@@ -21,15 +21,15 @@ class UserTest extends TestCase
         $user = User::factory()->create();
 
         $this->assertEquals(
-            asset('storage/avatars/default.jpg'),
-            $user->avatar()
+            asset('img/avatars/default.png'),
+            $user->avatar_path
         );
 
         $user = User::factory()->create(['avatar_path' => 'avatars/me.jpg']);
 
         $this->assertEquals(
             asset('storage/avatars/me.jpg'),
-            $user->avatar()
+            $user->avatar_path
         );
     }
 }
