@@ -15,9 +15,14 @@
                     @component('profiles.activities.activity')
                         @slot('heading')
                             <div>
-                                <a href="{{ route('profile', $thread->creator->name) }}">{{ $thread->creator->name }}</a>
+                                <img src="{{ $thread->creator->avatar() }}"
+                                     alt="Avatar" width="25" height="25" class="mr-2"
+                                >
+                                <span>
+                                    <a href="{{ route('profile', $thread->creator->name) }}">{{ $thread->creator->name }}</a>
                                 posted
                                 <a href="{{ $thread->path() }}">{{ $thread->title }}</a>
+                                </span>
                             </div>
                             @can('delete', $thread)
                                 <div class="d-flex align-items-center justify-content-center">

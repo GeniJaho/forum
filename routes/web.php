@@ -7,6 +7,7 @@ use App\Http\Controllers\ProfilesController;
 use App\Http\Controllers\RepliesController;
 use App\Http\Controllers\ThreadsController;
 use App\Http\Controllers\ThreadSubscriptionsController;
+use App\Http\Controllers\UserAvatarController;
 use App\Http\Controllers\UserNotificationsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -52,3 +53,6 @@ Route::get('profiles/{user}/notifications', [UserNotificationsController::class,
 Route::delete('profiles/{user}/notifications/{notification}', [UserNotificationsController::class, 'destroy'])->name('notifications.destroy');
 
 Route::get('api/users', [UsersController::class, 'index']);
+Route::post('api/users/{user}/avatar', [UserAvatarController::class, 'store'])
+    ->name('avatar')
+    ->middleware('auth');

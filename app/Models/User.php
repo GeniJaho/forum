@@ -23,6 +23,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'avatar_path'
     ];
 
     /**
@@ -68,6 +69,13 @@ class User extends Authenticatable
         cache()->forever(
             $this->visitedThreadCacheKey($thread),
             now()
+        );
+    }
+
+    public function avatar()
+    {
+        return asset(
+            'storage/' . ($this->avatar_path ?: 'avatars/default.jpg')
         );
     }
 
