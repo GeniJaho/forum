@@ -1984,7 +1984,9 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "AvatarForm",
-  components: [_ImageUpload__WEBPACK_IMPORTED_MODULE_1__["default"]],
+  components: {
+    ImageUpload: _ImageUpload__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
   props: ['user'],
   data: function data() {
     return {

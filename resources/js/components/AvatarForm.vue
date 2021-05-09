@@ -27,7 +27,7 @@ import ImageUpload from "./ImageUpload";
 
 export default {
     name: "AvatarForm",
-    components: [ ImageUpload ],
+    components: { ImageUpload },
     props: ['user'],
     data() {
         return {
