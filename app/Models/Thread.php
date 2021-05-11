@@ -104,4 +104,17 @@ class Thread extends Model
 
         return $this->updated_at > Cache::get($key);
     }
+
+    public function visit()
+    {
+        $this->increment('visits');
+    }
+
+    public function scopeTrending($query, int $top = 5)
+    {
+        return $query
+            ->where('visits', '>', 0)
+            ->orderByDesc('visits')
+            ->take($top);
+    }
 }
