@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Events\ThreadReceivedNewReply;
 use App\Traits\RecordsActivity;
-use App\Traits\RecordsVisits;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -17,7 +16,6 @@ class Thread extends Model
 {
     use HasFactory;
     use RecordsActivity;
-    use RecordsVisits;
 
     protected $with = ['creator', 'channel'];
 
@@ -105,5 +103,10 @@ class Thread extends Model
         $key = $user->visitedThreadCacheKey($this);
 
         return $this->updated_at > Cache::get($key);
+    }
+
+    public function visit()
+    {
+        $this->increment('visits');
     }
 }

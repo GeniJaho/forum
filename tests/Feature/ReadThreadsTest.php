@@ -81,6 +81,7 @@ class ReadThreadsTest extends TestCase
     public function test_a_user_can_filter_threads_by_those_that_are_unanswered()
     {
         $threadWithReplies = Thread::factory()->create();
+
         Reply::factory()->create(['thread_id' => $threadWithReplies->id]);
 
         $response = $this->getJson('threads?unanswered=1')->json();
@@ -90,14 +91,24 @@ class ReadThreadsTest extends TestCase
 
     public function test_a_user_can_request_all_replies_for_a_given_thread()
     {
-        $this->withoutExceptionHandling();
-
         $thread = Thread::factory()->create();
+
         Reply::factory(2)->for($thread)->create();
 
         $response = $this->getJson($thread->path() . '/replies')->json();
 
         $this->assertCount(2, $response['data']);
         $this->assertEquals(2, $response['total']);
+    }
+
+    public function test_a_new_visit_is_recorded_each_time_a_thread_is_read()
+    {
+        $thread = Thread::factory()->create();
+
+        $this->assertEquals(0, $thread->visits);
+
+        $this->get($thread->path());
+
+        $this->assertEquals(1, $thread->fresh()->visits);
     }
 }
