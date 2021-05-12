@@ -6,6 +6,7 @@ use App\Filters\ThreadFilters;
 use App\Inspections\Spam;
 use App\Models\Channel;
 use App\Models\Thread;
+use App\Models\Trending;
 use App\Rules\SpamFree;
 use Exception;
 use Illuminate\Contracts\Foundation\Application;
@@ -29,9 +30,10 @@ class ThreadsController extends Controller
      *
      * @param Channel $channel
      * @param ThreadFilters $filters
+     * @param Trending $trending
      * @return Application|Factory|View|Response
      */
-    public function index(Channel $channel, ThreadFilters $filters)
+    public function index(Channel $channel, ThreadFilters $filters, Trending $trending)
     {
         $threads = $this->getThreads($channel, $filters);
 
@@ -39,9 +41,10 @@ class ThreadsController extends Controller
             return $threads;
         }
 
-        $trending = Thread::trending()->get();
-
-        return view('threads.index', compact('threads', 'trending'));
+        return view('threads.index', [
+            'threads' => $threads,
+            'trending' => $trending->get()
+        ]);
     }
 
     /**
@@ -91,13 +94,13 @@ class ThreadsController extends Controller
      * @return Application|Factory|View
      * @throws Exception
      */
-    public function show(Channel $channel, Thread $thread)
+    public function show(Channel $channel, Thread $thread, Trending $trending)
     {
         if (auth()->check()) {
             auth()->user()->read($thread);
         }
 
-        $thread->visit();
+        $trending->push($thread);
 
         return view('threads.show', [
             'thread' => $thread,
