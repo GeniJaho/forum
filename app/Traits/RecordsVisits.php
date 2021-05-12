@@ -9,6 +9,11 @@ trait RecordsVisits
 
     public function visit()
     {
-        $this->increment('visits');
+        $this->increment($this->visitsColumnName());
+    }
+
+    protected function visitsColumnName(): string
+    {
+        return 'visits';
     }
 }
