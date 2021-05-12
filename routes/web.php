@@ -9,6 +9,7 @@ use App\Http\Controllers\ThreadsController;
 use App\Http\Controllers\ThreadSubscriptionsController;
 use App\Http\Controllers\UserAvatarController;
 use App\Http\Controllers\UserNotificationsController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -28,11 +29,21 @@ Auth::routes();
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+
+    return redirect('/');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
 Route::get('/threads', [ThreadsController::class, 'index'])->name('threads.index');
 Route::get('/threads/create', [ThreadsController::class, 'create'])->name('threads.create');
 Route::get('/threads/{channel}/{thread}', [ThreadsController::class, 'show'])->name('threads.show');
 Route::delete('/threads/{channel}/{thread}', [ThreadsController::class, 'destroy'])->name('threads.destroy');
-Route::post('/threads', [ThreadsController::class, 'store'])->name('threads.store');
+Route::post('/threads', [ThreadsController::class, 'store'])->name('threads.store')->middleware('verified');
 Route::get('/threads/{channel}', [ThreadsController::class, 'index'])->name('threads.channel');
 Route::get('/threads/{channel}/{thread}/replies', [RepliesController::class, 'index'])->name('replies.index');
 Route::post('/threads/{channel}/{thread}/replies', [RepliesController::class, 'store'])->name('replies.store');

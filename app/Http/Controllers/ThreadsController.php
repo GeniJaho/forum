@@ -16,7 +16,6 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Redirector;
-use Illuminate\Validation\ValidationException;
 
 class ThreadsController extends Controller
 {
@@ -61,8 +60,8 @@ class ThreadsController extends Controller
      * Store a newly created resource in storage.
      *
      * @param Request $request
+     * @param Spam $spam
      * @return Application|Redirector|RedirectResponse
-     * @throws ValidationException
      */
     public function store(Request $request, Spam $spam)
     {
