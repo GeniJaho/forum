@@ -110,7 +110,7 @@
       <path value="$PROJECT_DIR$/vendor/phpunit/php-text-template" />
       <path value="$PROJECT_DIR$/vendor/myclabs/deep-copy" />
       <path value="$PROJECT_DIR$/vendor/phpunit/phpunit" />
-      <path value="$PROJECT_DIR$/vendor/predis/predis" />
+      <path value="$PROJECT_DIR$/vendor/dczajkowski/auth-tests" />
     </include_path>
   </component>
   <component name="PhpInterpreters">

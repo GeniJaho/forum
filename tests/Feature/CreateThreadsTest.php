@@ -6,6 +6,7 @@ use App\Models\Activity;
 use App\Models\Channel;
 use App\Models\Reply;
 use App\Models\Thread;
+use App\Models\User;
 use Tests\TestCase;
 
 class CreateThreadsTest extends TestCase
@@ -26,7 +27,7 @@ class CreateThreadsTest extends TestCase
      */
     public function test_an_authenticated_user_can_create_new_forum_threads()
     {
-        $this->signIn();
+        $this->signIn(User::factory()->create(['email_verified_at' => now()]));
 
         $thread = Thread::factory()->make();
 
@@ -37,27 +38,33 @@ class CreateThreadsTest extends TestCase
             ->assertSee($thread->body);
     }
 
+    public function test_authenticated_users_must_first_confirm_their_email_address_before_creating_threads()
+    {
+        $this->publishThread([], false)
+            ->assertRedirect(route('verification.notice'));
+    }
+
     public function test_a_thread_requires_a_title()
     {
-         $this->publishThread(['title' => null])
-         ->assertSessionHasErrors('title');
+        $this->publishThread(['title' => null])
+            ->assertSessionHasErrors('title');
     }
 
     public function test_a_thread_requires_a_body()
     {
-         $this->publishThread(['body' => null])
-         ->assertSessionHasErrors('body');
+        $this->publishThread(['body' => null])
+            ->assertSessionHasErrors('body');
     }
 
     public function test_a_thread_requires_a_valid_channel()
     {
         Channel::factory(2)->create();
 
-         $this->publishThread(['channel_id' => null])
-         ->assertSessionHasErrors('channel_id');
+        $this->publishThread(['channel_id' => null])
+            ->assertSessionHasErrors('channel_id');
 
-         $this->publishThread(['channel_id' => 999])
-         ->assertSessionHasErrors('channel_id');
+        $this->publishThread(['channel_id' => 999])
+            ->assertSessionHasErrors('channel_id');
     }
 
     public function test_unauthorized_users_can_not_delete_threads()
@@ -98,9 +105,11 @@ class CreateThreadsTest extends TestCase
         $this->assertEquals(0, Activity::count());
     }
 
-    private function publishThread($overrides = [])
+    private function publishThread($overrides = [], $verifiedUser = true)
     {
-        $this->withExceptionHandling()->signIn();
+        $this->withExceptionHandling()->signIn(
+            User::factory()->create(['email_verified_at' => $verifiedUser ? now() : null])
+        );
 
         $thread = Thread::factory()->make($overrides);
 
