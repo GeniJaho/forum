@@ -5,4 +5,10 @@
     <div class="card-body">
         {{ $body }}
     </div>
+
+    @if($footer ?? null)
+        <div class="card-footer">
+            {{ $footer }}
+        </div>
+    @endif
 </div>

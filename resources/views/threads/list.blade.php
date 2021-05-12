@@ -1,5 +1,5 @@
 @forelse($threads as $thread)
-    <div class="my-2">
+    <div class="my-3">
         @component("profiles.activities.activity")
             @slot('heading')
                 <div>
@@ -27,6 +27,9 @@
             @endslot
             @slot('body')
                 {{ $thread->body }}
+            @endslot
+            @slot('footer')
+                {{ $thread->visits }} {{ \Illuminate\Support\Str::plural('Visit', $thread->visits) }}
             @endslot
         @endcomponent
     </div>

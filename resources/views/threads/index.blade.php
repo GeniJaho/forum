@@ -11,7 +11,7 @@
 
             <div class="col-md-4">
                 @if($trending->isNotEmpty())
-                    <div class="card my-2">
+                    <div class="card my-3">
                         <div class="card-header">
                             Trending threads
                         </div>
