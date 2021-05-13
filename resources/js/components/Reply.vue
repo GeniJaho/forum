@@ -90,7 +90,7 @@ export default {
             id: this.reply.id,
             body: this.reply.body,
             editing: false,
-            isBest: false
+            isBest: this.reply.isBest
         }
     },
     computed: {
@@ -126,9 +126,16 @@ export default {
                 .then(() => this.$emit('deleted', this.id));
         },
         markBestReply() {
-            // axios.post('/replies/' + this.id + '/best');
-            this.isBest = true;
+            axios.post('/replies/' + this.id + '/best')
+                .then(() => {
+                    eventHub.$emit('best-reply-selected', this.id);
+                });
         }
+    },
+    created() {
+        eventHub.$on('best-reply-selected', id => {
+            this.isBest = id === this.id;
+        });
     }
 }
 </script>

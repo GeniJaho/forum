@@ -2527,7 +2527,7 @@ __webpack_require__.r(__webpack_exports__);
       id: this.reply.id,
       body: this.reply.body,
       editing: false,
-      isBest: false
+      isBest: this.reply.isBest
     };
   },
   computed: {
@@ -2567,9 +2567,19 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     markBestReply: function markBestReply() {
-      // axios.post('/replies/' + this.id + '/best');
-      this.isBest = true;
+      var _this3 = this;
+
+      axios.post('/replies/' + this.id + '/best').then(function () {
+        _eventHub__WEBPACK_IMPORTED_MODULE_0__["default"].$emit('best-reply-selected', _this3.id);
+      });
     }
+  },
+  created: function created() {
+    var _this4 = this;
+
+    _eventHub__WEBPACK_IMPORTED_MODULE_0__["default"].$on('best-reply-selected', function (id) {
+      _this4.isBest = id === _this4.id;
+    });
   }
 });
 
