@@ -1,7 +1,7 @@
 let userId = window.Vue.prototype.$userId;
 
 module.exports = {
-    updateReply(reply) {
-        return reply.user_id.toString() === userId
+    owns(model, prop = 'user_id') {
+        return model[prop].toString() === userId
     }
 }

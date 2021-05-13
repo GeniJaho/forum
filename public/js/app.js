@@ -61103,7 +61103,7 @@ var render = function() {
               ? _c("div", [_c("favorite", { attrs: { reply: _vm.reply } })], 1)
               : _vm._e(),
             _vm._v(" "),
-            !_vm.isBest
+            !_vm.isBest && _vm.authorize("owns", _vm.reply.thread)
               ? _c(
                   "div",
                   {
@@ -61115,7 +61115,7 @@ var render = function() {
                 )
               : _vm._e(),
             _vm._v(" "),
-            _vm.authorize("updateReply", _vm.reply)
+            _vm.authorize("owns", _vm.reply)
               ? _c(
                   "div",
                   {
@@ -61127,7 +61127,7 @@ var render = function() {
                 )
               : _vm._e(),
             _vm._v(" "),
-            _vm.authorize("updateReply", _vm.reply)
+            _vm.authorize("owns", _vm.reply)
               ? _c(
                   "div",
                   {
@@ -73738,8 +73738,9 @@ var app = new Vue({
 
 var userId = window.Vue.prototype.$userId;
 module.exports = {
-  updateReply: function updateReply(reply) {
-    return reply.user_id.toString() === userId;
+  owns: function owns(model) {
+    var prop = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'user_id';
+    return model[prop].toString() === userId;
   }
 };
 

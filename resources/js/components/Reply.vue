@@ -16,7 +16,7 @@
                         <favorite :reply="reply"></favorite>
                     </div>
 
-                    <div v-if="! isBest"
+                    <div v-if="! isBest && authorize('owns', reply.thread)"
                          class="d-flex align-items-center justify-content-center"
                          @click="markBestReply"
                     >
@@ -25,7 +25,7 @@
                         </button>
                     </div>
 
-                    <div v-if="authorize('updateReply', reply)"
+                    <div v-if="authorize('owns', reply)"
                          class="d-flex align-items-center justify-content-center" @click="showEdit"
                     >
                         <button class="btn btn-primary">
@@ -33,7 +33,7 @@
                         </button>
                     </div>
 
-                    <div v-if="authorize('updateReply', reply)"
+                    <div v-if="authorize('owns', reply)"
                          class="d-flex align-items-center justify-content-center" @click="destroy"
                     >
                         <button class="btn btn-danger">
