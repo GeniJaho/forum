@@ -54,7 +54,7 @@
                     <div class="card">
                         <div class="card-body">
                             <p class="mb-0">This thread was published {{ $thread->created_at->diffForHumans() }}
-                                by <a href="#">{{ $thread->creator->name }}</a>, and currently has
+                                by <a href="{{ route('profile', $thread->creator) }}">{{ $thread->creator->name }}</a>, and currently has
                                 @{{ repliesCount }}
                                 {{ \Illuminate\Support\Str::plural('comment', $thread->replies_count) }}.
                             </p>
