@@ -7,6 +7,7 @@ use App\Models\Channel;
 use App\Models\Reply;
 use App\Models\Thread;
 use App\Models\User;
+use Illuminate\Testing\TestResponse;
 use Tests\TestCase;
 
 class CreateThreadsTest extends TestCase
@@ -25,9 +26,9 @@ class CreateThreadsTest extends TestCase
      *
      * @return void
      */
-    public function test_an_authenticated_user_can_create_new_forum_threads()
+    public function test_a_user_can_create_new_forum_threads()
     {
-        $this->signIn(User::factory()->create(['email_verified_at' => now()]));
+        $this->signIn();
 
         $thread = Thread::factory()->make();
 
@@ -38,9 +39,15 @@ class CreateThreadsTest extends TestCase
             ->assertSee($thread->body);
     }
 
-    public function test_authenticated_users_must_first_confirm_their_email_address_before_creating_threads()
+    public function test_new_users_must_first_confirm_their_email_address_before_creating_threads()
     {
-        $this->publishThread([], false)
+        $this->withExceptionHandling()->signIn(
+            User::factory()->unverified()->create()
+        );
+
+        $thread = Thread::factory()->make();
+
+        $this->post(route('threads.store'), $thread->toArray())
             ->assertRedirect(route('verification.notice'));
     }
 
@@ -105,11 +112,9 @@ class CreateThreadsTest extends TestCase
         $this->assertEquals(0, Activity::count());
     }
 
-    private function publishThread($overrides = [], $verifiedUser = true)
+    private function publishThread($overrides = []): TestResponse
     {
-        $this->withExceptionHandling()->signIn(
-            User::factory()->create(['email_verified_at' => $verifiedUser ? now() : null])
-        );
+        $this->withExceptionHandling()->signIn();
 
         $thread = Thread::factory()->make($overrides);
 
