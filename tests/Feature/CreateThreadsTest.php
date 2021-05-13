@@ -74,6 +74,23 @@ class CreateThreadsTest extends TestCase
             ->assertSessionHasErrors('channel_id');
     }
 
+    public function test_a_thread_requires_a_unique_slug()
+    {
+        $this->signIn();
+
+        $thread = Thread::factory()->create(['title' => 'Nice', 'slug' => 'nice']);
+
+        $this->assertEquals('nice', $thread->fresh()->slug);
+
+        $this->post(route('threads.store'), $thread->toArray());
+
+        $this->assertTrue(Thread::where('slug', 'nice-2')->exists());
+
+        $this->post(route('threads.store'), $thread->toArray());
+
+        $this->assertTrue(Thread::where('slug', 'nice-3')->exists());
+    }
+
     public function test_unauthorized_users_can_not_delete_threads()
     {
         $thread = Thread::factory()->create();
