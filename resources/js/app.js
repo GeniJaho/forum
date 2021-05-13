@@ -11,9 +11,21 @@ window.Vue = require('vue');
 window.Vue.prototype.$userId = document.querySelector("meta[name='user-id']").getAttribute('content');
 window.Vue.prototype.$userName = document.querySelector("meta[name='user-name']").getAttribute('content');
 
-window.Vue.prototype.authorize = function (handler) {
-    return this.$userId ? handler(this.$userId) : false;
+let authorizations = require('./authorizations');
+
+window.Vue.prototype.authorize = function (...params) {
+    let $userId = window.Vue.prototype.$userId
+
+    if (! $userId) return false;
+
+    if (typeof params[0] === 'string') {
+        return authorizations[params[0]](params[1]);
+    }
+
+    return params[0]($userId);
 }
+
+window.Vue.prototype.signedIn = window.Vue.prototype.$userId;
 
 /**
  * The following block of code may be used to automatically register your

@@ -50,11 +50,6 @@ export default {
             }
         }
     },
-    computed: {
-        signedIn() {
-            return this.$userId;
-        },
-    },
     methods: {
         addReply() {
             axios.post(location.pathname + "/replies", {body: this.body})

@@ -25,7 +25,7 @@
                         </button>
                     </div>
 
-                    <div v-if="canUpdate"
+                    <div v-if="authorize('updateReply', reply)"
                          class="d-flex align-items-center justify-content-center" @click="showEdit"
                     >
                         <button class="btn btn-primary">
@@ -33,7 +33,7 @@
                         </button>
                     </div>
 
-                    <div v-if="canUpdate"
+                    <div v-if="authorize('updateReply', reply)"
                          class="d-flex align-items-center justify-content-center" @click="destroy"
                     >
                         <button class="btn btn-danger">
@@ -97,14 +97,6 @@ export default {
         ago() {
             return moment(this.reply.created_at).fromNow() + "...";
         },
-        signedIn() {
-            return this.$userId;
-        },
-        canUpdate() {
-            return this.authorize(
-                userId => this.reply.user_id.toString() === userId
-            );
-        }
     },
     methods: {
         showEdit() {

@@ -2254,11 +2254,6 @@ __webpack_require__.r(__webpack_exports__);
       }
     };
   },
-  computed: {
-    signedIn: function signedIn() {
-      return this.$userId;
-    }
-  },
   methods: {
     addReply: function addReply() {
       var _this = this;
@@ -2538,16 +2533,6 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     ago: function ago() {
       return moment__WEBPACK_IMPORTED_MODULE_2___default()(this.reply.created_at).fromNow() + "...";
-    },
-    signedIn: function signedIn() {
-      return this.$userId;
-    },
-    canUpdate: function canUpdate() {
-      var _this = this;
-
-      return this.authorize(function (userId) {
-        return _this.reply.user_id.toString() === userId;
-      });
     }
   },
   methods: {
@@ -2558,7 +2543,7 @@ __webpack_require__.r(__webpack_exports__);
       this.editing = false;
     },
     update: function update() {
-      var _this2 = this;
+      var _this = this;
 
       axios.patch('/replies/' + this.id, {
         body: this.body
@@ -2567,7 +2552,7 @@ __webpack_require__.r(__webpack_exports__);
           return;
         }
 
-        _this2.hideEdit();
+        _this.hideEdit();
 
         _eventHub__WEBPACK_IMPORTED_MODULE_0__["default"].$emit('flash', 'Updated!');
       })["catch"](function (error) {
@@ -2575,10 +2560,10 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     destroy: function destroy() {
-      var _this3 = this;
+      var _this2 = this;
 
       axios["delete"]('/replies/' + this.id).then(function () {
-        return _this3.$emit('deleted', _this3.id);
+        return _this2.$emit('deleted', _this2.id);
       });
     },
     markBestReply: function markBestReply() {
@@ -61120,7 +61105,7 @@ var render = function() {
                 )
               : _vm._e(),
             _vm._v(" "),
-            _vm.canUpdate
+            _vm.authorize("updateReply", _vm.reply)
               ? _c(
                   "div",
                   {
@@ -61132,7 +61117,7 @@ var render = function() {
                 )
               : _vm._e(),
             _vm._v(" "),
-            _vm.canUpdate
+            _vm.authorize("updateReply", _vm.reply)
               ? _c(
                   "div",
                   {
@@ -73691,9 +73676,24 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 window.Vue.prototype.$userId = document.querySelector("meta[name='user-id']").getAttribute('content');
 window.Vue.prototype.$userName = document.querySelector("meta[name='user-name']").getAttribute('content');
 
-window.Vue.prototype.authorize = function (handler) {
-  return this.$userId ? handler(this.$userId) : false;
+var authorizations = __webpack_require__(/*! ./authorizations */ "./resources/js/authorizations.js");
+
+window.Vue.prototype.authorize = function () {
+  var $userId = window.Vue.prototype.$userId;
+  if (!$userId) return false;
+
+  for (var _len = arguments.length, params = new Array(_len), _key = 0; _key < _len; _key++) {
+    params[_key] = arguments[_key];
+  }
+
+  if (typeof params[0] === 'string') {
+    return authorizations[params[0]](params[1]);
+  }
+
+  return params[0]($userId);
 };
+
+window.Vue.prototype.signedIn = window.Vue.prototype.$userId;
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -73701,7 +73701,6 @@ window.Vue.prototype.authorize = function (handler) {
  *
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
-
 
 var files = __webpack_require__("./resources/js sync recursive \\.vue$/");
 
@@ -73717,6 +73716,22 @@ files.keys().map(function (key) {
 var app = new Vue({
   el: '#app'
 });
+
+/***/ }),
+
+/***/ "./resources/js/authorizations.js":
+/*!****************************************!*\
+  !*** ./resources/js/authorizations.js ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var userId = window.Vue.prototype.$userId;
+module.exports = {
+  updateReply: function updateReply(reply) {
+    return reply.user_id.toString() === userId;
+  }
+};
 
 /***/ }),
 
