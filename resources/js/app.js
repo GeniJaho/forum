@@ -10,6 +10,7 @@ window.Vue = require('vue');
 
 window.Vue.prototype.$userId = document.querySelector("meta[name='user-id']").getAttribute('content');
 window.Vue.prototype.$userName = document.querySelector("meta[name='user-name']").getAttribute('content');
+window.Vue.prototype.$userEmail = document.querySelector("meta[name='user-email']").getAttribute('content');
 
 let authorizations = require('./authorizations');
 

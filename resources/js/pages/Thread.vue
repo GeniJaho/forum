@@ -11,11 +11,13 @@ export default {
         Replies
     },
     props: {
-        initialRepliesCount: Number
+        dataRepliesCount: Number,
+        dataLocked: Boolean,
     },
     data() {
         return {
-            repliesCount: this.initialRepliesCount
+            repliesCount: this.dataRepliesCount,
+            locked: this.dataLocked
         }
     },
     methods: {

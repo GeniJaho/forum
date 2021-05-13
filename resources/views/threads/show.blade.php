@@ -6,7 +6,11 @@
 
 @section('content')
 
-    <thread inline-template :initial-replies-count="{{ $thread->replies_count }}">
+    <thread
+        inline-template
+        :data-replies-count="{{ $thread->replies_count }}"
+        :data-locked="{{ $thread->locked }}"
+    >
 
         <div class="container">
             <div class="row">
@@ -53,13 +57,25 @@
                 <div class="col-md-4">
                     <div class="card">
                         <div class="card-body">
-                            <p>This thread was published {{ $thread->created_at->diffForHumans() }}
+                            <p class="mb-0">This thread was published {{ $thread->created_at->diffForHumans() }}
                                 by <a href="#">{{ $thread->creator->name }}</a>, and currently has
                                 @{{ repliesCount }}
                                 {{ \Illuminate\Support\Str::plural('comment', $thread->replies_count) }}.
                             </p>
 
-                            <subscribe-button :active="{{ json_encode($thread->isSubscribedTo) }}"></subscribe-button>
+                            <div v-if="signedIn" class="level mt-2">
+                                <subscribe-button
+                                    v-if="signedIn"
+                                    :active="{{ json_encode($thread->isSubscribedTo) }}"
+                                ></subscribe-button>
+
+                                <button
+                                    v-if="authorize('isAdmin') && !locked"
+                                    @click="locked = true"
+                                    class="btn btn-warning ml-2"
+                                >Lock
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>

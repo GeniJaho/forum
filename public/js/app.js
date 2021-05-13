@@ -2382,6 +2382,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2705,11 +2715,13 @@ __webpack_require__.r(__webpack_exports__);
     Replies: _components_Replies__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   props: {
-    initialRepliesCount: Number
+    dataRepliesCount: Number,
+    dataLocked: Boolean
   },
   data: function data() {
     return {
-      repliesCount: this.initialRepliesCount
+      repliesCount: this.dataRepliesCount,
+      locked: this.dataLocked
     };
   },
   methods: {
@@ -61050,7 +61062,13 @@ var render = function() {
         on: { changed: _vm.fetch }
       }),
       _vm._v(" "),
-      _c("new-reply", { on: { created: _vm.add } })
+      _vm.$parent.locked
+        ? _c("p", { staticClass: "text-center mt-4" }, [
+            _vm._v(
+              "\n        This thread has been locked. No more replies are allowed.\n    "
+            )
+          ])
+        : _c("new-reply", { on: { created: _vm.add } })
     ],
     2
   )
@@ -73685,6 +73703,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 window.Vue.prototype.$userId = document.querySelector("meta[name='user-id']").getAttribute('content');
 window.Vue.prototype.$userName = document.querySelector("meta[name='user-name']").getAttribute('content');
+window.Vue.prototype.$userEmail = document.querySelector("meta[name='user-email']").getAttribute('content');
 
 var authorizations = __webpack_require__(/*! ./authorizations */ "./resources/js/authorizations.js");
 
@@ -73737,10 +73756,14 @@ var app = new Vue({
 /***/ (function(module, exports) {
 
 var userId = window.Vue.prototype.$userId;
+var userEmail = window.Vue.prototype.$userEmail;
 module.exports = {
   owns: function owns(model) {
     var prop = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'user_id';
     return model[prop].toString() === userId;
+  },
+  isAdmin: function isAdmin() {
+    return ['jahogeni@gmail.com'].includes(userEmail);
   }
 };
 
