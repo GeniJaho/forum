@@ -1,7 +1,7 @@
 <template>
     <button
         :class="{
-            'btn': true,
+            'btn border': true,
             'btn-primary': active,
             'btn-default': !active
         }"

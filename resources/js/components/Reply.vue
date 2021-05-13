@@ -1,6 +1,9 @@
 <template>
     <div :id="'reply-' + id">
-        <div class="card activity-item">
+        <div
+            class="card activity-item"
+            :class="isBest ? 'border-success' : ''"
+        >
             <div class="card-header header">
                 <div>
                     <a :href="'/profiles/' + reply.owner.name">
@@ -11,6 +14,15 @@
                 <div class="inline">
                     <div v-if="signedIn">
                         <favorite :reply="reply"></favorite>
+                    </div>
+
+                    <div v-if="! isBest"
+                         class="d-flex align-items-center justify-content-center"
+                         @click="markBestReply"
+                    >
+                        <button class="btn btn-primary">
+                            <i class="far fa-star"></i>
+                        </button>
                     </div>
 
                     <div v-if="canUpdate"
@@ -32,7 +44,10 @@
 
             </div>
 
-            <div class="card-body">
+            <div
+                class="card-body"
+                :class="isBest ? 'text-success' : ''"
+            >
                 <div v-if="editing">
                     <form @submit.prevent="update">
                         <div class="form-group">
@@ -74,7 +89,8 @@ export default {
         return {
             id: this.reply.id,
             body: this.reply.body,
-            editing: false
+            editing: false,
+            isBest: false
         }
     },
     computed: {
@@ -116,6 +132,10 @@ export default {
         destroy() {
             axios.delete('/replies/' + this.id)
                 .then(() => this.$emit('deleted', this.id));
+        },
+        markBestReply() {
+            // axios.post('/replies/' + this.id + '/best');
+            this.isBest = true;
         }
     }
 }
