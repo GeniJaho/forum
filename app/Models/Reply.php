@@ -6,7 +6,11 @@ use App\Traits\Favorable;
 use App\Traits\RecordsActivity;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+/**
+ * @property Thread thread
+ */
 class Reply extends Model
 {
     use HasFactory;
@@ -32,12 +36,12 @@ class Reply extends Model
         });
     }
 
-    public function owner()
+    public function owner(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function thread()
+    public function thread(): BelongsTo
     {
         return $this->belongsTo(Thread::class);
     }
@@ -45,6 +49,11 @@ class Reply extends Model
     public function path()
     {
         return $this->thread->path() . "#reply-{$this->id}";
+    }
+
+    public function isBest(): bool
+    {
+        return $this->thread->best_reply_id == $this->id;
     }
 
     public function wasJustPublished(): bool

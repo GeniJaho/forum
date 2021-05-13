@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\UsersController;
+use App\Http\Controllers\BestRepliesController;
 use App\Http\Controllers\FavoritesController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfilesController;
@@ -51,6 +52,8 @@ Route::post('/replies/{reply}/favorites', [FavoritesController::class, 'store'])
 Route::delete('/replies/{reply}/favorites', [FavoritesController::class, 'destroy'])->name('replies.unfavorite');
 Route::delete('/replies/{reply}', [RepliesController::class, 'destroy'])->name('replies.destroy');
 Route::patch('/replies/{reply}', [RepliesController::class, 'update'])->name('replies.update');
+
+Route::post('/replies/{reply}/best', [BestRepliesController::class, 'store'])->name('best-replies.store');
 
 Route::post('/threads/{channel}/{thread}/subscriptions', [ThreadSubscriptionsController::class, 'store'])
     ->middleware('auth')
