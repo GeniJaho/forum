@@ -78,17 +78,32 @@ class CreateThreadsTest extends TestCase
     {
         $this->signIn();
 
-        $thread = Thread::factory()->create(['title' => 'Nice', 'slug' => 'nice']);
+        $thread = Thread::factory()->create(['title' => 'Nice']);
 
         $this->assertEquals('nice', $thread->fresh()->slug);
 
-        $this->post(route('threads.store'), $thread->toArray());
+        $thread = $this->postJson(
+            route('threads.store'), $thread->toArray()
+        )->json();
 
-        $this->assertTrue(Thread::where('slug', 'nice-2')->exists());
+        $this->assertEquals("nice-{$thread['id']}", $thread['slug']);
 
-        $this->post(route('threads.store'), $thread->toArray());
+        $this->assertTrue(Thread::where('slug', $thread['slug'])->exists());
+    }
 
-        $this->assertTrue(Thread::where('slug', 'nice-3')->exists());
+    public function test_a_thread_with_a_title_that_ends_in_a_number_should_generate_the_proper_slug()
+    {
+        $this->signIn();
+
+        $thread = Thread::factory()->create(['title' => 'Nice 420']);
+
+        $thread = $this->postJson(
+            route('threads.store'), $thread->toArray()
+        )->json();
+
+        $this->assertEquals("nice-420-{$thread['id']}", $thread['slug']);
+
+        $this->assertTrue(Thread::where('slug', $thread['slug'])->exists());
     }
 
     public function test_unauthorized_users_can_not_delete_threads()
