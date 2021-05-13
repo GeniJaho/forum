@@ -51,7 +51,10 @@ Route::get('/threads/{channel}', [ThreadsController::class, 'index'])->name('thr
 
 Route::post('locked-threads/{thread}', [LockedThreadsController::class, 'store'])
     ->name('locked-threads.store')
-->middleware(['auth', 'admin']);
+    ->middleware(['auth', 'admin']);
+Route::delete('locked-threads/{thread}', [LockedThreadsController::class, 'destroy'])
+    ->name('locked-threads.destroy')
+    ->middleware(['auth', 'admin']);
 
 Route::get('/threads/{channel}/{thread}/replies', [RepliesController::class, 'index'])->name('replies.index');
 Route::post('/threads/{channel}/{thread}/replies', [RepliesController::class, 'store'])->name('replies.store');
