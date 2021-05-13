@@ -9,7 +9,9 @@ use App\Models\Thread;
 use App\Rules\SpamFree;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -47,10 +49,14 @@ class RepliesController extends Controller
      * @param Channel $channel
      * @param Thread $thread
      * @param CreatePostRequest $request
-     * @return Reply
+     * @return Reply|Application|ResponseFactory|Response
      */
     public function store(Channel $channel, Thread $thread, CreatePostRequest $request)
     {
+        if ($thread->locked) {
+            return response('Thread is locked', 422);
+        }
+
         return $thread->addReply([
             'body' => $request->body,
             'user_id' => auth()->id()
