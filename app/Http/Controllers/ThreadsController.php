@@ -16,6 +16,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Redirector;
+use Illuminate\Support\Str;
 
 class ThreadsController extends Controller
 {
@@ -78,6 +79,7 @@ class ThreadsController extends Controller
             'user_id' => auth()->id(),
             'channel_id' => $request->channel_id,
             'title' => $request->title,
+            'slug' => Str::slug($request->title),
             'body' => $request->body
         ]);
 
