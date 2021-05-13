@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\UsersController;
 use App\Http\Controllers\BestRepliesController;
 use App\Http\Controllers\FavoritesController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LockedThreadsController;
 use App\Http\Controllers\ProfilesController;
 use App\Http\Controllers\RepliesController;
 use App\Http\Controllers\ThreadsController;
@@ -43,9 +44,15 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
 Route::get('/threads', [ThreadsController::class, 'index'])->name('threads.index');
 Route::get('/threads/create', [ThreadsController::class, 'create'])->name('threads.create');
 Route::get('/threads/{channel}/{thread}', [ThreadsController::class, 'show'])->name('threads.show');
+Route::patch('/threads/{channel}/{thread}', [ThreadsController::class, 'update'])->name('threads.update');
 Route::delete('/threads/{channel}/{thread}', [ThreadsController::class, 'destroy'])->name('threads.destroy');
 Route::post('/threads', [ThreadsController::class, 'store'])->name('threads.store')->middleware('verified');
 Route::get('/threads/{channel}', [ThreadsController::class, 'index'])->name('threads.channel');
+
+Route::post('locked-threads/{thread}', [LockedThreadsController::class, 'store'])
+    ->name('locked-threads.store')
+->middleware(['auth', 'admin']);
+
 Route::get('/threads/{channel}/{thread}/replies', [RepliesController::class, 'index'])->name('replies.index');
 Route::post('/threads/{channel}/{thread}/replies', [RepliesController::class, 'store'])->name('replies.store');
 Route::post('/replies/{reply}/favorites', [FavoritesController::class, 'store'])->name('replies.favorite');

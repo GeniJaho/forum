@@ -61,6 +61,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Activity::class);
     }
 
+    public function isAdmin(): bool
+    {
+        return in_array($this->email, ['jahogeni@gmail.com']);
+    }
+
     /**
      * @throws Exception
      */

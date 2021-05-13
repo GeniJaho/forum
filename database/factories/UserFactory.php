@@ -39,4 +39,13 @@ class UserFactory extends Factory
             ];
         });
     }
+
+    public function admin(): UserFactory
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'email' => 'jahogeni@gmail.com'
+            ];
+        });
+    }
 }
