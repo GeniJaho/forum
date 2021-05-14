@@ -19,7 +19,9 @@ export default {
             repliesCount: this.thread.replies_cont,
             locked: this.thread.locked,
             editing: false,
-            body: this.thread.body
+            title: this.thread.title,
+            body: this.thread.body,
+            form: {}
         }
     },
     methods: {
@@ -38,26 +40,42 @@ export default {
         toggleLock() {
             let method = this.locked ? 'delete' : 'post';
 
-            axios[method]('/locked-threads/' + this.thread.slug);
+            let uri = '/locked-threads/' + this.thread.slug;
+
+            axios[method](uri);
 
             this.locked = !this.locked;
         },
         update() {
-            // axios.patch('/replies/' + this.id, {
-            //     body: this.body
-            // })
-            //     .then(response => {
-            //         if (!response) {
-            //             return;
-            //         }
-            //
-            //         this.hideEdit();
-            //         eventHub.$emit('flash', 'Updated!')
-            //     })
-            //     .catch(error => {
-            //         eventHub.$emit('flash', error.response.data, 'danger');
-            //     });
+            let uri = '/threads/' + this.thread.channel.slug + '/' + this.thread.slug;
+            axios.patch(uri, this.form)
+                .then(response => {
+                    if (!response) {
+                        return;
+                    }
+
+                    this.title = this.form.title;
+                    this.body = this.form.body;
+
+                    this.hideEdit();
+
+                    eventHub.$emit('flash', 'Your thread has been updated!')
+                })
+                .catch(error => {
+                    eventHub.$emit('flash', error.response.data, 'danger');
+                });
+        },
+        resetForm() {
+            this.form = {
+                title: this.thread.title,
+                body: this.thread.body
+            }
+
+            this.hideEdit();
         }
+    },
+    created() {
+        this.resetForm();
     }
 }
 </script>

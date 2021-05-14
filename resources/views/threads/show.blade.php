@@ -22,7 +22,7 @@
                                     <span>
                                     <a href="{{ route('profile', $thread->creator->name) }}">{{ $thread->creator->name }}</a>
                                 posted
-                                <a href="{{ $thread->path() }}">{{ $thread->title }}</a>
+                                <a href="{{ $thread->path() }}" v-text="title"></a>
                                 </span>
                                 </div>
 
@@ -49,7 +49,7 @@
                                 </div>
                             @endslot
                             @slot('body')
-                                {{ $thread->body }}
+                                <span v-html="body"></span>
                             @endslot
                         @endcomponent
                     </template>
@@ -59,8 +59,12 @@
                             @slot('heading')
                                 <div class="w-100">
                                     <div class="form-group mb-0">
-                                        <input type="text" class="form-control mb-0" name="title" required
-                                               id="title" value="{{ $thread->title }}">
+                                        <input
+                                            v-model="form.title"
+                                            type="text"
+                                            class="form-control mb-0"
+                                            name="title"
+                                            id="title">
                                     </div>
                                 </div>
 
@@ -79,7 +83,7 @@
                                     <form @submit.prevent="update">
                                         <div class="form-group">
                                             <textarea
-                                                v-model="body"
+                                                v-model="form.body"
                                                 type="text"
                                                 class="form-control"
                                                 required
@@ -89,7 +93,7 @@
                                         <button type="submit" class="btn btn-primary btn-xs">
                                             Update
                                         </button>
-                                        <button type="button" class="btn btn-link btn-xs" @click="hideEdit">
+                                        <button type="button" class="btn btn-link btn-xs" @click="resetForm">
                                             Cancel
                                         </button>
                                     </form>
