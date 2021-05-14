@@ -17,7 +17,8 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.0",
         "laravel/tinker": "^2.0",
-        "laravel/ui": "^3.0"
+        "laravel/ui": "^3.0",
+        "stevebauman/purify": "^4.0"
     },
     "require-dev": {
         "dczajkowski/auth-tests": "^8.0",

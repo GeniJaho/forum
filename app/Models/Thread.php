@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
+use Stevebauman\Purify\Facades\Purify;
 
 /**
  * @property mixed subscriptions
@@ -138,5 +139,10 @@ class Thread extends Model
     public function markBestReply(Reply $reply)
     {
         $this->update(['best_reply_id' => $reply->id]);
+    }
+
+    public function getBodyAttribute($body)
+    {
+        return Purify::clean($body);
     }
 }

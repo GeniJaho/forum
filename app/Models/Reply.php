@@ -7,6 +7,7 @@ use App\Traits\RecordsActivity;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Stevebauman\Purify\Facades\Purify;
 
 /**
  * @property Thread thread
@@ -84,5 +85,10 @@ class Reply extends Model
     public function getIsBestAttribute(): bool
     {
         return $this->isBest();
+    }
+
+    public function getBodyAttribute($body)
+    {
+        return Purify::clean($body);
     }
 }

@@ -119,6 +119,8 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpunit/phpunit" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/dczajkowski/auth-tests" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/biscolab/laravel-recaptcha" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/stevebauman/purify" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/ezyang/htmlpurifier" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

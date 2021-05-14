@@ -43,7 +43,7 @@ class ReplyTest extends TestCase
         ]);
 
         $this->assertEquals(
-            "Hello <a href='/profiles/Jane-Doe'>@Jane-Doe</a>.",
+            "Hello <a href=\"/profiles/Jane-Doe\">@Jane-Doe</a>.",
             $reply->body
         );
     }
@@ -58,5 +58,14 @@ class ReplyTest extends TestCase
         $reply->thread->update(['best_reply_id' => $reply->id]);
 
         $this->assertTrue($reply->isBest());
+    }
+
+    public function test_a_reply_body_is_sanitized_automatically()
+    {
+        $reply = Reply::factory()->makeOne([
+            'body' => '<script>alert("Harmful Script");</script> <p style="a style" class="a-different-class">Test</p>'
+        ]);
+
+        $this->assertEquals(' <p>Test</p>', $reply->body);
     }
 }
