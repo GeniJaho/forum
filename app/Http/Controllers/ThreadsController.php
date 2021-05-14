@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Filters\ThreadFilters;
-use App\Inspections\Spam;
 use App\Models\Channel;
 use App\Models\Thread;
 use App\Models\Trending;
@@ -50,7 +49,7 @@ class ThreadsController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return Response
+     * @return Application|Factory|View
      */
     public function create()
     {
@@ -61,19 +60,16 @@ class ThreadsController extends Controller
      * Store a newly created resource in storage.
      *
      * @param Request $request
-     * @param Spam $spam
+     * @param SpamFree $spamFree
      * @return Application|Redirector|RedirectResponse
      */
-    public function store(Request $request, Spam $spam)
+    public function store(Request $request, SpamFree $spamFree)
     {
         $request->validate([
-            'title' => ['required', new SpamFree],
-            'body' => ['required', new SpamFree],
+            'title' => ['required', $spamFree],
+            'body' => ['required', $spamFree],
             'channel_id' => 'required|exists:channels,id'
         ]);
-
-        $spam->detect($request->title);
-        $spam->detect($request->body);
 
         $thread = Thread::create([
             'user_id' => auth()->id(),
