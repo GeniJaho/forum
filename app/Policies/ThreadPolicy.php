@@ -33,28 +33,4 @@ class ThreadPolicy
     {
         return $this->update($user, $thread);
     }
-
-    /**
-     * Determine whether the user can restore the model.
-     *
-     * @param User $user
-     * @param Thread $thread
-     * @return mixed
-     */
-    public function restore(User $user, Thread $thread)
-    {
-        return $this->update($user, $thread);
-    }
-
-    /**
-     * Determine whether the user can permanently delete the model.
-     *
-     * @param User $user
-     * @param Thread $thread
-     * @return mixed
-     */
-    public function forceDelete(User $user, Thread $thread)
-    {
-        return $this->update($user, $thread);
-    }
 }

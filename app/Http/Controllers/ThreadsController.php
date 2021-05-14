@@ -108,17 +108,6 @@ class ThreadsController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param Thread $thread
-     * @return Response
-     */
-    public function edit(Thread $thread)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param Channel $channel
@@ -145,7 +134,7 @@ class ThreadsController extends Controller
      *
      * @param Channel $channel
      * @param Thread $thread
-     * @return RedirectResponse|Response
+     * @return Response
      * @throws Exception
      */
     public function destroy(Channel $channel, Thread $thread)
@@ -154,13 +143,7 @@ class ThreadsController extends Controller
 
         $thread->delete();
 
-        if (request()->wantsJson()) {
-            return response([], 204);
-        }
-
-        return redirect()
-            ->route('threads.index')
-            ->with('flash', 'Thread deleted successfully!');
+        return response([], 204);
     }
 
     /**
