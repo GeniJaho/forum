@@ -9,6 +9,7 @@ use App\Models\Thread;
 use App\Models\Trending;
 use App\Rules\SpamFree;
 use Exception;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -127,11 +128,20 @@ class ThreadsController extends Controller
      * @param Channel $channel
      * @param Thread $thread
      * @param Request $request
-     * @return Response
+     * @param SpamFree $spamFree
+     * @return Thread
+     * @throws AuthorizationException
      */
-    public function update(Channel $channel, Thread $thread, Request $request)
+    public function update(Channel $channel, Thread $thread, Request $request, SpamFree $spamFree)
     {
+        $this->authorize('update', $thread);
 
+        $thread->update($request->validate([
+            'title' => ['required', $spamFree],
+            'body' => ['required', $spamFree]
+        ]));
+
+        return $thread;
     }
 
     /**
