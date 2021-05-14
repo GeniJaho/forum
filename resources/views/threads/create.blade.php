@@ -1,5 +1,27 @@
 @extends('layouts.app')
 
+@section('head')
+    <script>
+        function callbackThen(response) {
+            response.json().then(function (data) {
+                if (data.success) {
+                    document.getElementById('form').classList.remove('d-none');
+                }
+            });
+        }
+
+        function callbackCatch(error) {
+            alert('You\'re a robot, Harry! Please reload the page!');
+        }
+    </script>
+
+    {!! htmlScriptTagJsApi([
+            'action' => 'thread',
+            'callback_then' => 'callbackThen',
+            'callback_catch' => 'callbackCatch'
+     ]) !!}
+@endsection
+
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
@@ -8,7 +30,12 @@
                     <div class="card-header">Create a New Thread</div>
 
                     <div class="card-body">
-                        <form action="/threads" method="post">
+                        <form
+                            id="form"
+                            action="/threads"
+                            method="post"
+                            class="d-none"
+                        >
                             @csrf
 
                             <div class="form-group">
