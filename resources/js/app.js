@@ -8,6 +8,7 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+window.Vue.prototype.$user = JSON.parse(document.querySelector("meta[name='user']").getAttribute('content'));
 window.Vue.prototype.$userId = document.querySelector("meta[name='user-id']").getAttribute('content');
 window.Vue.prototype.$userName = document.querySelector("meta[name='user-name']").getAttribute('content');
 window.Vue.prototype.$userEmail = document.querySelector("meta[name='user-email']").getAttribute('content');
@@ -27,6 +28,7 @@ window.Vue.prototype.authorize = function (...params) {
 }
 
 window.Vue.prototype.signedIn = window.Vue.prototype.$userId;
+window.Vue.prototype.guest = ! window.Vue.prototype.signedIn;
 
 /**
  * The following block of code may be used to automatically register your

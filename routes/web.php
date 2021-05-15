@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\UsersController;
 use App\Http\Controllers\BestRepliesController;
+use App\Http\Controllers\ChannelsController;
 use App\Http\Controllers\FavoritesController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LockedThreadsController;
@@ -40,6 +41,8 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
 
     return redirect('/');
 })->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::get('channels', [ChannelsController::class, 'index'])->name('channels.index');
 
 Route::get('/threads', [ThreadsController::class, 'index'])->name('threads.index');
 Route::get('/threads/create', [ThreadsController::class, 'create'])->name('threads.create');

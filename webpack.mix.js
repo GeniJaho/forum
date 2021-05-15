@@ -12,7 +12,9 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css')
+    .postCss("resources/css/app.css", "public/css", [
+        require("tailwindcss")
+    ])
     .styles('node_modules/tributejs/dist/tribute.css', 'public/css/tribute.css');
 
 mix.copyDirectory('resources/img', 'public/img');

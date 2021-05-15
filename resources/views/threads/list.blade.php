@@ -1,29 +1,30 @@
-@forelse($threads as $thread)
-    <div class="my-3">
+<div class="space-y-3">
+    @forelse($threads as $thread)
         @component("profiles.activities.activity")
             @slot('heading')
-                <div>
-                    <h4>
-                        @if(auth()->check() && $thread->hasUpdatesFor(auth()->user()))
-                            <strong>
+                <div class="flex flex-row justify-between">
+                    <div class="flex flex-col">
+                        <h3 class="text-lg leading-6 font-medium text-indigo-600 hover:text-indigo-500">
+                            @if(auth()->check() && $thread->hasUpdatesFor(auth()->user()))
+                                <strong>
+                                    <a href="{{ $thread->path() }}">{{ $thread->title }}</a>
+                                </strong>
+                            @else
                                 <a href="{{ $thread->path() }}">{{ $thread->title }}</a>
-                            </strong>
-                        @else
-                            <a href="{{ $thread->path() }}">{{ $thread->title }}</a>
-                        @endif
-                    </h4>
-                    <p class="mb-0">
-                        Posted by: <a href="{{ route('profile', $thread->creator) }}">
-                            {{ $thread->creator->name }}
-                        </a>
-                    </p>
-                </div>
-                <a href="{{ $thread->path() }}">
-                    <strong>
+                            @endif
+                        </h3>
+
+                        <p class="mt-1 max-w-2xl text-sm text-gray-500">
+                            Posted by: <a href="{{ route('profile', $thread->creator) }}" class="text-indigo-600 hover:text-indigo-500">
+                                {{ $thread->creator->name }}
+                            </a>
+                        </p>
+                    </div>
+                    <a href="{{ $thread->path() }}" class="font-medium text-indigo-600 hover:text-indigo-500">
                         {{ $thread->replies_count }}
                         {{ \Illuminate\Support\Str::plural('reply', $thread->replies_count) }}
-                    </strong>
-                </a>
+                    </a>
+                </div>
             @endslot
             @slot('body')
                 {{ $thread->body }}
@@ -32,7 +33,7 @@
                 {{ $thread->visits }} {{ \Illuminate\Support\Str::plural('Visit', $thread->visits) }}
             @endslot
         @endcomponent
-    </div>
-@empty
-    <p class="my-2">There are no relevant results at this time.</p>
-@endforelse
+    @empty
+        <p class="my-2">There are no relevant results at this time.</p>
+    @endforelse
+</div>

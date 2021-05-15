@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.activity-item .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.activity-item .header .inline {
+    display: flex;
+    flex-direction: row;
+}
+
+.activity-item .header .inline div {
+    margin-left: 4px;
+    margin-right: 4px;
+}
+
+.level {
+    display: flex;
+    flex-direction: row;
+}

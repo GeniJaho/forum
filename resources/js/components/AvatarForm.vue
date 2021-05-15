@@ -1,10 +1,9 @@
 <template>
     <div>
         <div class="d-inline-block">
-            <img
-                class="mr-1 mb-2"
-                :src="avatar"
-                 alt="Avatar" width="50" height="50"
+            <img class="h-8 w-8 rounded-full mr-1 mb-2"
+                 :src="avatar"
+                 alt="Avatar"
             >
             <h1 class="d-inline-block" v-text="user.name"></h1>
         </div>

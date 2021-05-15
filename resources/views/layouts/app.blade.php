@@ -6,6 +6,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="user" content='@json(auth()->user())'>
     <meta name="user-id" content="{{ auth()->id() }}">
     <meta name="user-name" content="{{ auth()->user()->name ?? '' }}">
     <meta name="user-email" content="{{ auth()->user()->email ?? '' }}">
@@ -25,13 +26,11 @@
     @yield('head')
 
 </head>
-<body class="pb-5">
+<body>
 <div id="app">
-    @include('layouts.nav')
+    <navbar></navbar>
 
-    <main class="py-4">
         @yield('content')
-    </main>
 
     <flash message="{{ session('flash') }}"></flash>
 </div>
