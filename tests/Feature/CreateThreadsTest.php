@@ -21,11 +21,15 @@ class CreateThreadsTest extends TestCase
             ->assertRedirect('/login');
     }
 
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
+    public function test_a_user_can_see_the_thread_creation_page()
+    {
+        $this->signIn();
+
+        $this->get(route('threads.create'))
+            ->assertOk()
+            ->assertViewIs('threads.create');
+    }
+
     public function test_a_user_can_create_new_forum_threads()
     {
         $this->signIn();

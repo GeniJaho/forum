@@ -1,0 +1,4 @@
+ignore:
+  - "app/Http/Controllers/Auth/ConfirmPasswordController.php"
+  - "app/Http/Middleware/TrustHosts.php"
+  - "app/Providers/BroadcastServiceProvider.php"
