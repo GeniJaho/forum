@@ -11,9 +11,9 @@
         <!-- 2 column wrapper -->
         <div class="flex-grow w-full max-w-7xl mx-auto lg:flex">
             <!-- Left sidebar & main wrapper -->
-            <div class="flex-1 min-w-0 bg-white xl:flex">
+            <div class="flex-1 min-w-0 xl:flex">
 
-                <div class="bg-white border-b border-gray-200 xl:border-b-0 lg:min-w-0 lg:flex-1">
+                <div class="border-b border-gray-200 xl:border-b-0 lg:min-w-0 lg:flex-1">
                     <div class="h-full py-6 px-4 sm:px-6 lg:px-8">
                         <!-- Start main area-->
                         <div class="relative h-full" style="min-height: 36rem;">
@@ -135,7 +135,7 @@
                     </div>
                 </div>
 
-                <div class="xl:flex-shrink-0 xl:w-80 bg-white">
+                <div class="xl:flex-shrink-0 xl:w-80">
                     <div class="h-full px-4 py-6 sm:pr-6 lg:pr-8 xl:pr-0">
                         <!-- Start right column area -->
                         <div class="h-full relative" style="min-height: 12rem;">
@@ -159,7 +159,7 @@
                                             v-if="authorize('isAdmin')"
                                             @click="toggleLock"
                                             v-text="locked ? 'Unlock' : 'Lock'"
-                                            class="inline-flex items-center px-3 py-2 h-full border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                                            class="neon-button inline-flex items-center px-3 py-2 h-full border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
                                             <font-awesome-icon
                                                 :icon="deleteIcon"
                                                 class="h-5 w-5 fa-fw"></font-awesome-icon>

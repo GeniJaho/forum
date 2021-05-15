@@ -20,7 +20,13 @@
                 </div>
             </div>
 
+            <div class="mt-24 text-center">
+                <button class="neon-button focus:ring-0 text-xl font-medium">
+                    Nice
+                </button>
+            </div>
+
         </div>
     </div>
-    </div>
+
 @endsection
