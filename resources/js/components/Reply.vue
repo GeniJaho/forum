@@ -1,52 +1,56 @@
 <template>
     <div :id="'reply-' + id">
         <div
-            class="card activity-item"
-            :class="isBest ? 'border-success' : ''"
+            class="bg-white overflow-hidden shadow rounded-lg divide-y divide-gray-200 border"
+            :class="isBest ? 'border-green-700' : 'border-transparent'"
         >
-            <div class="card-header header">
-                <div>
-                    <a :href="'/profiles/' + reply.owner.name">
-                        {{ reply.owner.name }}
-                    </a>
-                    said <span v-text="ago"></span>
+            <div class="px-4 py-5 sm:px-6">
+                <div class="flex flex-row justify-between">
+                    <div>
+                        <a class="text-indigo-600 hover:text-indigo-500"
+                           :href="'/profiles/' + reply.owner.name">
+                            {{ reply.owner.name }}
+                        </a>
+                        said <span v-text="ago"></span>
+                    </div>
+                    <div class="flex flex-row space-x-3">
+                        <div v-if="signedIn">
+                            <favorite :reply="reply"></favorite>
+                        </div>
+
+                        <button
+                            v-if="! isBest && authorize('owns', reply.thread)"
+                            @click="markBestReply"
+                            type="button"
+                            class="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            <font-awesome-icon
+                                :icon="iconFavorite"
+                                class="h-5 w-5 fa-fw text-green-400"></font-awesome-icon>
+                        </button>
+
+                        <button
+                            v-if="authorize('owns', reply)"
+                            @click="showEdit"
+                            type="button"
+                            class="inline-flex items-center px-3 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            <font-awesome-icon :icon="iconEdit"
+                                               class="h-5 w-5 fa-fw"></font-awesome-icon>
+                        </button>
+
+                        <button
+                            v-if="authorize('owns', reply)"
+                            @click="destroy"
+                            type="button"
+                            class="inline-flex items-center px-3 py-2 h-full border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                            <font-awesome-icon :icon="iconDelete"
+                                               class="h-5 w-5 fa-fw"></font-awesome-icon>
+                        </button>
+                    </div>
                 </div>
-                <div class="inline">
-                    <div v-if="signedIn">
-                        <favorite :reply="reply"></favorite>
-                    </div>
-
-                    <div v-if="! isBest && authorize('owns', reply.thread)"
-                         class="d-flex align-items-center justify-content-center"
-                         @click="markBestReply"
-                    >
-                        <button class="btn btn-primary">
-                            <i class="far fa-star"></i>
-                        </button>
-                    </div>
-
-                    <div v-if="authorize('owns', reply)"
-                         class="d-flex align-items-center justify-content-center" @click="showEdit"
-                    >
-                        <button class="btn btn-primary">
-                            <i class="far fa-edit"></i>
-                        </button>
-                    </div>
-
-                    <div v-if="authorize('owns', reply)"
-                         class="d-flex align-items-center justify-content-center" @click="destroy"
-                    >
-                        <button class="btn btn-danger">
-                            <i class="fa fa-times"></i>
-                        </button>
-                    </div>
-                </div>
-
             </div>
 
-            <div
-                class="card-body"
-                :class="isBest ? 'text-success' : ''"
+            <div class="px-4 py-5 sm:px-6"
+                 :class="isBest ? 'text-green-700' : ''"
             >
                 <div v-if="editing">
                     <form @submit.prevent="update">
@@ -77,13 +81,16 @@
 
 import eventHub from "../eventHub";
 import Favorite from "./Favorite";
+import { faEdit } from '@fortawesome/free-regular-svg-icons'
+import {faStar, faTimes} from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome'
 import moment from "moment";
 
 export default {
     name: "Reply",
     props: ['reply'],
     components: {
-        Favorite
+        Favorite, FontAwesomeIcon
     },
     data() {
         return {
@@ -97,6 +104,15 @@ export default {
         ago() {
             return moment(this.reply.created_at).fromNow() + "...";
         },
+        iconFavorite() {
+            return faStar;
+        },
+        iconEdit() {
+            return faEdit;
+        },
+        iconDelete() {
+            return faTimes;
+        }
     },
     methods: {
         showEdit() {

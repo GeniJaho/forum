@@ -2,7 +2,7 @@
     @slot('heading')
         <div>
             <div>
-                <a href="{{ $activity->subject->favorited->path() }}">
+                <a href="{{ $activity->subject->favorited->path() }}" class="text-indigo-600 hover:text-indigo-500">
                     {{ $profileUser->name }} favorited a reply.
                 </a>
             </div>

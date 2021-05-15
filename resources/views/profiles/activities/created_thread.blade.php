@@ -2,9 +2,10 @@
     @slot('heading')
         <div>
             <div>
-                <a href="{{ route('profile', $profileUser->name) }}">{{ $profileUser->name }}</a>
+                <a href="{{ route('profile', $profileUser->name) }}"
+                   class="text-indigo-600 hover:text-indigo-500">{{ $profileUser->name }}</a>
                 posted
-                <a href="{{ $activity->subject->path() }}">
+                <a href="{{ $activity->subject->path() }}" class="text-indigo-600 hover:text-indigo-500">
                     "{{ $activity->subject->title }}"
                 </a>
             </div>

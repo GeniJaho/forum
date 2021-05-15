@@ -29,40 +29,47 @@
                                                 >
 
                                                 <p>
-                                                    <a href="{{ route('profile', $thread->creator->name) }}">{{ $thread->creator->name }}</a>
+                                                    <a class="text-indigo-600 hover:text-indigo-500"
+                                                        href="{{ route('profile', $thread->creator->name) }}">{{ $thread->creator->name }}</a>
                                                     posted
-                                                    <a href="{{ $thread->path() }}" v-text="title"></a>
+                                                    <a class="text-indigo-600 hover:text-indigo-500"
+                                                       href="{{ $thread->path() }}" v-text="title"></a>
                                                 </p>
 
                                             </div>
 
                                             <div class="flex flex-row">
-                                                <div v-if="authorize('owns', thread)"
-                                                     class="flex align-items-center justify-content-center"
-                                                     @click="showEdit"
-                                                >
-                                                    <button class="btn btn-primary">
-                                                        <i class="far fa-edit"></i>
-                                                    </button>
-                                                </div>
+
+                                                <button
+                                                    v-if="authorize('owns', thread)"
+                                                    @click="showEdit"
+                                                    type="button"
+                                                    class="inline-flex items-center px-3 py-2 mr-3 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                                    <font-awesome-icon :icon="editIcon"
+                                                                       class="h-5 w-5 fa-fw"></font-awesome-icon>
+                                                </button>
 
                                                 @can('delete', $thread)
-                                                    <div class="flex align-items-center justify-content-center">
-                                                        <form action="{{ $thread->path() }}" method="POST">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" class="btn btn-danger">
-                                                                <i class="fa fa-times"></i>
-                                                            </button>
-                                                        </form>
-                                                    </div>
+                                                    <form action="{{ $thread->path() }}" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+
+                                                        <button
+                                                            type="submit"
+                                                            class="inline-flex items-center px-3 py-2 h-full border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                                                            <font-awesome-icon
+                                                                :icon="deleteIcon"
+                                                                class="h-5 w-5 fa-fw"></font-awesome-icon>
+                                                        </button>
+
+                                                    </form>
                                                 @endcan
                                             </div>
                                         </div>
 
                                     @endslot
                                     @slot('body')
-                                        <span v-html="body"></span>
+                                        <div v-html="body"></div>
                                     @endslot
                                 @endcomponent
                             </template>
@@ -133,18 +140,16 @@
                         <!-- Start right column area -->
                         <div class="h-full relative" style="min-height: 12rem;">
 
-
-                            <div class="card">
-                                <div class="card-body">
-                                    <p class="mb-0">This thread was published {{ $thread->created_at->diffForHumans() }}
-                                        by <a
+                            <div class="bg-white overflow-hidden shadow rounded-lg divide-y divide-gray-200">
+                                <div class="px-4 py-5 sm:px-6">
+                                    <p>This thread was published {{ $thread->created_at->diffForHumans() }}
+                                        by <a class="text-indigo-600 hover:text-indigo-500"
                                             href="{{ route('profile', $thread->creator) }}">{{ $thread->creator->name }}</a>,
-                                        and currently has
-                                        @{{ repliesCount }}
-                                        {{ \Illuminate\Support\Str::plural('comment', $thread->replies_count) }}.
+                                        and currently has <span v-text="repliesCount"></span> comments.
                                     </p>
-
-                                    <div v-if="signedIn" class="level mt-2">
+                                </div>
+                                <div v-if="signedIn" class="bg-gray-50 px-4 py-5 sm:p-6">
+                                    <div class="flex flex-row">
                                         <subscribe-button
                                             v-if="signedIn"
                                             :active="{{ json_encode($thread->isSubscribedTo) }}"
@@ -154,12 +159,15 @@
                                             v-if="authorize('isAdmin')"
                                             @click="toggleLock"
                                             v-text="locked ? 'Unlock' : 'Lock'"
-                                            class="btn btn-warning ml-2"
-                                        ></button>
+                                            class="inline-flex items-center px-3 py-2 h-full border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                                            <font-awesome-icon
+                                                :icon="deleteIcon"
+                                                class="h-5 w-5 fa-fw"></font-awesome-icon>
+                                        </button>
+
                                     </div>
                                 </div>
                             </div>
-
 
                         </div>
                         <!-- End right column area -->

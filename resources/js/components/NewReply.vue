@@ -1,10 +1,9 @@
 <template>
     <div>
         <div v-if="signedIn" class="my-5">
-            <div class="form-group">
                 <vue-tribute :options="tributeOptions">
                     <textarea
-                        class="form-control"
+                        class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border-gray-300 rounded-md"
                         required
                         rows="5"
                         v-model="body"
@@ -12,10 +11,9 @@
                     ></textarea>
                 </vue-tribute>
 
-            </div>
             <button
                 type="button"
-                class="btn btn-primary"
+                class="inline-flex items-center px-3 py-2 mt-3 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 @click="addReply"
             >Post
             </button>

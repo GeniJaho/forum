@@ -5,23 +5,35 @@
 <script>
 import Replies from "../components/Replies";
 import eventHub from "../eventHub";
+import { faEdit } from '@fortawesome/free-regular-svg-icons'
+import { faTimes } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 export default {
     name: "Thread",
     components: {
-        Replies
+        Replies,
+        FontAwesomeIcon
     },
     props: {
         thread: Object,
     },
     data() {
         return {
-            repliesCount: this.thread.replies_cont,
+            repliesCount: this.thread.replies_count,
             locked: this.thread.locked,
             editing: false,
             title: this.thread.title,
             body: this.thread.body,
             form: {}
+        }
+    },
+    computed: {
+        editIcon() {
+            return faEdit;
+        },
+        deleteIcon() {
+            return faTimes;
         }
     },
     methods: {
