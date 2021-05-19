@@ -3,22 +3,6 @@
     --clr-bg: hsl(323, 21%, 16%);
 }
 
-/**,*/
-/**::before,*/
-/**::after {*/
-/*    box-sizing: border-box;*/
-/*}*/
-
-/*body {*/
-/*    min-height: 100vh;*/
-/*    display: grid;*/
-/*    place-items: center;*/
-/*    background: var(--clr-bg);*/
-/*    font-family: "Balsamiq Sans", cursive;*/
-/*    color: var(--clr-neon);*/
-/*    padding-right: 10rem;*/
-/*}*/
-
 .neon-button {
     display: inline-block;
     cursor: pointer;
@@ -53,10 +37,10 @@
 .neon-button::after {
     content: "";
     position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    top: -0.05em; /* less than 1px */
+    bottom: -0.05em;
+    left: -0.05em;
+    right: -0.05em;
     box-shadow: 0 0 2em 0.5em var(--clr-neon);
     opacity: 0;
     background-color: var(--clr-neon);

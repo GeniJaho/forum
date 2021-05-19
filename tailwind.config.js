@@ -4,9 +4,20 @@ module.exports = {
         './resources/**/*.js',
         './resources/**/*.vue',
     ],
-    darkMode: false, // or 'media' or 'class'
+    darkMode: 'media', // or 'media' or 'class'
     theme: {
-        extend: {},
+        extend: {
+            colors: {
+                neon: {
+                    light: '#FF14BDFF',
+                    DEFAULT: '#FF14BDFF',
+                    dark: '#31202BFF',
+                },
+                lime: '#CEFF1A',
+                coffee: '#38302E',
+                carolinaBlue: '#1B98E0'
+            }
+        },
     },
     variants: {
         extend: {},

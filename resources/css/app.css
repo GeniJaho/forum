@@ -2,23 +2,59 @@
 @tailwind components;
 @tailwind utilities;
 
-.activity-item .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+@layer base {
+    .frame-neon {
+        @apply border-carolinaBlue border-solid border-2;
+    }
 
-.activity-item .header .inline {
-    display: flex;
-    flex-direction: row;
-}
+    .text-shadow-neon {
+        text-shadow: 0 0 0.125em hsl(0, 0%, 33%), 0 0 0.45em theme('colors.carolinaBlue');
+    }
 
-.activity-item .header .inline div {
-    margin-left: 4px;
-    margin-right: 4px;
-}
+    .box-shadow-neon {
+        box-shadow: inset 0 0 0.5em 0 theme('colors.carolinaBlue'), 0 0 0.5em 0 theme('colors.carolinaBlue');
+    }
 
-.level {
-    display: flex;
-    flex-direction: row;
+    .button-neon {
+        @apply relative rounded inline-flex cursor-pointer no-underline text-carolinaBlue frame-neon text-shadow-neon box-shadow-neon py-1 px-4;
+        z-index: 1;
+    }
+
+    .ground-shadow-neon::before {
+        @apply absolute pointer-events-none bg-neon w-full h-full opacity-70;
+
+        content: "";
+        top: 120%;
+        left: 0;
+        transform: perspective(1em) rotateX(40deg) scale(1, 0.35);
+        filter: blur(1em);
+    }
+
+    .inner-shadow-neon::after {
+        @apply absolute opacity-0 bg-neon;
+        content: "";
+        top: -0.01em; /* much less than 1px */
+        bottom: -0.01em;
+        left: -0.01em;
+        right: -0.01em;
+        box-shadow: 0 0 2em 0.5em theme('colors.carolinaBlue');
+        z-index: -1;
+        transition: opacity 100ms linear;
+    }
+
+    .inner-shadow-neon:hover,
+    .inner-shadow-neon:focus {
+        color: theme('colors.neon.dark');
+        text-shadow: none;
+    }
+
+    .ground-shadow-neon:hover::before,
+    .ground-shadow-neon:focus::before {
+        opacity: 1;
+    }
+
+    .inner-shadow-neon:hover::after,
+    .inner-shadow-neon:focus::after {
+        opacity: 1;
+    }
 }
