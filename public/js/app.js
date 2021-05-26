@@ -14176,6 +14176,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "SubscribeButton",
   props: ['active'],
@@ -14186,7 +14187,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     classes: function classes() {
-      return ['inline-flex items-center px-3 py-2 mr-3 border shadow-sm text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500', this.isActive ? 'border-transparent text-white bg-indigo-600 hover:bg-indigo-700' : 'border-gray-300 text-gray-700 bg-white hover:bg-gray-50'];
+      return ['button-neon inner-shadow-neon ground-shadow-neon inline-flex items-center px-3 py-2 mr-3 text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-neon-dark', this.isActive ? 'text-neon-dark bg-neon' : ''];
     }
   },
   methods: {
@@ -73010,7 +73011,7 @@ var render = function() {
                         [
                           _c("div", { staticClass: "px-4 py-3" }, [
                             _c("p", {
-                              staticClass: "text-neon text-sm",
+                              staticClass: "text-white text-sm",
                               domProps: { textContent: _vm._s(_vm.$user.name) }
                             })
                           ]),
@@ -73833,13 +73834,21 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("button", { class: _vm.classes, on: { click: _vm.subscribe } }, [
-      _vm._v(
-        "\n        " +
-          _vm._s(this.isActive ? "Unsubscribe" : "Subscribe") +
-          "\n    "
-      )
-    ])
+    _c(
+      "button",
+      {
+        class: _vm.classes,
+        style: _vm.isActive ? "text-shadow: none;" : "",
+        on: { click: _vm.subscribe }
+      },
+      [
+        _vm._v(
+          "\n        " +
+            _vm._s(this.isActive ? "Unsubscribe" : "Subscribe") +
+            "\n    "
+        )
+      ]
+    )
   ])
 }
 var staticRenderFns = []

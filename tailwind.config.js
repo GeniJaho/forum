@@ -14,6 +14,12 @@ module.exports = {
                     dark: '#033f63',
                     extraDark: '#111827'
                 },
+                neonSecondary: {
+                    light: '#FF14BDFF',
+                    DEFAULT: '#FF14BDFF',
+                    dark: '#31202BFF',
+                    extraDark: '#111827'
+                },
                 pink: '#FF14BDFF',
                 pinkDark: '#31202BFF',
                 lime: '#CEFF1A',

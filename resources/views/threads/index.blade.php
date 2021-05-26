@@ -10,7 +10,7 @@
     @if($trending->isNotEmpty())
         <div class="frame-neon rounded-lg divide-y divide-neon">
             <div class="px-4 py-5 sm:px-6">
-                <p class="text-lg text-neon leading-6 font-medium">Trending threads</p>
+                <p class="text-lg text-white leading-6 font-medium">Trending threads</p>
             </div>
 
             <div>

@@ -2,6 +2,7 @@
     <div>
         <button
             :class="classes"
+            :style="isActive ? 'text-shadow: none;' : ''"
             @click="subscribe"
         >
             {{ this.isActive ? 'Unsubscribe' : 'Subscribe' }}
@@ -22,10 +23,10 @@ export default {
     computed: {
         classes() {
             return [
-                'inline-flex items-center px-3 py-2 mr-3 border shadow-sm text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500',
+                'button-neon inner-shadow-neon ground-shadow-neon inline-flex items-center px-3 py-2 mr-3 text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-neon-dark',
                 this.isActive
-                    ? 'border-transparent text-white bg-indigo-600 hover:bg-indigo-700'
-                    : 'border-gray-300 text-gray-700 bg-white hover:bg-gray-50'
+                    ? 'text-neon-dark bg-neon'
+                    : ''
             ]
         }
     },

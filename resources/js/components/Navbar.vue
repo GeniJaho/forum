@@ -174,7 +174,7 @@
                                  tabindex="-1">
 
                                 <div class="px-4 py-3">
-                                    <p class="text-neon text-sm" v-text="$user.name"></p>
+                                    <p class="text-white text-sm" v-text="$user.name"></p>
                                 </div>
 
                                 <div>

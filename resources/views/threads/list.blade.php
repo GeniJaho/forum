@@ -4,7 +4,7 @@
             @slot('heading')
                 <div class="flex flex-row justify-between">
                     <div class="flex flex-col">
-                        <h3 class="text-lg leading-6 font-medium text-neon hover:text-neon">
+                        <h3 class="text-lg leading-6 font-medium text-neon hover:text-neon-dark">
                             @if(auth()->check() && $thread->hasUpdatesFor(auth()->user()))
                                 <strong>
                                     <a href="{{ $thread->path() }}">{{ $thread->title }}</a>
@@ -15,12 +15,12 @@
                         </h3>
 
                         <p class="mt-1 max-w-2xl text-sm text-white">
-                            Posted by: <a href="{{ route('profile', $thread->creator) }}" class="text-neon hover:text-neon">
+                            Posted by: <a href="{{ route('profile', $thread->creator) }}" class="text-neon hover:text-neon-dark">
                                 {{ $thread->creator->name }}
                             </a>
                         </p>
                     </div>
-                    <a href="{{ $thread->path() }}" class="font-medium text-neon hover:text-neon">
+                    <a href="{{ $thread->path() }}" class="font-medium text-neon hover:text-neon-dark">
                         {{ $thread->replies_count }}
                         {{ \Illuminate\Support\Str::plural('reply', $thread->replies_count) }}
                     </a>
@@ -34,6 +34,6 @@
             @endslot
         @endcomponent
     @empty
-        <p class="my-2">There are no relevant results at this time.</p>
+        <p class="my-2 text-neon">There are no relevant results at this time.</p>
     @endforelse
 </div>

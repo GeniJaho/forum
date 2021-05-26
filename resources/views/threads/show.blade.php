@@ -25,14 +25,14 @@
                                         <div class="flex flex-row justify-between">
                                             <div class="flex flex-row">
                                                 <img src="{{ $thread->creator->avatar_path }}"
-                                                     alt="Avatar" width="25" height="25" class="mr-2"
+                                                     alt="Avatar" width="25" height="25" class="mr-2 rounded-full"
                                                 >
 
-                                                <p>
-                                                    <a class="text-indigo-600 hover:text-indigo-500"
+                                                <p class="text-white">
+                                                    <a class="text-neon hover:text-neon-dark"
                                                         href="{{ route('profile', $thread->creator->name) }}">{{ $thread->creator->name }}</a>
                                                     posted
-                                                    <a class="text-indigo-600 hover:text-indigo-500"
+                                                    <a class="text-neon hover:text-neon-dark"
                                                        href="{{ $thread->path() }}" v-text="title"></a>
                                                 </p>
 
@@ -140,16 +140,16 @@
                         <!-- Start right column area -->
                         <div class="h-full relative" style="min-height: 12rem;">
 
-                            <div class="bg-white overflow-hidden shadow rounded-lg divide-y divide-gray-200">
-                                <div class="px-4 py-5 sm:px-6">
+                            <div class="frame-neon hover:box-shadow-neon overflow-hidden rounded-lg divide-y divide-neon">
+                                <div class="px-4 py-5 sm:px-6 text-white">
                                     <p>This thread was published {{ $thread->created_at->diffForHumans() }}
-                                        by <a class="text-indigo-600 hover:text-indigo-500"
+                                        by <a class="text-neon hover:text-neon-dark"
                                             href="{{ route('profile', $thread->creator) }}">{{ $thread->creator->name }}</a>,
                                         and currently has <span v-text="repliesCount"></span> comments.
                                     </p>
                                 </div>
-                                <div v-if="signedIn" class="bg-gray-50 px-4 py-5 sm:p-6">
-                                    <div class="flex flex-row">
+                                <div v-if="signedIn" class="bg-neon-dark px-4 py-5 sm:p-6">
+                                    <div class="flex flex-row relative">
                                         <subscribe-button
                                             v-if="signedIn"
                                             :active="{{ json_encode($thread->isSubscribedTo) }}"
@@ -159,7 +159,7 @@
                                             v-if="authorize('isAdmin')"
                                             @click="toggleLock"
                                             v-text="locked ? 'Unlock' : 'Lock'"
-                                            class="neon-button inline-flex items-center px-3 py-2 h-full border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                                            class="button-neonSecondary ground-shadow-neonSecondary inner-shadow-neonSecondary inline-flex items-center px-3 py-2 h-full text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-neonSecondary-dark">
                                             <font-awesome-icon
                                                 :icon="deleteIcon"
                                                 class="h-5 w-5 fa-fw"></font-awesome-icon>
