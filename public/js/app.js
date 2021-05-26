@@ -13693,6 +13693,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Navbar",
@@ -72360,7 +72378,7 @@ var render = function() {
     "button",
     {
       staticClass:
-        "bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white",
+        "bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-neon-dark",
       attrs: { type: "button" },
       on: {
         click: function($event) {
@@ -72568,7 +72586,7 @@ var render = function() {
                 "button",
                 {
                   staticClass:
-                    "inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white",
+                    "button-neon inner-shadow-neon inline-flex items-center justify-center p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-inset focus:ring-neon-dark",
                   attrs: {
                     type: "button",
                     "aria-controls": "mobile-menu",
@@ -72661,7 +72679,7 @@ var render = function() {
                           "button",
                           {
                             staticClass:
-                              "inline-flex justify-center w-full text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium",
+                              "button-neon inner-shadow-neon inline-flex justify-center w-full px-3 py-2 rounded-md text-sm font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-neon-dark",
                             attrs: {
                               type: "button",
                               id: "menu-button",
@@ -72713,7 +72731,7 @@ var render = function() {
                             }
                           ],
                           staticClass:
-                            "origin-top-left absolute left-0 mt-2 w-56 z-10 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none",
+                            "frame-neon origin-top-left absolute left-0 mt-2 w-56 z-10 rounded-md bg-neon-extraDark ring-1 ring-neon-dark ring-opacity-5 focus:outline-none",
                           attrs: {
                             role: "menu",
                             "aria-orientation": "vertical",
@@ -72730,7 +72748,7 @@ var render = function() {
                                 "a",
                                 {
                                   staticClass:
-                                    "text-gray-700 hover:bg-gray-100 hover:text-gray-900 block px-4 py-2 text-sm",
+                                    "text-neon hover:text-neon-dark relative block inner-shadow-neon px-4 py-2 text-sm",
                                   attrs: {
                                     href: "/threads",
                                     role: "menuitem",
@@ -72749,7 +72767,7 @@ var render = function() {
                                     "a",
                                     {
                                       staticClass:
-                                        "text-gray-700 hover:bg-gray-100 hover:text-gray-900 block px-4 py-2 text-sm",
+                                        "text-neon hover:text-neon-dark relative block inner-shadow-neon px-4 py-2 text-sm",
                                       attrs: {
                                         href: "/threads?by=" + _vm.$userName,
                                         role: "menuitem",
@@ -72764,7 +72782,7 @@ var render = function() {
                                 "a",
                                 {
                                   staticClass:
-                                    "text-gray-700 hover:bg-gray-100 hover:text-gray-900 block px-4 py-2 text-sm",
+                                    "text-neon hover:text-neon-dark relative block inner-shadow-neon px-4 py-2 text-sm",
                                   attrs: {
                                     href: "/threads?popular=1",
                                     role: "menuitem",
@@ -72782,7 +72800,7 @@ var render = function() {
                                 "a",
                                 {
                                   staticClass:
-                                    "text-gray-700 hover:bg-gray-100 hover:text-gray-900 block px-4 py-2 text-sm",
+                                    "text-neon hover:text-neon-dark relative block inner-shadow-neon px-4 py-2 text-sm",
                                   attrs: {
                                     href: "/threads?unanswered=1",
                                     role: "menuitem",
@@ -72812,7 +72830,7 @@ var render = function() {
                               "button",
                               {
                                 staticClass:
-                                  "inline-flex justify-center w-full text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium",
+                                  "button-neon inner-shadow-neon inline-flex justify-center w-full px-3 py-2 rounded-md text-sm font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-neon-dark",
                                 attrs: {
                                   type: "button",
                                   id: "menu-button-channels",
@@ -72866,7 +72884,7 @@ var render = function() {
                                 }
                               ],
                               staticClass:
-                                "origin-top-left absolute left-0 mt-2 w-56 z-10 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none",
+                                "frame-neon origin-top-left absolute left-0 mt-2 w-56 z-10 rounded-md bg-neon-extraDark ring-1 ring-neon-dark ring-opacity-5 focus:outline-none",
                               attrs: {
                                 role: "menu",
                                 "aria-orientation": "vertical",
@@ -72886,7 +72904,7 @@ var render = function() {
                                     "a",
                                     {
                                       staticClass:
-                                        "text-gray-700 hover:bg-gray-100 hover:text-gray-900 block px-4 py-2 text-sm",
+                                        "text-neon hover:text-neon-dark relative block inner-shadow-neon px-4 py-2 text-sm",
                                       attrs: {
                                         href: "/threads/" + channel.slug,
                                         role: "menuitem",
@@ -72941,7 +72959,7 @@ var render = function() {
                       "a",
                       {
                         staticClass:
-                          "ml-6 bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium",
+                          "ml-6 bg-neon-extraDark text-white px-3 py-2 rounded-md text-sm font-medium",
                         attrs: { href: "/register" }
                       },
                       [
@@ -72956,7 +72974,7 @@ var render = function() {
                       "a",
                       {
                         staticClass:
-                          "button-neon inner-shadow-neon relative inline-flex items-center px-4 py-2 text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-indigo-500",
+                          "button-neon inner-shadow-neon relative hidden sm:inline-flex items-center px-4 py-2 text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-neon-dark",
                         attrs: { href: "/threads/create" }
                       },
                       [
@@ -73020,7 +73038,7 @@ var render = function() {
                             }
                           ],
                           staticClass:
-                            "origin-top-right absolute right-0 mt-2 w-48 z-10 divide-y divide-gray-100 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none",
+                            "frame-neon origin-top-right absolute right-0 mt-2 w-48 z-10 divide-y divide-neon rounded-md py-1 bg-neon-extraDark ring-1 ring-neon-dark ring-opacity-5 focus:outline-none",
                           attrs: {
                             role: "menu",
                             "aria-orientation": "vertical",
@@ -73031,7 +73049,7 @@ var render = function() {
                         [
                           _c("div", { staticClass: "px-4 py-3" }, [
                             _c("p", {
-                              staticClass: "text-sm",
+                              staticClass: "text-neon text-sm",
                               domProps: { textContent: _vm._s(_vm.$user.name) }
                             })
                           ]),
@@ -73041,7 +73059,7 @@ var render = function() {
                               "a",
                               {
                                 staticClass:
-                                  "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900",
+                                  "text-neon hover:text-neon-dark relative block inner-shadow-neon px-4 py-2 text-sm focus:outline-none",
                                 attrs: {
                                   href: "/profiles/" + _vm.$userName,
                                   role: "menuitem",
@@ -73074,7 +73092,7 @@ var render = function() {
                                   "button",
                                   {
                                     staticClass:
-                                      "block w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900",
+                                      "w-full text-left text-neon hover:text-neon-dark relative block inner-shadow-neon px-4 py-2 text-sm focus:outline-none",
                                     attrs: {
                                       type: "submit",
                                       role: "menuitem",
@@ -73103,14 +73121,53 @@ var render = function() {
     _vm._v(" "),
     _vm.mobileMenuActive
       ? _c("div", { staticClass: "sm:hidden", attrs: { id: "mobile-menu" } }, [
-          _c("div", { staticClass: "px-2 pt-2 pb-3 space-y-1" }, [
+          _c("div", { staticClass: "px-2 pt-2 pb-3 space-x-1 space-y-1" }, [
+            _c("div", { staticClass: "relative block text-left" }, [
+              _c("div", [
+                _c(
+                  "a",
+                  {
+                    staticClass:
+                      "button-neon inner-shadow-neon inline-flex justify-center px-3 py-2 mt-1 ml-1 text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-neon-dark",
+                    attrs: { href: "/threads/create" }
+                  },
+                  [
+                    _c(
+                      "svg",
+                      {
+                        staticClass: "-ml-1 mr-2 h-5 w-5",
+                        attrs: {
+                          xmlns: "http://www.w3.org/2000/svg",
+                          viewBox: "0 0 20 20",
+                          fill: "currentColor",
+                          "aria-hidden": "true"
+                        }
+                      },
+                      [
+                        _c("path", {
+                          attrs: {
+                            "fill-rule": "evenodd",
+                            d:
+                              "M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z",
+                            "clip-rule": "evenodd"
+                          }
+                        })
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("span", [_vm._v("New Thread")])
+                  ]
+                )
+              ])
+            ]),
+            _vm._v(" "),
             _c("div", { staticClass: "relative inline-block text-left" }, [
               _c("div", [
                 _c(
                   "button",
                   {
                     staticClass:
-                      "inline-flex justify-center w-full text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium",
+                      "button-neon inner-shadow-neon inline-flex justify-center w-full px-3 py-2 rounded-md text-sm font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-neon-dark",
                     attrs: {
                       type: "button",
                       id: "menu-button",
@@ -73162,7 +73219,7 @@ var render = function() {
                     }
                   ],
                   staticClass:
-                    "origin-top-left absolute left-0 mt-2 w-56 z-10 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none",
+                    "frame-neon origin-top-left absolute left-0 mt-2 w-56 z-10 rounded-md bg-neon-extraDark ring-1 ring-neon-dark ring-opacity-5 focus:outline-none",
                   attrs: {
                     role: "menu",
                     "aria-orientation": "vertical",
@@ -73176,7 +73233,7 @@ var render = function() {
                       "a",
                       {
                         staticClass:
-                          "text-gray-700 hover:bg-gray-100 hover:text-gray-900 block px-4 py-2 text-sm",
+                          "text-neon hover:text-neon-dark relative block inner-shadow-neon px-4 py-2 text-sm",
                         attrs: {
                           href: "/threads",
                           role: "menuitem",
@@ -73195,7 +73252,7 @@ var render = function() {
                           "a",
                           {
                             staticClass:
-                              "text-gray-700 hover:bg-gray-100 hover:text-gray-900 block px-4 py-2 text-sm",
+                              "text-neon hover:text-neon-dark relative block inner-shadow-neon px-4 py-2 text-sm",
                             attrs: {
                               href: "/threads?by=" + _vm.$userName,
                               role: "menuitem",
@@ -73210,7 +73267,7 @@ var render = function() {
                       "a",
                       {
                         staticClass:
-                          "text-gray-700 hover:bg-gray-100 hover:text-gray-900 block px-4 py-2 text-sm",
+                          "text-neon hover:text-neon-dark relative block inner-shadow-neon px-4 py-2 text-sm",
                         attrs: {
                           href: "/threads?popular=1",
                           role: "menuitem",
@@ -73228,7 +73285,7 @@ var render = function() {
                       "a",
                       {
                         staticClass:
-                          "text-gray-700 hover:bg-gray-100 hover:text-gray-900 block px-4 py-2 text-sm",
+                          "text-neon hover:text-neon-dark relative block inner-shadow-neon px-4 py-2 text-sm",
                         attrs: {
                           href: "/threads?unanswered=1",
                           role: "menuitem",
@@ -73253,7 +73310,7 @@ var render = function() {
                       "button",
                       {
                         staticClass:
-                          "inline-flex justify-center w-full text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium",
+                          "button-neon inner-shadow-neon inline-flex justify-center w-full px-3 py-2 rounded-md text-sm font-medium focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-neon-dark",
                         attrs: {
                           type: "button",
                           id: "menu-button-channels",
@@ -73305,7 +73362,7 @@ var render = function() {
                         }
                       ],
                       staticClass:
-                        "origin-top-left absolute left-0 mt-2 w-56 z-10 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none",
+                        "frame-neon origin-top-left absolute left-0 mt-2 w-56 z-10 rounded-md bg-neon-extraDark ring-1 ring-neon-dark ring-opacity-5 focus:outline-none",
                       attrs: {
                         role: "menu",
                         "aria-orientation": "vertical",
@@ -73322,7 +73379,7 @@ var render = function() {
                             "a",
                             {
                               staticClass:
-                                "text-gray-700 hover:bg-gray-100 hover:text-gray-900 block px-4 py-2 text-sm",
+                                "text-neon hover:text-neon-dark relative block inner-shadow-neon px-4 py-2 text-sm",
                               attrs: {
                                 href: "/threads/" + channel.slug,
                                 role: "menuitem",
@@ -73358,7 +73415,7 @@ var staticRenderFns = [
       _c(
         "a",
         {
-          staticClass: "text-white text-base font-medium transform-none",
+          staticClass: "text-neon text-base font-medium transform-none",
           attrs: { href: "/" }
         },
         [_vm._v("\n                        Forum\n                    ")]

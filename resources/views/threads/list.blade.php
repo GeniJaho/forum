@@ -4,7 +4,7 @@
             @slot('heading')
                 <div class="flex flex-row justify-between">
                     <div class="flex flex-col">
-                        <h3 class="text-lg leading-6 font-medium text-carolinaBlue hover:text-carolinaBlue">
+                        <h3 class="text-lg leading-6 font-medium text-neon hover:text-neon">
                             @if(auth()->check() && $thread->hasUpdatesFor(auth()->user()))
                                 <strong>
                                     <a href="{{ $thread->path() }}">{{ $thread->title }}</a>
@@ -14,13 +14,13 @@
                             @endif
                         </h3>
 
-                        <p class="mt-1 max-w-2xl text-sm text-gray-500">
-                            Posted by: <a href="{{ route('profile', $thread->creator) }}" class="text-carolinaBlue hover:text-carolinaBlue">
+                        <p class="mt-1 max-w-2xl text-sm text-white">
+                            Posted by: <a href="{{ route('profile', $thread->creator) }}" class="text-neon hover:text-neon">
                                 {{ $thread->creator->name }}
                             </a>
                         </p>
                     </div>
-                    <a href="{{ $thread->path() }}" class="font-medium text-carolinaBlue hover:text-carolinaBlue">
+                    <a href="{{ $thread->path() }}" class="font-medium text-neon hover:text-neon">
                         {{ $thread->replies_count }}
                         {{ \Illuminate\Support\Str::plural('reply', $thread->replies_count) }}
                     </a>

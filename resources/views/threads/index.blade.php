@@ -8,18 +8,18 @@
 
 @section('sidebar')
     @if($trending->isNotEmpty())
-        <div class="frame-neon rounded-lg divide-y divide-carolinaBlue">
+        <div class="frame-neon rounded-lg divide-y divide-neon">
             <div class="px-4 py-5 sm:px-6">
-                <p class="text-lg text-carolinaBlue leading-6 font-medium">Trending threads</p>
+                <p class="text-lg text-neon leading-6 font-medium">Trending threads</p>
             </div>
 
             <div>
 
-                <ul class="divide-y divide-carolinaBlue">
+                <ul class="divide-y divide-neon">
 
                     @foreach($trending as $thread)
-                        <li class="relative py-5 px-4 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600">
-                            <div class="flex justify-between text-carolinaBlue hover:text-neon-dark">
+                        <li class="relative py-5 px-4 focus-within:ring-2 focus-within:ring-inset focus-within:ring-neon-dark">
+                            <div class="flex justify-between text-neon hover:text-neon-dark">
                                 <div class="min-w-0 flex-1">
                                     <a href="{{ $thread->path() }}" class="block inner-shadow-neon focus:outline-none">
                                         <span class="absolute inset-0" aria-hidden="true"></span>

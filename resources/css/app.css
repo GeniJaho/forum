@@ -4,19 +4,19 @@
 
 @layer base {
     .frame-neon {
-        @apply border-carolinaBlue border-solid border-2;
+        @apply border-neon border-solid border-2;
     }
 
     .text-shadow-neon {
-        text-shadow: 0 0 0.125em hsl(0, 0%, 33%), 0 0 0.45em theme('colors.carolinaBlue');
+        text-shadow: 0 0 0.125em hsl(0, 0%, 33%), 0 0 0.45em theme('colors.neon.light');
     }
 
     .box-shadow-neon {
-        box-shadow: inset 0 0 0.5em 0 theme('colors.carolinaBlue'), 0 0 0.5em 0 theme('colors.carolinaBlue');
+        box-shadow: inset 0 0 0.5em 0 theme('colors.neon.light'), 0 0 0.5em 0 theme('colors.neon.light');
     }
 
     .button-neon {
-        @apply relative rounded inline-flex cursor-pointer no-underline text-carolinaBlue frame-neon text-shadow-neon box-shadow-neon py-1 px-4;
+        @apply relative rounded inline-flex cursor-pointer no-underline text-neon frame-neon text-shadow-neon box-shadow-neon py-1 px-4;
         z-index: 1;
     }
 
@@ -37,7 +37,7 @@
         bottom: -0.01em;
         left: -0.01em;
         right: -0.01em;
-        box-shadow: 0 0 2em 0.5em theme('colors.carolinaBlue');
+        box-shadow: 0 0 2em 0.5em theme('colors.neon.light');
         z-index: -1;
         transition: opacity 100ms linear;
     }

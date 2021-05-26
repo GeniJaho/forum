@@ -7,7 +7,7 @@
         <!-- Left sidebar & main wrapper -->
         <div class="flex-1 min-w-0 xl:flex">
 
-            <div class="border-b border-gray-200 xl:border-b-0 lg:min-w-0 lg:flex-1">
+            <div class="border-b border-neon xl:border-b-0 lg:min-w-0 lg:flex-1">
                 <div class="h-full py-6 px-4 sm:px-6 lg:px-8">
                     <!-- Start main area-->
                     <div class="relative h-full" style="min-height: 36rem;">
