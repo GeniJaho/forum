@@ -1,22 +1,24 @@
 <template>
-    <ul class="pagination" v-if="shouldPaginate">
-        <li v-show="prevUrl" class="page-item">
-            <a class="page-link"
-               :href="prevUrl"
-               rel="prev"
-               @click.prevent="page--"
+
+    <nav role="navigation" aria-label="Pagination Navigation" class="flex items-center justify-between mt-3">
+        <div class="flex justify-between flex-1">
+            <a
+                v-show="prevUrl"
+                :href="prevUrl"
+                rel="prev"
+                @click.prevent="page--"
+                class="button-neon inner-shadow-neon items-center relative inline-flex px-4 py-2 mr-3 text-sm font-medium leading-5 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-neon-dark active:bg-neon-dark transition ease-in-out duration-150"
             >&laquo; Prev</a>
-        </li>
 
-        <li v-show="nextUrl" class="page-item">
-            <a class="page-link"
-               :href="nextUrl"
-               rel="next"
-               @click.prevent="page++"
+            <a
+                v-show="nextUrl"
+                :href="nextUrl"
+                class="button-neon inner-shadow-neon items-center relative inline-flex px-4 py-2 text-sm font-medium leading-5 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-neon-dark active:bg-neon-dark transition ease-in-out duration-150"
+                rel="next"
+                @click.prevent="page++"
             >Next &raquo;</a>
-        </li>
-
-    </ul>
+        </div>
+    </nav>
 </template>
 
 <script>

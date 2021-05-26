@@ -13,7 +13,7 @@
             <br>
 
             @forelse($activities as $date => $activity)
-                <h3 class="my-2 font-medium text-lg leading-5">{{ $date }}</h3>
+                <h3 class="py-4 font-medium text-lg leading-5 text-neonSecondary">{{ $date }}</h3>
                 <div class="space-y-3">
                     @foreach($activity as $record)
                         @if(view()->exists("profiles.activities.{$record->type}"))
@@ -22,7 +22,7 @@
                     @endforeach
                 </div>
             @empty
-                <p>There is no activity for this user yet.</p>
+                <p class="text-neonSecondary">There is no activity for this user yet.</p>
             @endforelse
         </div>
     </div>

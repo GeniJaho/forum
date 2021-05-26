@@ -13348,6 +13348,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ImageUpload",
   methods: {
@@ -13866,6 +13867,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Paginator",
   props: ["dataSet"],
@@ -14069,6 +14072,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+
 
 
 
@@ -14095,7 +14101,7 @@ __webpack_require__.r(__webpack_exports__);
       return moment__WEBPACK_IMPORTED_MODULE_5___default()(this.reply.created_at).fromNow() + "...";
     },
     iconFavorite: function iconFavorite() {
-      return _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faStar"];
+      return _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_2__["faStar"];
     },
     iconEdit: function iconEdit() {
       return _fortawesome_free_regular_svg_icons__WEBPACK_IMPORTED_MODULE_2__["faEdit"];
@@ -71770,7 +71776,7 @@ var render = function() {
       }),
       _vm._v(" "),
       _c("h1", {
-        staticClass: "font-medium leading-5 text-xl self-center",
+        staticClass: "font-medium leading-5 text-xl self-center text-neon",
         domProps: { textContent: _vm._s(_vm.user.name) }
       })
     ]),
@@ -71859,7 +71865,7 @@ var render = function() {
       { name: "show", rawName: "v-show", value: _vm.show, expression: "show" }
     ],
     staticClass:
-      "fade show text-white bg-neon-extraDark z-10 overflow-hidden rounded-lg px-3 py-4 sm:px-5 fixed bottom-6 right-4 sm:bottom-6 sm:right-6",
+      "fade show text-white bg-neon-extraDark z-10 overflow-hidden rounded-lg px-3 py-4 sm:px-5 fixed bottom-6 right-4 sm:bottom-6 sm:right-6 left-4 sm:left-auto",
     class: "frame-" + _vm.level,
     attrs: { role: "alert" },
     domProps: { textContent: _vm._s(_vm.body) }
@@ -71888,6 +71894,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("input", {
+    staticClass: "text-neon",
     attrs: { type: "file", accept: "image/*" },
     on: { change: _vm.onChange }
   })
@@ -72840,10 +72847,16 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.shouldPaginate
-    ? _c("ul", { staticClass: "pagination" }, [
+  return _c(
+    "nav",
+    {
+      staticClass: "flex items-center justify-between mt-3",
+      attrs: { role: "navigation", "aria-label": "Pagination Navigation" }
+    },
+    [
+      _c("div", { staticClass: "flex justify-between flex-1" }, [
         _c(
-          "li",
+          "a",
           {
             directives: [
               {
@@ -72853,28 +72866,21 @@ var render = function() {
                 expression: "prevUrl"
               }
             ],
-            staticClass: "page-item"
+            staticClass:
+              "button-neon inner-shadow-neon items-center relative inline-flex px-4 py-2 mr-3 text-sm font-medium leading-5 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-neon-dark active:bg-neon-dark transition ease-in-out duration-150",
+            attrs: { href: _vm.prevUrl, rel: "prev" },
+            on: {
+              click: function($event) {
+                $event.preventDefault()
+                _vm.page--
+              }
+            }
           },
-          [
-            _c(
-              "a",
-              {
-                staticClass: "page-link",
-                attrs: { href: _vm.prevUrl, rel: "prev" },
-                on: {
-                  click: function($event) {
-                    $event.preventDefault()
-                    _vm.page--
-                  }
-                }
-              },
-              [_vm._v("« Prev")]
-            )
-          ]
+          [_vm._v("« Prev")]
         ),
         _vm._v(" "),
         _c(
-          "li",
+          "a",
           {
             directives: [
               {
@@ -72884,27 +72890,21 @@ var render = function() {
                 expression: "nextUrl"
               }
             ],
-            staticClass: "page-item"
+            staticClass:
+              "button-neon inner-shadow-neon items-center relative inline-flex px-4 py-2 text-sm font-medium leading-5 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-neon-dark active:bg-neon-dark transition ease-in-out duration-150",
+            attrs: { href: _vm.nextUrl, rel: "next" },
+            on: {
+              click: function($event) {
+                $event.preventDefault()
+                _vm.page++
+              }
+            }
           },
-          [
-            _c(
-              "a",
-              {
-                staticClass: "page-link",
-                attrs: { href: _vm.nextUrl, rel: "next" },
-                on: {
-                  click: function($event) {
-                    $event.preventDefault()
-                    _vm.page++
-                  }
-                }
-              },
-              [_vm._v("Next »")]
-            )
-          ]
+          [_vm._v("Next »")]
         )
       ])
-    : _vm._e()
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -72993,100 +72993,113 @@ var render = function() {
       "div",
       {
         staticClass:
-          "frame-neon hover:box-shadow-neon overflow-hidden rounded-lg divide-y divide-neon",
-        class: _vm.isBest ? "border-lime" : ""
+          "frame-neon hover:box-shadow-neon overflow-hidden rounded-lg divide-y",
+        class: _vm.isBest ? "border-teal divide-teal" : "divide-neon"
       },
       [
         _c("div", { staticClass: "px-4 py-5 sm:px-6" }, [
           _c(
             "div",
-            { staticClass: "flex flex-row justify-between text-white" },
+            {
+              staticClass:
+                "flex flex-col sm:flex-row space-y-3 sm:space-y-0 justify-between align-middle text-white"
+            },
             [
-              _c("div", [
-                _c(
-                  "a",
-                  {
-                    staticClass: "text-neon hover:text-neon-dark",
-                    attrs: { href: "/profiles/" + _vm.reply.owner.name }
-                  },
-                  [
-                    _vm._v(
-                      "\n                        " +
-                        _vm._s(_vm.reply.owner.name) +
-                        "\n                    "
-                    )
-                  ]
-                ),
-                _vm._v("\n                    said "),
-                _c("span", { domProps: { textContent: _vm._s(_vm.ago) } })
-              ]),
+              _c(
+                "div",
+                {
+                  staticClass: "flex items-center",
+                  class: _vm.isBest ? "text-teal" : ""
+                },
+                [
+                  _c("div", [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "text-neon hover:text-neon-dark",
+                        attrs: { href: "/profiles/" + _vm.reply.owner.name }
+                      },
+                      [
+                        _vm._v(
+                          "\n                            " +
+                            _vm._s(_vm.reply.owner.name) +
+                            "\n                        "
+                        )
+                      ]
+                    ),
+                    _vm._v("\n                        said "),
+                    _c("span", { domProps: { textContent: _vm._s(_vm.ago) } })
+                  ])
+                ]
+              ),
               _vm._v(" "),
-              _c("div", { staticClass: "flex flex-row space-x-3" }, [
-                _vm.signedIn
-                  ? _c(
-                      "div",
-                      [_c("favorite", { attrs: { reply: _vm.reply } })],
-                      1
-                    )
-                  : _vm._e(),
-                _vm._v(" "),
-                !_vm.isBest && _vm.authorize("owns", _vm.reply.thread)
-                  ? _c(
-                      "button",
-                      {
-                        staticClass:
-                          "inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500",
-                        attrs: { type: "button" },
-                        on: { click: _vm.markBestReply }
-                      },
-                      [
-                        _c("font-awesome-icon", {
-                          staticClass: "h-5 w-5 fa-fw text-green-400",
-                          attrs: { icon: _vm.iconFavorite }
-                        })
-                      ],
-                      1
-                    )
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.authorize("owns", _vm.reply)
-                  ? _c(
-                      "button",
-                      {
-                        staticClass:
-                          "button-neon inner-shadow-neon inline-flex items-center px-3 py-2 text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-neon-dark",
-                        attrs: { type: "button" },
-                        on: { click: _vm.showEdit }
-                      },
-                      [
-                        _c("font-awesome-icon", {
-                          staticClass: "h-5 w-5 fa-fw",
-                          attrs: { icon: _vm.iconEdit }
-                        })
-                      ],
-                      1
-                    )
-                  : _vm._e(),
-                _vm._v(" "),
-                _vm.authorize("owns", _vm.reply)
-                  ? _c(
-                      "button",
-                      {
-                        staticClass:
-                          "button-neonSecondary inner-shadow-neonSecondary inline-flex items-center px-3 py-2 h-full text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-neonSecondary-dark focus:ring-neonSecondary-dark",
-                        attrs: { type: "button" },
-                        on: { click: _vm.destroy }
-                      },
-                      [
-                        _c("font-awesome-icon", {
-                          staticClass: "h-5 w-5 fa-fw",
-                          attrs: { icon: _vm.iconDelete }
-                        })
-                      ],
-                      1
-                    )
-                  : _vm._e()
-              ])
+              _c(
+                "div",
+                { staticClass: "flex flex-row space-x-3" },
+                [
+                  _vm.signedIn
+                    ? [_c("favorite", { attrs: { reply: _vm.reply } })]
+                    : _vm._e(),
+                  _vm._v(" "),
+                  !_vm.isBest && _vm.authorize("owns", _vm.reply.thread)
+                    ? _c(
+                        "button",
+                        {
+                          staticClass:
+                            "button-neon inner-shadow-neon text-teal hover:text-neon-dark inline-flex items-center px-3 py-2 text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-neon-dark",
+                          attrs: { type: "button" },
+                          on: { click: _vm.markBestReply }
+                        },
+                        [
+                          _c("font-awesome-icon", {
+                            staticClass: "h-5 w-5 fa-fw",
+                            attrs: { icon: _vm.iconFavorite }
+                          })
+                        ],
+                        1
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.authorize("owns", _vm.reply)
+                    ? _c(
+                        "button",
+                        {
+                          staticClass:
+                            "button-neon inner-shadow-neon inline-flex items-center px-3 py-2 text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-neon-dark",
+                          attrs: { type: "button" },
+                          on: { click: _vm.showEdit }
+                        },
+                        [
+                          _c("font-awesome-icon", {
+                            staticClass: "h-5 w-5 fa-fw",
+                            attrs: { icon: _vm.iconEdit }
+                          })
+                        ],
+                        1
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.authorize("owns", _vm.reply)
+                    ? _c(
+                        "button",
+                        {
+                          staticClass:
+                            "button-neonSecondary inner-shadow-neonSecondary inline-flex items-center px-3 py-2 h-full text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-neonSecondary-dark focus:ring-neonSecondary-dark",
+                          attrs: { type: "button" },
+                          on: { click: _vm.destroy }
+                        },
+                        [
+                          _c("font-awesome-icon", {
+                            staticClass: "h-5 w-5 fa-fw",
+                            attrs: { icon: _vm.iconDelete }
+                          })
+                        ],
+                        1
+                      )
+                    : _vm._e()
+                ],
+                2
+              )
             ]
           )
         ]),
@@ -73095,7 +73108,7 @@ var render = function() {
           "div",
           {
             staticClass: "px-4 py-5 sm:px-6 text-white",
-            class: _vm.isBest ? "text-lime" : ""
+            class: _vm.isBest ? "text-teal" : ""
           },
           [
             _vm.editing

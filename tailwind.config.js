@@ -23,6 +23,7 @@ module.exports = {
                 pink: '#FF14BDFF',
                 pinkDark: '#620047',
                 lime: '#CEFF1A',
+                teal: '#02c2a9',
                 coffee: '#38302E',
                 carolinaBlue: '#1B98E0',
                 indigoDye: '#033f63'

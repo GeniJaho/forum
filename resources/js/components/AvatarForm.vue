@@ -5,7 +5,7 @@
                  :src="avatar"
                  alt="Avatar"
             >
-            <h1 class="font-medium leading-5 text-xl self-center" v-text="user.name"></h1>
+            <h1 class="font-medium leading-5 text-xl self-center text-neon" v-text="user.name"></h1>
         </div>
 
         <form v-if="canUpdate"

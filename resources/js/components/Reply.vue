@@ -1,31 +1,33 @@
 <template>
     <div :id="'reply-' + id">
         <div
-            class="frame-neon hover:box-shadow-neon overflow-hidden rounded-lg divide-y divide-neon"
-            :class="isBest ? 'border-lime' : ''"
+            class="frame-neon hover:box-shadow-neon overflow-hidden rounded-lg divide-y"
+            :class="isBest ? 'border-teal divide-teal' : 'divide-neon'"
         >
             <div class="px-4 py-5 sm:px-6">
-                <div class="flex flex-row justify-between text-white">
-                    <div>
-                        <a class="text-neon hover:text-neon-dark"
-                           :href="'/profiles/' + reply.owner.name">
-                            {{ reply.owner.name }}
-                        </a>
-                        said <span v-text="ago"></span>
+                <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 justify-between align-middle text-white">
+                    <div class="flex items-center" :class="isBest ? 'text-teal' : ''">
+                        <div>
+                            <a class="text-neon hover:text-neon-dark"
+                               :href="'/profiles/' + reply.owner.name">
+                                {{ reply.owner.name }}
+                            </a>
+                            said <span v-text="ago"></span>
+                        </div>
                     </div>
                     <div class="flex flex-row space-x-3">
-                        <div v-if="signedIn">
+                        <template v-if="signedIn">
                             <favorite :reply="reply"></favorite>
-                        </div>
+                        </template>
 
                         <button
                             v-if="! isBest && authorize('owns', reply.thread)"
                             @click="markBestReply"
                             type="button"
-                            class="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            class="button-neon inner-shadow-neon text-teal hover:text-neon-dark inline-flex items-center px-3 py-2 text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-neon-dark">
                             <font-awesome-icon
                                 :icon="iconFavorite"
-                                class="h-5 w-5 fa-fw text-green-400"></font-awesome-icon>
+                                class="h-5 w-5 fa-fw"></font-awesome-icon>
                         </button>
 
                         <button
@@ -50,7 +52,7 @@
             </div>
 
             <div class="px-4 py-5 sm:px-6 text-white"
-                 :class="isBest ? 'text-lime' : ''"
+                 :class="isBest ? 'text-teal' : ''"
             >
                 <div v-if="editing">
                     <form @submit.prevent="update" class="relative">
@@ -81,7 +83,8 @@
 import eventHub from "../eventHub";
 import Favorite from "./Favorite";
 import { faEdit } from '@fortawesome/free-regular-svg-icons'
-import {faStar, faTimes} from '@fortawesome/free-solid-svg-icons'
+import {faTimes} from '@fortawesome/free-solid-svg-icons'
+import {faStar} from '@fortawesome/free-regular-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome'
 import moment from "moment";
 

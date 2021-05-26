@@ -22,11 +22,13 @@
                             <template v-if="!editing" v-cloak>
                                 @component('profiles.activities.activity')
                                     @slot('heading')
-                                        <div class="flex flex-row justify-between">
-                                            <div class="flex flex-row">
-                                                <img src="{{ $thread->creator->avatar_path }}"
-                                                     alt="Avatar" width="25" height="25" class="mr-2 rounded-full"
-                                                >
+                                        <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 justify-between align-middle">
+                                            <div class="flex flex-row items-center">
+                                                <div class="mr-3 w-8 h-8">
+                                                    <img src="{{ $thread->creator->avatar_path }}"
+                                                         alt="Avatar" width="32" height="32" class="rounded-full"
+                                                    >
+                                                </div>
 
                                                 <p class="text-white">
                                                     <a class="text-neon hover:text-neon-dark"
@@ -44,7 +46,7 @@
                                                     v-if="authorize('owns', thread)"
                                                     @click="showEdit"
                                                     type="button"
-                                                    class="inline-flex items-center px-3 py-2 mr-3 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                                    class="button-neon inner-shadow-neon inline-flex items-center px-3 py-2 mr-3 text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-neon-dark">
                                                     <font-awesome-icon :icon="editIcon"
                                                                        class="h-5 w-5 fa-fw"></font-awesome-icon>
                                                 </button>
@@ -56,7 +58,7 @@
 
                                                         <button
                                                             type="submit"
-                                                            class="inline-flex items-center px-3 py-2 h-full border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                                                            class="button-neonSecondary inner-shadow-neonSecondary inline-flex items-center px-3 py-2 h-full text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-neonSecondary-dark focus:ring-neonSecondary-dark">
                                                             <font-awesome-icon
                                                                 :icon="deleteIcon"
                                                                 class="h-5 w-5 fa-fw"></font-awesome-icon>
@@ -82,39 +84,26 @@
                                                 <input
                                                     v-model="form.title"
                                                     type="text"
-                                                    class="form-control mb-0"
+                                                    class="block w-full rounded-md sm:text-sm bg-transparent border border-neon placeholder-neon text-white focus:outline-none focus:ring focus:ring-offset focus:ring-offset-gray-800 focus:ring-neon-dark"
                                                     name="title"
                                                     id="title">
                                             </div>
                                         </div>
-
-                                        <div class="inline">
-                                            <div v-if="authorize('owns', thread) && !editing"
-                                                 class="d-flex align-items-center justify-content-center"
-                                                 @click="showEdit"
-                                            >
-                                                <button class="btn btn-primary">
-                                                    <i class="far fa-edit"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-
                                     @endslot
                                     @slot('body')
                                         <form @submit.prevent="update">
-                                            <div class="form-group">
                                             <textarea
                                                 v-model="form.body"
                                                 type="text"
-                                                class="form-control"
+                                                class="bg-transparent border-2 border-neon placeholder-neon text-white block w-full sm:text-sm rounded-md focus:outline-none focus:ring focus:ring-offset focus:ring-offset-gray-800 focus:ring-neon-dark"
                                                 required
                                                 rows="5"
                                             ></textarea>
-                                            </div>
-                                            <button type="submit" class="btn btn-primary btn-xs">
+
+                                            <button type="submit" class="button-neon inner-shadow-neon inline-flex items-center px-3 py-2 mt-3 text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-neon-dark">
                                                 Update
                                             </button>
-                                            <button type="button" class="btn btn-link btn-xs" @click="resetForm">
+                                            <button type="button" class="ml-2 button-neonSecondary inner-shadow-neonSecondary inline-flex items-center px-3 py-2 mt-3 text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-neonSecondary-dark focus:ring-neonSecondary-dark" @click="resetForm">
                                                 Cancel
                                             </button>
                                         </form>
@@ -159,7 +148,10 @@
                                             v-if="authorize('isAdmin')"
                                             @click="toggleLock"
                                             v-text="locked ? 'Unlock' : 'Lock'"
-                                            class="button-neonSecondary ground-shadow-neonSecondary inner-shadow-neonSecondary inline-flex items-center px-3 py-2 h-full text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-neonSecondary-dark focus:ring-neonSecondary-dark">
+                                            class="button-neonSecondary ground-shadow-neonSecondary inner-shadow-neonSecondary inline-flex items-center px-3 py-2 h-full text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-neonSecondary-dark focus:ring-neonSecondary-dark"
+                                            :class="locked ? 'text-neonSecondary-dark bg-neonSecondary' : ''"
+                                            :style="locked ? 'text-shadow: none;' : ''"
+                                        >
                                         </button>
 
                                     </div>

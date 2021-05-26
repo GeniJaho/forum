@@ -11,12 +11,12 @@
                     </div>
                     <div class="px-4 py-5 sm:p-6">
                         @if (session('status'))
-                            <div class="text-sm text-lime" role="alert">
+                            <div class="text-sm text-teal" role="alert">
                                 {{ session('status') }}
                             </div>
                         @endif
 
-                            <div class="text-sm text-lime" role="alert">
+                            <div class="text-sm text-teal" role="alert">
                                 sdfghfdgh dfg df gdfsg df
                             </div>
                         Display something here

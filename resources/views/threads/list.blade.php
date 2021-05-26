@@ -2,7 +2,7 @@
     @forelse($threads as $thread)
         @component("profiles.activities.activity")
             @slot('heading')
-                <div class="flex flex-row justify-between">
+                <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 justify-between align-middle">
                     <div class="flex flex-col">
                         <h3 class="text-lg leading-6 font-medium text-neon hover:text-neon-dark">
                             @if(auth()->check() && $thread->hasUpdatesFor(auth()->user()))
@@ -20,7 +20,7 @@
                             </a>
                         </p>
                     </div>
-                    <a href="{{ $thread->path() }}" class="font-medium text-neon hover:text-neon-dark">
+                    <a href="{{ $thread->path() }}" class="font-medium text-neon hover:text-neon-dark flex-shrink-0">
                         {{ $thread->replies_count }}
                         {{ \Illuminate\Support\Str::plural('reply', $thread->replies_count) }}
                     </a>
