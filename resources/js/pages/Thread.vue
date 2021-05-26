@@ -74,7 +74,7 @@ export default {
                     eventHub.$emit('flash', 'Your thread has been updated!')
                 })
                 .catch(error => {
-                    eventHub.$emit('flash', error.response.data, 'danger');
+                    eventHub.$emit('flash', error.response.data, 'neonSecondary');
                 });
         },
         resetForm() {

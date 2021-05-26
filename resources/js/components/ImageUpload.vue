@@ -2,6 +2,7 @@
     <input
         type="file"
         accept="image/*"
+        class="text-neon"
         @change="onChange"
     >
 </template>

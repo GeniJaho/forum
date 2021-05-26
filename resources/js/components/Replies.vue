@@ -6,7 +6,7 @@
 
         <paginator :data-set="dataSet" @changed="fetch"></paginator>
 
-        <p v-if="$parent.locked" class="text-center">
+        <p v-if="$parent.locked" class="text-center text-neonSecondary">
             This thread has been locked. No more replies are allowed.
         </p>
 

@@ -2,23 +2,98 @@
 @tailwind components;
 @tailwind utilities;
 
-.activity-item .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+@layer base {
+    .frame-neon {
+        @apply border-neon border-solid border-2;
+    }
+    .frame-neonSecondary {
+        @apply border-neonSecondary border-solid border-2;
+    }
 
-.activity-item .header .inline {
-    display: flex;
-    flex-direction: row;
-}
+    .text-shadow-neon {
+        text-shadow: 0 0 0.125em hsl(0, 0%, 33%), 0 0 0.45em theme('colors.neon.light');
+    }
+    .text-shadow-neonSecondary {
+        text-shadow: 0 0 0.125em hsl(0, 0%, 33%), 0 0 0.45em theme('colors.neonSecondary.light');
+    }
 
-.activity-item .header .inline div {
-    margin-left: 4px;
-    margin-right: 4px;
-}
+    .box-shadow-neon {
+        box-shadow: inset 0 0 0.5em 0 theme('colors.neon.light'), 0 0 0.5em 0 theme('colors.neon.light');
+    }
+    .box-shadow-neonSecondary {
+        box-shadow: inset 0 0 0.5em 0 theme('colors.neonSecondary.light'), 0 0 0.5em 0 theme('colors.neonSecondary.light');
+    }
 
-.level {
-    display: flex;
-    flex-direction: row;
+    .button-neon {
+        @apply relative rounded inline-flex cursor-pointer no-underline text-neon frame-neon text-shadow-neon box-shadow-neon py-1 px-4;
+        z-index: 1;
+    }
+    .button-neonSecondary {
+        @apply relative rounded inline-flex cursor-pointer no-underline text-neonSecondary frame-neonSecondary text-shadow-neonSecondary box-shadow-neonSecondary py-1 px-4;
+        z-index: 1;
+    }
+
+    .ground-shadow-neon::before,
+    .ground-shadow-neonSecondary::before {
+        @apply absolute pointer-events-none w-full h-full opacity-70;
+
+        content: "";
+        top: 120%;
+        left: 0;
+        transform: perspective(1em) rotateX(40deg) scale(1, 0.35);
+        filter: blur(1em);
+    }
+
+    .ground-shadow-neon::before {
+        @apply bg-neon;
+    }
+    .ground-shadow-neonSecondary::before {
+        @apply bg-neonSecondary;
+    }
+
+    .inner-shadow-neon::after,
+    .inner-shadow-neonSecondary::after {
+        @apply absolute opacity-0;
+        content: "";
+        top: -0.01em; /* much less than 1px */
+        bottom: -0.01em;
+        left: -0.01em;
+        right: -0.01em;
+        z-index: -1;
+        transition: opacity 100ms linear;
+    }
+
+    .inner-shadow-neon::after {
+        @apply bg-neon;
+        box-shadow: 0 0 2em 0.5em theme('colors.neon.light');
+    }
+    .inner-shadow-neonSecondary::after {
+        @apply bg-neonSecondary;
+        box-shadow: 0 0 2em 0.5em theme('colors.neonSecondary.light');
+    }
+
+    .inner-shadow-neon:hover,
+    .inner-shadow-neon:focus {
+        color: theme('colors.neon.dark');
+        text-shadow: none;
+    }
+    .inner-shadow-neonSecondary:hover,
+    .inner-shadow-neonSecondary:focus {
+        color: theme('colors.neonSecondary.dark');
+        text-shadow: none;
+    }
+
+    .ground-shadow-neon:hover::before,
+    .ground-shadow-neon:focus::before,
+    .ground-shadow-neonSecondary:hover::before,
+    .ground-shadow-neonSecondary:focus::before {
+        opacity: 1;
+    }
+
+    .inner-shadow-neon:hover::after,
+    .inner-shadow-neon:focus::after,
+    .inner-shadow-neonSecondary:hover::after,
+    .inner-shadow-neonSecondary:focus::after {
+        opacity: 1;
+    }
 }
