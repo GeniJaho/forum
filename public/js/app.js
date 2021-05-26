@@ -13701,16 +13701,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Navbar",
@@ -72939,37 +72929,8 @@ var render = function() {
                 "absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0"
             },
             [
-              _vm.guest
+              _vm.signedIn
                 ? [
-                    _c(
-                      "a",
-                      {
-                        staticClass:
-                          "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium",
-                        attrs: { href: "/login" }
-                      },
-                      [
-                        _vm._v(
-                          "\n                        Login\n                    "
-                        )
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "a",
-                      {
-                        staticClass:
-                          "ml-6 bg-neon-extraDark text-white px-3 py-2 rounded-md text-sm font-medium",
-                        attrs: { href: "/register" }
-                      },
-                      [
-                        _vm._v(
-                          "\n                        Register\n                    "
-                        )
-                      ]
-                    )
-                  ]
-                : [
                     _c(
                       "a",
                       {
@@ -73112,6 +73073,7 @@ var render = function() {
                       )
                     ])
                   ]
+                : _vm._e()
             ],
             2
           )

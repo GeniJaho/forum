@@ -142,17 +142,7 @@
                     </div>
                 </div>
                 <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                    <template v-if="guest">
-                        <a href="/login"
-                           class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
-                            Login
-                        </a>
-                        <a href="/register"
-                           class="ml-6 bg-neon-extraDark text-white px-3 py-2 rounded-md text-sm font-medium">
-                            Register
-                        </a>
-                    </template>
-                    <template v-else>
+                    <template v-if="signedIn">
                         <a href="/threads/create"
                            class="button-neon inner-shadow-neon relative hidden sm:inline-flex items-center px-4 py-2 text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-neon-dark">
                             <!-- Heroicon name: solid/plus -->

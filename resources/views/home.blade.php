@@ -11,12 +11,15 @@
                     </div>
                     <div class="px-4 py-5 sm:p-6">
                         @if (session('status'))
-                            <div class="alert alert-success" role="alert">
+                            <div class="text-sm text-lime" role="alert">
                                 {{ session('status') }}
                             </div>
                         @endif
 
-                        {{ __('You are logged in!') }}
+                            <div class="text-sm text-lime" role="alert">
+                                sdfghfdgh dfg df gdfsg df
+                            </div>
+                        Display something here
                     </div>
                 </div>
         </div>

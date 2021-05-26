@@ -27,7 +27,7 @@
                 </div>
             @endslot
             @slot('body')
-                {{ $thread->body }}
+                {!! $thread->body !!}
             @endslot
             @slot('footer')
                 {{ $thread->visits }} {{ \Illuminate\Support\Str::plural('Visit', $thread->visits) }}

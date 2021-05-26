@@ -1,67 +1,98 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+    <!-- 2 column wrapper -->
+    <div class="flex-grow w-full max-w-xl mx-auto lg:flex">
+        <!-- Left sidebar & main wrapper -->
+        <div class="flex-1 min-w-0 xl:flex">
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+            <div class="lg:min-w-0 lg:flex-1 overflow-hidden sm:overflow-visible">
+                <div class="h-full py-6 px-4 sm:px-6 lg:px-8">
+                    <!-- Start main area-->
+                    <div class="relative h-full">
+                        <div>
+                            <h2 class="mt-6 text-center text-3xl font-extrabold text-neon">
+                                Sign in
+                            </h2>
                         </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                        <form method="POST" class="mt-8 space-y-6" action="{{ route('login') }}">
+                            @csrf
+                            <input type="hidden" name="remember" value="true">
+                            <div class="rounded-md -space-y-px">
+                                <div>
+                                    <label for="email-address" class="sr-only">Email address</label>
+                                    <input
+                                        id="email-address"
+                                        name="email"
+                                        type="email"
+                                        autocomplete="email"
+                                        value="{{ old('email') }}"
+                                        required
+                                        class="@error('email') is-invalid @enderror appearance-none bg-transparent rounded-none relative block w-full px-3 py-2 border border-neon placeholder-neon text-neon rounded-t-md focus:outline-none focus:ring focus:ring-offset focus:ring-offset-gray-800 focus:ring-neon-dark focus:z-10 sm:text-sm"
+                                        placeholder="Email address"
+                                    >
+                                </div>
+                                <div>
+                                    <label for="password" class="sr-only">Password</label>
+                                    <input
+                                        id="password"
+                                        name="password"
+                                        type="password"
+                                        autocomplete="current-password"
+                                        value="{{ old('password') }}"
+                                        required
+                                        class="@error('password') is-invalid @enderror appearance-none bg-transparent rounded-none relative block w-full px-3 py-2 border border-neon placeholder-neon text-neon rounded-b-md focus:outline-none focus:ring focus:ring-offset focus:ring-offset-gray-800 focus:ring-neon-dark focus:z-10 sm:text-sm"
+                                        placeholder="Password"
+                                    >
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                            @error('email')
+                            <span class="text-pink text-sm mt-1" role="alert">{{ $message }}</span>
+                            @enderror
+                            @error('password')
+                            <span class="text-pink text-sm mt-1" role="alert">{{ $message }}</span>
+                            @enderror
 
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <input
+                                        id="remember"
+                                        name="remember"
+                                        type="checkbox"
+                                        class="bg-transparent h-4 w-4 text-neon border-neon rounded focus:outline-none focus:ring focus:ring-offset focus:ring-offset-gray-800 focus:ring-neon-dark"
+                                        {{ old('remember') ? 'checked' : '' }}
+                                    >
+                                    <label for="remember" class="ml-2 block text-sm text-neon">
+                                        Remember me
                                     </label>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
+                            <div>
+                                <button type="submit"
+                                        class="button-neon inner-shadow-neon ground-shadow-neon group relative w-full flex justify-center py-2 px-4 text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-neon-dark">
+                                      <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+                                        <!-- Heroicon name: solid/lock-closed -->
+                                        <svg class="h-5 w-5 text-neon group-hover:text-neon-dark"
+                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                             aria-hidden="true">
+                                          <path fill-rule="evenodd"
+                                                d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                                                clip-rule="evenodd"/>
+                                        </svg>
+                                      </span>
+                                    Sign in
                                 </button>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
+                    <!-- End main area -->
                 </div>
             </div>
+
         </div>
+
     </div>
-</div>
+
 @endsection
