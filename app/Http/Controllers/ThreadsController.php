@@ -16,6 +16,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Redirector;
+use Illuminate\Support\Facades\Cache;
 
 class ThreadsController extends Controller
 {
@@ -53,7 +54,11 @@ class ThreadsController extends Controller
      */
     public function create()
     {
-        return view('threads.create');
+        $channels = Cache::rememberForever('channels', function () {
+            return Channel::all();
+        });
+
+        return view('threads.create', compact('channels'));
     }
 
     /**

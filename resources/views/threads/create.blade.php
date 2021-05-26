@@ -48,6 +48,22 @@
 
                                 <div class="grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
                                     <div class="sm:col-span-12">
+                                        <label for="channel_id" class="block text-sm font-medium text-neon">
+                                            Channel
+                                        </label>
+                                        <select id="channel_id" name="channel_id" autocomplete="channel_id"
+                                                class="mt-1 block bg-neon-extraDark text-white w-full py-2 px-3 frame-neon border rounded-md sm:text-sm focus:outline-none focus:ring focus:ring-offset focus:ring-offset-gray-800 focus:ring-neon-dark"
+                                        >
+                                            <option value="">Choose one:</option>
+                                            @foreach($channels ?? [] as $channel)
+                                                <option value="{{ $channel->id }}"
+                                                    {{ old('channel_id') == $channel->id ? 'selected' : ''}}
+                                                >{{ $channel->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
+                                    <div class="sm:col-span-12">
                                         <label for="title" class="block text-sm font-medium text-neon">
                                             Title
                                         </label>
@@ -92,55 +108,5 @@
 
         </div>
 
-    </div>
-
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Create a New Thread</div>
-
-                    <div class="card-body">
-                        <form
-                            id="form"
-                            action="/threads"
-                            method="post"
-                            class="d-none"
-                        >
-                            @csrf
-
-                            <div class="form-group">
-                                <label for="channel_id">Choose a Channel:</label>
-                                <select class="form-control" name="channel_id" id="channel_id" required>
-                                    <option value="">Choose one:</option>
-                                    @foreach($channels ?? [] as $channel)
-                                        <option value="{{ $channel->id }}"
-                                            {{ old('channel_id') == $channel->id ? 'selected' : ''}}
-                                        >{{ $channel->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="title">Title:</label>
-                                <input type="text" class="form-control" name="title" required
-                                       id="title" value="{{ old('title') }}">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="body">Body:</label>
-                                <textarea type="text" class="form-control" id="body" required
-                                          name="body" rows="8">{{ old('body') }}</textarea>
-                            </div>
-
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-primary">Publish</button>
-                            </div>
-
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 @endsection

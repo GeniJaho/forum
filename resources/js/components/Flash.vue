@@ -1,6 +1,6 @@
 <template>
     <div
-        class="fade show text-white alert-flash overflow-hidden rounded-lg px-3 py-4 sm:px-5"
+        class="fade show text-white bg-neon-extraDark z-10 overflow-hidden rounded-lg px-3 py-4 sm:px-5 fixed bottom-6 right-4 sm:bottom-6 sm:right-6"
         :class="'frame-' + level"
         role="alert" v-show="show"
         v-text="body"
@@ -47,9 +47,5 @@ export default {
 </script>
 
 <style>
-.alert-flash {
-    position: fixed;
-    right: 25px;
-    bottom: 10px;
-}
+
 </style>
