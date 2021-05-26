@@ -159,10 +159,7 @@
                                             v-if="authorize('isAdmin')"
                                             @click="toggleLock"
                                             v-text="locked ? 'Unlock' : 'Lock'"
-                                            class="button-neonSecondary ground-shadow-neonSecondary inner-shadow-neonSecondary inline-flex items-center px-3 py-2 h-full text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-neonSecondary-dark">
-                                            <font-awesome-icon
-                                                :icon="deleteIcon"
-                                                class="h-5 w-5 fa-fw"></font-awesome-icon>
+                                            class="button-neonSecondary ground-shadow-neonSecondary inner-shadow-neonSecondary inline-flex items-center px-3 py-2 h-full text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-neonSecondary-dark focus:ring-neonSecondary-dark">
                                         </button>
 
                                     </div>

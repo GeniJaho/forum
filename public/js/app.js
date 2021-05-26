@@ -13239,7 +13239,7 @@ __webpack_require__.r(__webpack_exports__);
       return _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_2__["faHeart"];
     },
     classes: function classes() {
-      return this.active ? 'border-transparent text-white bg-indigo-600 hover:bg-indigo-700' : 'border-gray-300 text-gray-700 bg-white hover:bg-gray-50';
+      return this.active ? 'text-neon-dark bg-neon' : '';
     }
   },
   methods: {
@@ -13296,7 +13296,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       body: '',
-      level: 'success',
+      level: 'neon',
       show: false
     };
   },
@@ -13313,7 +13313,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     flash: function flash(message) {
-      var level = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'success';
+      var level = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'neon';
       this.body = message;
       this.level = level;
       this.show = true;
@@ -13783,7 +13783,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -13811,7 +13810,7 @@ __webpack_require__.r(__webpack_exports__);
       axios.post(location.pathname + "/replies", {
         body: this.body
       })["catch"](function (error) {
-        _eventHub__WEBPACK_IMPORTED_MODULE_0__["default"].$emit('flash', error.response.data, 'danger');
+        _eventHub__WEBPACK_IMPORTED_MODULE_0__["default"].$emit('flash', error.response.data, 'neonSecondary');
       }).then(function (response) {
         if (!response) {
           return;
@@ -14070,7 +14069,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 
@@ -14127,7 +14125,7 @@ __webpack_require__.r(__webpack_exports__);
 
         _eventHub__WEBPACK_IMPORTED_MODULE_0__["default"].$emit('flash', 'Updated!');
       })["catch"](function (error) {
-        _eventHub__WEBPACK_IMPORTED_MODULE_0__["default"].$emit('flash', error.response.data, 'danger');
+        _eventHub__WEBPACK_IMPORTED_MODULE_0__["default"].$emit('flash', error.response.data, 'neonSecondary');
       });
     },
     destroy: function destroy() {
@@ -14366,7 +14364,7 @@ __webpack_require__.r(__webpack_exports__);
 
         _eventHub__WEBPACK_IMPORTED_MODULE_1__["default"].$emit('flash', 'Your thread has been updated!');
       })["catch"](function (error) {
-        _eventHub__WEBPACK_IMPORTED_MODULE_1__["default"].$emit('flash', error.response.data, 'danger');
+        _eventHub__WEBPACK_IMPORTED_MODULE_1__["default"].$emit('flash', error.response.data, 'neonSecondary');
       });
     },
     resetForm: function resetForm() {
@@ -72463,7 +72461,7 @@ var render = function() {
     "button",
     {
       staticClass:
-        "inline-flex items-center px-3 py-2 h-full border shadow-sm text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500",
+        "button-neon inner-shadow-neon inline-flex items-center px-3 py-2 h-full text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-neon-dark",
       class: _vm.classes,
       attrs: { type: "button" },
       on: { click: _vm.toggle }
@@ -72505,8 +72503,9 @@ var render = function() {
     directives: [
       { name: "show", rawName: "v-show", value: _vm.show, expression: "show" }
     ],
-    staticClass: "alert alert-flash fade show",
-    class: "alert-" + _vm.level,
+    staticClass:
+      "fade show text-white alert-flash overflow-hidden rounded-lg px-3 py-4 sm:px-5",
+    class: "frame-" + _vm.level,
     attrs: { role: "alert" },
     domProps: { textContent: _vm._s(_vm.body) }
   })
@@ -73424,7 +73423,7 @@ var render = function() {
                   }
                 ],
                 staticClass:
-                  "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border-gray-300 rounded-md",
+                  "bg-transparent border-2 border-neon placeholder-neon text-white mt-1 block w-full sm:text-sm rounded-md focus:outline-none focus:ring focus:ring-offset focus:ring-offset-gray-800 focus:ring-neon-dark",
                 attrs: {
                   required: "",
                   rows: "5",
@@ -73446,18 +73445,20 @@ var render = function() {
               "button",
               {
                 staticClass:
-                  "inline-flex items-center px-3 py-2 mt-3 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500",
+                  "button-neon inner-shadow-neon ground-shadow-neon inline-flex items-center px-3 py-2 mt-3 text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-neon-dark",
                 attrs: { type: "button" },
                 on: { click: _vm.addReply }
               },
-              [_vm._v("Post\n        ")]
+              [_vm._v("Post")]
             )
           ],
           1
         )
-      : _c("p", { staticClass: "text-center mt-2" }, [
+      : _c("p", { staticClass: "text-center text-white mt-2" }, [
           _vm._v("\n        Please "),
-          _c("a", { attrs: { href: "/login" } }, [_vm._v("sign in")]),
+          _c("a", { staticClass: "text-neon", attrs: { href: "/login" } }, [
+            _vm._v("sign in")
+          ]),
           _vm._v(" to participate in this discussion.\n    ")
         ])
   ])
@@ -73600,7 +73601,7 @@ var render = function() {
       }),
       _vm._v(" "),
       _vm.$parent.locked
-        ? _c("p", { staticClass: "text-center" }, [
+        ? _c("p", { staticClass: "text-center text-neonSecondary" }, [
             _vm._v(
               "\n        This thread has been locked. No more replies are allowed.\n    "
             )
@@ -73637,105 +73638,109 @@ var render = function() {
       "div",
       {
         staticClass:
-          "bg-white overflow-hidden shadow rounded-lg divide-y divide-gray-200 border",
-        class: _vm.isBest ? "border-green-700" : "border-transparent"
+          "frame-neon hover:box-shadow-neon overflow-hidden rounded-lg divide-y divide-neon",
+        class: _vm.isBest ? "border-lime" : ""
       },
       [
         _c("div", { staticClass: "px-4 py-5 sm:px-6" }, [
-          _c("div", { staticClass: "flex flex-row justify-between" }, [
-            _c("div", [
-              _c(
-                "a",
-                {
-                  staticClass: "text-indigo-600 hover:text-indigo-500",
-                  attrs: { href: "/profiles/" + _vm.reply.owner.name }
-                },
-                [
-                  _vm._v(
-                    "\n                        " +
-                      _vm._s(_vm.reply.owner.name) +
-                      "\n                    "
-                  )
-                ]
-              ),
-              _vm._v("\n                    said "),
-              _c("span", { domProps: { textContent: _vm._s(_vm.ago) } })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "flex flex-row space-x-3" }, [
-              _vm.signedIn
-                ? _c(
-                    "div",
-                    [_c("favorite", { attrs: { reply: _vm.reply } })],
-                    1
-                  )
-                : _vm._e(),
+          _c(
+            "div",
+            { staticClass: "flex flex-row justify-between text-white" },
+            [
+              _c("div", [
+                _c(
+                  "a",
+                  {
+                    staticClass: "text-neon hover:text-neon-dark",
+                    attrs: { href: "/profiles/" + _vm.reply.owner.name }
+                  },
+                  [
+                    _vm._v(
+                      "\n                        " +
+                        _vm._s(_vm.reply.owner.name) +
+                        "\n                    "
+                    )
+                  ]
+                ),
+                _vm._v("\n                    said "),
+                _c("span", { domProps: { textContent: _vm._s(_vm.ago) } })
+              ]),
               _vm._v(" "),
-              !_vm.isBest && _vm.authorize("owns", _vm.reply.thread)
-                ? _c(
-                    "button",
-                    {
-                      staticClass:
-                        "inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500",
-                      attrs: { type: "button" },
-                      on: { click: _vm.markBestReply }
-                    },
-                    [
-                      _c("font-awesome-icon", {
-                        staticClass: "h-5 w-5 fa-fw text-green-400",
-                        attrs: { icon: _vm.iconFavorite }
-                      })
-                    ],
-                    1
-                  )
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.authorize("owns", _vm.reply)
-                ? _c(
-                    "button",
-                    {
-                      staticClass:
-                        "inline-flex items-center px-3 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500",
-                      attrs: { type: "button" },
-                      on: { click: _vm.showEdit }
-                    },
-                    [
-                      _c("font-awesome-icon", {
-                        staticClass: "h-5 w-5 fa-fw",
-                        attrs: { icon: _vm.iconEdit }
-                      })
-                    ],
-                    1
-                  )
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.authorize("owns", _vm.reply)
-                ? _c(
-                    "button",
-                    {
-                      staticClass:
-                        "inline-flex items-center px-3 py-2 h-full border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500",
-                      attrs: { type: "button" },
-                      on: { click: _vm.destroy }
-                    },
-                    [
-                      _c("font-awesome-icon", {
-                        staticClass: "h-5 w-5 fa-fw",
-                        attrs: { icon: _vm.iconDelete }
-                      })
-                    ],
-                    1
-                  )
-                : _vm._e()
-            ])
-          ])
+              _c("div", { staticClass: "flex flex-row space-x-3" }, [
+                _vm.signedIn
+                  ? _c(
+                      "div",
+                      [_c("favorite", { attrs: { reply: _vm.reply } })],
+                      1
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                !_vm.isBest && _vm.authorize("owns", _vm.reply.thread)
+                  ? _c(
+                      "button",
+                      {
+                        staticClass:
+                          "inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500",
+                        attrs: { type: "button" },
+                        on: { click: _vm.markBestReply }
+                      },
+                      [
+                        _c("font-awesome-icon", {
+                          staticClass: "h-5 w-5 fa-fw text-green-400",
+                          attrs: { icon: _vm.iconFavorite }
+                        })
+                      ],
+                      1
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.authorize("owns", _vm.reply)
+                  ? _c(
+                      "button",
+                      {
+                        staticClass:
+                          "button-neon inner-shadow-neon inline-flex items-center px-3 py-2 text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-neon-dark",
+                        attrs: { type: "button" },
+                        on: { click: _vm.showEdit }
+                      },
+                      [
+                        _c("font-awesome-icon", {
+                          staticClass: "h-5 w-5 fa-fw",
+                          attrs: { icon: _vm.iconEdit }
+                        })
+                      ],
+                      1
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.authorize("owns", _vm.reply)
+                  ? _c(
+                      "button",
+                      {
+                        staticClass:
+                          "button-neonSecondary inner-shadow-neonSecondary inline-flex items-center px-3 py-2 h-full text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-neonSecondary-dark focus:ring-neonSecondary-dark",
+                        attrs: { type: "button" },
+                        on: { click: _vm.destroy }
+                      },
+                      [
+                        _c("font-awesome-icon", {
+                          staticClass: "h-5 w-5 fa-fw",
+                          attrs: { icon: _vm.iconDelete }
+                        })
+                      ],
+                      1
+                    )
+                  : _vm._e()
+              ])
+            ]
+          )
         ]),
         _vm._v(" "),
         _c(
           "div",
           {
-            staticClass: "px-4 py-5 sm:px-6",
-            class: _vm.isBest ? "text-green-700" : ""
+            staticClass: "px-4 py-5 sm:px-6 text-white",
+            class: _vm.isBest ? "text-lime" : ""
           },
           [
             _vm.editing
@@ -73743,6 +73748,7 @@ var render = function() {
                   _c(
                     "form",
                     {
+                      staticClass: "relative",
                       on: {
                         submit: function($event) {
                           $event.preventDefault()
@@ -73751,34 +73757,34 @@ var render = function() {
                       }
                     },
                     [
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("textarea", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.body,
-                              expression: "body"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          attrs: { type: "text", required: "", rows: "5" },
-                          domProps: { value: _vm.body },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.body = $event.target.value
-                            }
+                      _c("textarea", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.body,
+                            expression: "body"
                           }
-                        })
-                      ]),
+                        ],
+                        staticClass:
+                          "bg-transparent border-2 border-neon placeholder-neon text-white block w-full sm:text-sm rounded-md focus:outline-none focus:ring focus:ring-offset focus:ring-offset-gray-800 focus:ring-neon-dark",
+                        attrs: { type: "text", required: "", rows: "5" },
+                        domProps: { value: _vm.body },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.body = $event.target.value
+                          }
+                        }
+                      }),
                       _vm._v(" "),
                       _c(
                         "button",
                         {
-                          staticClass: "btn btn-primary btn-xs",
+                          staticClass:
+                            "button-neon inner-shadow-neon inline-flex items-center px-3 py-2 mt-3 text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-neon-dark",
                           attrs: { type: "submit" }
                         },
                         [
@@ -73791,7 +73797,8 @@ var render = function() {
                       _c(
                         "button",
                         {
-                          staticClass: "btn btn-link btn-xs",
+                          staticClass:
+                            "ml-2 button-neonSecondary inner-shadow-neonSecondary inline-flex items-center px-3 py-2 mt-3 text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-neonSecondary-dark focus:ring-neonSecondary-dark",
                           attrs: { type: "button" },
                           on: { click: _vm.hideEdit }
                         },

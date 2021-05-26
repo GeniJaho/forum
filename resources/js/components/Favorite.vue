@@ -2,7 +2,7 @@
     <button
         @click="toggle"
         :class="classes"
-        type="button" class="inline-flex items-center px-3 py-2 h-full border shadow-sm text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+        type="button" class="button-neon inner-shadow-neon inline-flex items-center px-3 py-2 h-full text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-neon-dark">
         <font-awesome-icon
             :icon="active ? iconHeartSolid : iconHeart"
             class="h-5 w-5 fa-fw mr-2"></font-awesome-icon>
@@ -39,8 +39,8 @@ export default {
         },
         classes() {
             return this.active
-                ? 'border-transparent text-white bg-indigo-600 hover:bg-indigo-700'
-                : 'border-gray-300 text-gray-700 bg-white hover:bg-gray-50'
+                ? 'text-neon-dark bg-neon'
+                : ''
         }
     },
     methods: {

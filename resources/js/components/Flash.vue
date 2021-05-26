@@ -1,7 +1,7 @@
 <template>
     <div
-        class="alert alert-flash fade show"
-        :class="'alert-' + level"
+        class="fade show text-white alert-flash overflow-hidden rounded-lg px-3 py-4 sm:px-5"
+        :class="'frame-' + level"
         role="alert" v-show="show"
         v-text="body"
     ></div>
@@ -17,7 +17,7 @@ export default {
     data() {
         return {
             body: '',
-            level: 'success',
+            level: 'neon',
             show: false
         }
     },
@@ -29,7 +29,7 @@ export default {
         eventHub.$on('flash', (message, level) => this.flash(message, level));
     },
     methods: {
-        flash(message, level = 'success') {
+        flash(message, level = 'neon') {
             this.body = message;
             this.level = level;
             this.show = true;

@@ -17,11 +17,11 @@ module.exports = {
                 neonSecondary: {
                     light: '#FF14BDFF',
                     DEFAULT: '#FF14BDFF',
-                    dark: '#31202BFF',
+                    dark: '#620047',
                     extraDark: '#111827'
                 },
                 pink: '#FF14BDFF',
-                pinkDark: '#31202BFF',
+                pinkDark: '#620047',
                 lime: '#CEFF1A',
                 coffee: '#38302E',
                 carolinaBlue: '#1B98E0',

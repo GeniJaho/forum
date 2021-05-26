@@ -1,13 +1,13 @@
 <template>
     <div :id="'reply-' + id">
         <div
-            class="bg-white overflow-hidden shadow rounded-lg divide-y divide-gray-200 border"
-            :class="isBest ? 'border-green-700' : 'border-transparent'"
+            class="frame-neon hover:box-shadow-neon overflow-hidden rounded-lg divide-y divide-neon"
+            :class="isBest ? 'border-lime' : ''"
         >
             <div class="px-4 py-5 sm:px-6">
-                <div class="flex flex-row justify-between">
+                <div class="flex flex-row justify-between text-white">
                     <div>
-                        <a class="text-indigo-600 hover:text-indigo-500"
+                        <a class="text-neon hover:text-neon-dark"
                            :href="'/profiles/' + reply.owner.name">
                             {{ reply.owner.name }}
                         </a>
@@ -32,7 +32,7 @@
                             v-if="authorize('owns', reply)"
                             @click="showEdit"
                             type="button"
-                            class="inline-flex items-center px-3 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            class="button-neon inner-shadow-neon inline-flex items-center px-3 py-2 text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-neon-dark">
                             <font-awesome-icon :icon="iconEdit"
                                                class="h-5 w-5 fa-fw"></font-awesome-icon>
                         </button>
@@ -41,7 +41,7 @@
                             v-if="authorize('owns', reply)"
                             @click="destroy"
                             type="button"
-                            class="inline-flex items-center px-3 py-2 h-full border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                            class="button-neonSecondary inner-shadow-neonSecondary inline-flex items-center px-3 py-2 h-full text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-neonSecondary-dark focus:ring-neonSecondary-dark">
                             <font-awesome-icon :icon="iconDelete"
                                                class="h-5 w-5 fa-fw"></font-awesome-icon>
                         </button>
@@ -49,24 +49,23 @@
                 </div>
             </div>
 
-            <div class="px-4 py-5 sm:px-6"
-                 :class="isBest ? 'text-green-700' : ''"
+            <div class="px-4 py-5 sm:px-6 text-white"
+                 :class="isBest ? 'text-lime' : ''"
             >
                 <div v-if="editing">
-                    <form @submit.prevent="update">
-                        <div class="form-group">
+                    <form @submit.prevent="update" class="relative">
                         <textarea
-                            v-model="body"
                             type="text"
-                            class="form-control"
+                            class="bg-transparent border-2 border-neon placeholder-neon text-white block w-full sm:text-sm rounded-md focus:outline-none focus:ring focus:ring-offset focus:ring-offset-gray-800 focus:ring-neon-dark"
                             required
                             rows="5"
+                            v-model="body"
                         ></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-xs">
+
+                        <button type="submit" class="button-neon inner-shadow-neon inline-flex items-center px-3 py-2 mt-3 text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-neon-dark">
                             Update
                         </button>
-                        <button type="button" class="btn btn-link btn-xs" @click="hideEdit">
+                        <button type="button" class="ml-2 button-neonSecondary inner-shadow-neonSecondary inline-flex items-center px-3 py-2 mt-3 text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-neonSecondary-dark focus:ring-neonSecondary-dark" @click="hideEdit">
                             Cancel
                         </button>
                     </form>
@@ -134,7 +133,7 @@ export default {
                     eventHub.$emit('flash', 'Updated!')
                 })
                 .catch(error => {
-                    eventHub.$emit('flash', error.response.data, 'danger');
+                    eventHub.$emit('flash', error.response.data, 'neonSecondary');
                 });
         },
         destroy() {

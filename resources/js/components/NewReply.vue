@@ -3,7 +3,7 @@
         <div v-if="signedIn" class="my-5">
                 <vue-tribute :options="tributeOptions">
                     <textarea
-                        class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border-gray-300 rounded-md"
+                        class="bg-transparent border-2 border-neon placeholder-neon text-white mt-1 block w-full sm:text-sm rounded-md focus:outline-none focus:ring focus:ring-offset focus:ring-offset-gray-800 focus:ring-neon-dark"
                         required
                         rows="5"
                         v-model="body"
@@ -13,15 +13,14 @@
 
             <button
                 type="button"
-                class="inline-flex items-center px-3 py-2 mt-3 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                class="button-neon inner-shadow-neon ground-shadow-neon inline-flex items-center px-3 py-2 mt-3 text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-neon-dark"
                 @click="addReply"
-            >Post
-            </button>
+            >Post</button>
         </div>
         <p v-else
-           class="text-center mt-2"
+           class="text-center text-white mt-2"
         >
-            Please <a href="/login">sign in</a> to participate in this discussion.
+            Please <a href="/login" class="text-neon">sign in</a> to participate in this discussion.
         </p>
     </div>
 </template>
@@ -52,7 +51,7 @@ export default {
         addReply() {
             axios.post(location.pathname + "/replies", {body: this.body})
                 .catch(error => {
-                    eventHub.$emit('flash', error.response.data, 'danger');
+                    eventHub.$emit('flash', error.response.data, 'neonSecondary');
                 })
                 .then(response => {
                     if (!response) {

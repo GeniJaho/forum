@@ -28,7 +28,7 @@
                                         autocomplete="email"
                                         value="{{ old('email') }}"
                                         required
-                                        class="@error('email') is-invalid @enderror appearance-none bg-transparent rounded-none relative block w-full px-3 py-2 border border-neon placeholder-neon text-neon rounded-t-md focus:outline-none focus:ring focus:ring-offset focus:ring-offset-gray-800 focus:ring-neon-dark focus:z-10 sm:text-sm"
+                                        class="appearance-none bg-transparent rounded-none relative block w-full px-3 py-2 border border-neon placeholder-neon text-neon rounded-t-md focus:outline-none focus:ring focus:ring-offset focus:ring-offset-gray-800 focus:ring-neon-dark focus:z-10 sm:text-sm"
                                         placeholder="Email address"
                                     >
                                 </div>
@@ -41,7 +41,7 @@
                                         autocomplete="current-password"
                                         value="{{ old('password') }}"
                                         required
-                                        class="@error('password') is-invalid @enderror appearance-none bg-transparent rounded-none relative block w-full px-3 py-2 border border-neon placeholder-neon text-neon rounded-b-md focus:outline-none focus:ring focus:ring-offset focus:ring-offset-gray-800 focus:ring-neon-dark focus:z-10 sm:text-sm"
+                                        class="appearance-none bg-transparent rounded-none relative block w-full px-3 py-2 border border-neon placeholder-neon text-neon rounded-b-md focus:outline-none focus:ring focus:ring-offset focus:ring-offset-gray-800 focus:ring-neon-dark focus:z-10 sm:text-sm"
                                         placeholder="Password"
                                     >
                                 </div>
