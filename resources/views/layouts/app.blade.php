@@ -10,6 +10,7 @@
     <meta name="user-id" content="{{ auth()->id() }}">
     <meta name="user-name" content="{{ auth()->user()->name ?? '' }}">
     <meta name="user-email" content="{{ auth()->user()->email ?? '' }}">
+    <meta name="description" content="A Neon Forum">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
@@ -17,8 +18,8 @@
     <script src="{{ mix('/js/app.js') }}" defer></script>
 
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+{{--    <link rel="dns-prefetch" href="//fonts.gstatic.com">--}}
+{{--    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">--}}
 
     <!-- Styles -->
     <link href="{{ mix('/css/app.css') }}" rel="stylesheet">
