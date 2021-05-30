@@ -29,6 +29,10 @@ module.exports = {
                 indigoDye: '#033f63'
             }
         },
+        fontFamily: {
+            display: ['Menlo', "ui-monospace", "SFMono-Regular", "Monaco", "Consolas", "Liberation Mono", "Courier New", "monospace"],
+            body: ['Menlo', "ui-monospace", "SFMono-Regular", "Monaco", "Consolas", "Liberation Mono", "Courier New", "monospace"]
+        }
     },
     variants: {
         extend: {},

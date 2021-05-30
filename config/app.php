@@ -165,6 +165,7 @@ return [
         /*
          * Package Service Providers...
          */
+        \BReda\Faker\EnglishWords::class,
 
         /*
          * Application Service Providers...
