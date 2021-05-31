@@ -16,9 +16,6 @@
 
     @yield('criticalCss')
 
-    <!-- Scripts -->
-    <script src="{{ mix('/js/app.js') }}" defer></script>
-
     <!-- Styles -->
     <link href="{{ mix('/css/app.css') }}" rel="stylesheet">
 
@@ -33,6 +30,9 @@
 
     <flash message="{{ session('flash') }}"></flash>
 </div>
+
+<!-- Scripts -->
+<script src="{{ mix('/js/app.js') }}" async defer></script>
 
 @yield('scripts')
 

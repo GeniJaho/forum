@@ -9,7 +9,7 @@
 @section('head')
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Audiowide&text=Neon%20Forum&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Audiowide&text=Neon%20Forum&display=swap" rel="preload" as="style">
 
     <link href="{{ mix('/css/home.css') }}" rel="stylesheet">
 @endsection
