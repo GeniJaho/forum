@@ -31,7 +31,7 @@ class UserTest extends TestCase
         $user = User::factory()->create();
 
         $this->assertEquals(
-            asset('img/avatars/default.png'),
+            asset('img/avatars/default.svg'),
             $user->avatar_path
         );
 
