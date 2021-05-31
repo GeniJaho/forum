@@ -49,6 +49,7 @@
                                 Most in depth TDD course on
                                 <a href="https://laracasts.com/series/lets-build-a-forum-with-laravel"
                                    target="_blank"
+                                   rel="noopener"
                                    class="text-neonSecondary hover:text-neonSecondary-dark"
                                 >
                                     Laracasts
@@ -58,6 +59,7 @@
                                 This awesome neon glow on
                                 <a href="https://codepen.io/FelixRilling/pen/qzfoc"
                                    target="_blank"
+                                   rel="noopener"
                                    class="text-neonSecondary hover:text-neonSecondary-dark"
                                 >
                                     Codepen
@@ -67,6 +69,7 @@
                                 This top performance
                                 <a href="https://www.youtube.com/watch?v=6xNcXwC6ikQ"
                                    target="_blank"
+                                   rel="noopener"
                                    class="text-neonSecondary hover:text-neonSecondary-dark"
                                 >
                                     neon button implementation
