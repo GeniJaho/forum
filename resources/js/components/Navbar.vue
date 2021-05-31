@@ -201,7 +201,7 @@
 
         <!-- Mobile menu, show/hide based on menu state. -->
         <div class="sm:hidden" id="mobile-menu" v-if="mobileMenuActive">
-            <div class="px-2 pt-2 pb-3 space-x-1 space-y-1">
+            <div class="px-2 pt-2 pb-3 space-x-1 space-y-3">
 
                 <!--  New Thread Mobile ------------------------------------- -->
 
