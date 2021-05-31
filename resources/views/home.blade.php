@@ -38,8 +38,17 @@
                     <div class="text-sm text-teal" role="alert">
                         <ol class="space-y-3">
                             <li>100% Test Coverage on the backend</li>
-                            <li>Neon look & feel</li>
-                            <li>Top stats on Performance, Accessibility, SEO, and Best Practices Audit</li>
+                            <li>Neon look and feel</li>
+                            <li>
+                                Top stats on
+                                <a href="https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fwww.forum.genijaho.dev"
+                                   target="_blank"
+                                   rel="noopener"
+                                   class="text-neonSecondary hover:text-neonSecondary-dark"
+                                >
+                                    Performance, SEO, Accessibility, and Best Practices
+                                </a>
+                            </li>
                         </ol>
                     </div>
                 </div>
@@ -73,7 +82,7 @@
                                 </a>
                             </li>
                             <li>
-                                This top performance
+                                This performant
                                 <a href="https://www.youtube.com/watch?v=6xNcXwC6ikQ"
                                    target="_blank"
                                    rel="noopener"
