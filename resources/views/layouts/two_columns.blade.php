@@ -18,7 +18,7 @@
             </div>
 
             <div class="xl:flex-shrink-0 xl:w-80">
-                <div class="h-full px-4 py-6 sm:pr-6 lg:pr-8 xl:pr-0">
+                <div class="h-full px-4 py-6 sm:pr-6 lg:pr-8">
                     <!-- Start right column area -->
                     <div class="h-full relative" style="min-height: 12rem;">
                         @yield('sidebar')
