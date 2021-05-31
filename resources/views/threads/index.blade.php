@@ -1,5 +1,11 @@
 @extends('layouts.two_columns')
 
+@section('criticalCss')
+    @if(file_exists(public_path('/css/critical/threads.index.min.css')))
+        <style>{!! file_get_contents(public_path('/css/critical/threads.index.min.css')) !!}</style>
+    @endif
+@endsection
+
 @section('main')
     @include('threads.list')
 

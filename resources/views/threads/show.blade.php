@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+@section('criticalCss')
+    @if(file_exists(public_path('/css/critical/threads.show.min.css')))
+        <style>{!! file_get_contents(public_path('/css/critical/threads.show.min.css')) !!}</style>
+    @endif
+@endsection
+
 @section('head')
     <link rel="stylesheet" href="/css/tribute.css">
 @endsection
@@ -26,7 +32,7 @@
                                             <div class="flex flex-row items-center">
                                                 <div class="mr-3 w-8 h-8">
                                                     <img src="{{ $thread->creator->avatar_path }}"
-                                                         alt="Avatar" width="32" height="32" class="rounded-full"
+                                                         alt="Avatar" width="32" height="32" class="rounded-full w-8 h-8"
                                                     >
                                                 </div>
 
@@ -125,7 +131,7 @@
                 </div>
 
                 <div class="xl:flex-shrink-0 xl:w-80">
-                    <div class="h-full px-4 py-6 sm:pr-6 lg:pr-8 xl:pr-0">
+                    <div class="h-full px-4 py-6 sm:pr-6 lg:pr-8">
                         <!-- Start right column area -->
                         <div class="h-full relative" style="min-height: 12rem;">
 

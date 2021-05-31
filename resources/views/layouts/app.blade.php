@@ -14,6 +14,8 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+    @yield('criticalCss')
+
     <!-- Scripts -->
     <script src="{{ mix('/js/app.js') }}" defer></script>
 

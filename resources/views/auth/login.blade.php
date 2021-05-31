@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+@section('criticalCss')
+    @if(file_exists(public_path('/css/critical/login.min.css')))
+        <style>{!! file_get_contents(public_path('/css/critical/login.min.css')) !!}</style>
+    @endif
+@endsection
+
 @section('content')
     <!-- 2 column wrapper -->
     <div class="flex-grow w-full max-w-xl mx-auto lg:flex">

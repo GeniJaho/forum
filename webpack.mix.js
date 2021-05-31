@@ -1,5 +1,7 @@
 const mix = require('laravel-mix');
 
+require('laravel-mix-criticalcss');
+
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -15,6 +17,23 @@ mix.js('resources/js/app.js', 'public/js')
     .postCss("resources/css/app.css", "public/css", [
         require("tailwindcss")
     ])
+    .criticalCss({
+        enabled: mix.inProduction(),
+        paths: {
+            base: 'https://forum.genijaho.dev',
+            templates: './public/css/critical/',
+            suffix: '.min'
+        },
+        urls: [
+            { url: '/', template: 'home' },
+            { url: '/profiles/Mariglen%20Jahollari', template: 'profile' },
+            { url: '/threads/suscipit/lorem-ipsum-dolor-sit-amet', template: 'threads.show' },
+            { url: '/threads', template: 'threads.index' },
+        ],
+        options: {
+            minify: true,
+        },
+    })
     .styles('resources/css/home.css', 'public/css/home.css')
     .styles('node_modules/tributejs/dist/tribute.css', 'public/css/tribute.css');
 

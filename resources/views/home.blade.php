@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
+@section('criticalCss')
+    @if(file_exists(public_path('/css/critical/home.min.css')))
+        <style>{!! file_get_contents(public_path('/css/critical/home.min.css')) !!}</style>
+    @endif
+@endsection
+
 @section('head')
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
