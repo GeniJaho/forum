@@ -1,12 +1,12 @@
 .neon-title {
     font-size: 3.5rem;
 
-    -webkit-transition: all 0.5s;
-    -moz-transition: all 0.5s;
-    transition: all 0.5s;
+    -webkit-transition: text-shadow 0.5s;
+    -moz-transition: text-shadow 0.5s;
+    transition: text-shadow 0.5s;
 
     color: #fff;
-    font-family: Audiowide, Menlo, ui-monospace, SFMono-Regular, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+    font-family: Audiowide, monospace;
     -webkit-animation: neon1 1.5s ease-in-out infinite alternate;
     -moz-animation: neon1 1.5s ease-in-out infinite alternate;
     animation: neon1 1.5s ease-in-out infinite alternate;

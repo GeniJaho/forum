@@ -8,8 +8,15 @@
 
 @section('head')
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Audiowide&text=Neon%20Forum&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true"/>
+    <link rel="preload" as="style"
+        href="https://fonts.googleapis.com/css?family=Audiowide&text=Neon%20Forum&display=swap"
+    />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Audiowide&text=Neon%20Forum&display=swap"
+        media="print"
+        onLoad="this.media='all'"
+    />
 
     <link href="{{ mix('/css/home.css') }}" rel="stylesheet">
 @endsection
@@ -20,7 +27,7 @@
         <div class="max-w-3xl mx-auto">
 
             <div class="my-5 text-center">
-                <p class="neon-title">Neon Forum</p>
+                <p class="neon-title">Neon <br class="sm:hidden"> Forum</p>
             </div>
 
             <div class="frame-neon overflow-hidden shadow rounded-lg divide-y divide-neon text-white ">

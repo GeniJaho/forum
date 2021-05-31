@@ -24,7 +24,9 @@
 </head>
 <body class="font-display">
 <div id="app">
-    <navbar></navbar>
+    <nav style="min-height: 64px;">
+        <navbar></navbar>
+    </nav>
 
     @yield('content')
 
