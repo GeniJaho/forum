@@ -1,4 +1,5 @@
 const mix = require('laravel-mix');
+var webpack = require('webpack');
 
 require('laravel-mix-criticalcss');
 
@@ -38,3 +39,12 @@ mix.js('resources/js/app.js', 'public/js')
     .styles('node_modules/tributejs/dist/tribute.css', 'public/css/tribute.css');
 
 mix.copyDirectory('resources/img', 'public/img');
+
+mix.webpackConfig({
+    plugins: [
+        new webpack.IgnorePlugin({
+            resourceRegExp: /^\.\/locale$/,
+            contextRegExp: /moment$/,
+        })
+    ]
+});

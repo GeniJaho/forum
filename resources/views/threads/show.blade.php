@@ -30,7 +30,7 @@
                                     @slot('heading')
                                         <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 justify-between align-middle">
                                             <div class="flex flex-row items-center">
-                                                <div class="mr-3 w-8 h-8">
+                                                <div class="mr-3 w-8 h-8 flex-shrink-0">
                                                     <img src="{{ $thread->creator->avatar_path }}"
                                                          alt="Avatar" width="32" height="32" class="rounded-full w-8 h-8"
                                                     >

@@ -27,7 +27,8 @@
 
 <script>
 import eventHub from "../eventHub";
-import VueTribute from 'vue-tribute';
+import debounce from 'lodash.debounce';
+const VueTribute = () => import('vue-tribute');
 
 export default {
     name: "NewReply",
@@ -38,7 +39,7 @@ export default {
         return {
             body: "",
             tributeOptions: {
-                values: _.debounce(this.getUsers.bind(this), 750),
+                values: debounce(this.getUsers.bind(this), 750),
                 lookup: 'name',
                 fillAttr: 'name',
                 noMatchTemplate: function () {

@@ -82,7 +82,7 @@ class User extends Authenticatable implements MustVerifyEmail
         return asset(
             $avatar
                 ? 'storage/' . $avatar
-                : 'img/avatars/default.png'
+                : 'img/avatars/default.svg'
         );
     }
 
