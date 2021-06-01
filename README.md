@@ -1,24 +1,19 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+<p align="center"><a href="https://forum.genijaho.dev" target="_blank"><img src="https://res.cloudinary.com/wertweyyer/image/upload/v1622541418/neon-forum.png" width="400"></a></p>
 
 <p align="center">
     
 <a href="https://codecov.io/gh/GeniJaho/forum"><img src="https://codecov.io/gh/GeniJaho/forum/branch/master/graph/badge.svg?token=VDLBMBCWH7" alt="Project coverage" /></a>
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+## About Neon Forum
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+This Neon Forum is a Laravel + Vue application with a fully tested backend and a neon look and feel.
+Built with [performance, SEO, accessibility, and best practices](https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fwww.forum.genijaho.dev) in mind.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Based on
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- Most in depth TDD course on [Laracasts](https://laracasts.com/series/lets-build-a-forum-with-laravel).
+- This awesome neon glow on [Codepen](https://codepen.io/FelixRilling/pen/qzfoc).
+- This performant [neon button implementation](https://www.youtube.com/watch?v=6xNcXwC6ikQ).
+
+See it live [here](https://forum.genijaho.dev).
