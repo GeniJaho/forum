@@ -94,6 +94,14 @@
                         </ol>
                     </div>
                 </div>
+                <div class="px-4 py-5 sm:px-6 text-lg text-teal">
+                    Check the repo on
+                    <a href="https://github.com/GeniJaho/forum"
+                       target="_blank"
+                       rel="noopener"
+                       class="text-neonSecondary hover:text-neonSecondary-dark"
+                    >Github</a>.
+                </div>
             </div>
 
             <div class="mt-10 mb-48 text-center">
