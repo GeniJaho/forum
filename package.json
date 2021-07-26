@@ -16,7 +16,7 @@
         "cross-env": "^7.0.3",
         "jquery": "^3.6.0",
         "laravel-mix": "^5.0.9",
-        "laravel-mix-criticalcss": "^1.0.1",
+        "laravel-mix-criticalcss": "^1.0.2",
         "popper.js": "^1.12",
         "postcss": "^7.0.35",
         "resolve-url-loader": "^2.3.1",
